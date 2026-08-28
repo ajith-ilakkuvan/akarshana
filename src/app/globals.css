@@ -61,6 +61,35 @@
   color: transparent;
 }
 
+/**
+ * Liquid-fill hover effect: a color wave that expands from the cursor's
+ * entry point rather than a flat color fade. Apply `.liquid-fill` to the
+ * interactive element itself (it needs `overflow: hidden` + its own
+ * border-radius to clip the fill to the button's shape), render one
+ * `.liquid-fill__layer` child for the expanding color, and wrap the
+ * visible content in `.liquid-fill__content` so it stays above the fill.
+ * `--liquid-x`/`--liquid-y` are set from JS on pointer-enter (see
+ * `src/lib/liquidFill.ts`) to the cursor's position within the element.
+ */
+.liquid-fill {
+  position: relative;
+  overflow: hidden;
+}
+.liquid-fill__layer {
+  position: absolute;
+  inset: 0;
+  clip-path: circle(0% at var(--liquid-x, 50%) var(--liquid-y, 50%));
+  transition: clip-path 550ms var(--ease-liquid, cubic-bezier(0.22, 1, 0.36, 1));
+  pointer-events: none;
+}
+.liquid-fill:hover .liquid-fill__layer,
+.liquid-fill:focus-visible .liquid-fill__layer {
+  clip-path: circle(150% at var(--liquid-x, 50%) var(--liquid-y, 50%));
+}
+.liquid-fill__content {
+  position: relative;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

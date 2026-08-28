@@ -10,6 +10,7 @@ import { PhoneCta, WhatsappCta } from "@/components/cta/PhoneWhatsappCta";
 import { mainNav, ctaLabels } from "@/config/navigation";
 import { trackEvent } from "@/lib/analytics";
 import { useScrolled } from "@/hooks/useScrolled";
+import { setLiquidOrigin } from "@/lib/liquidFill";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -79,11 +80,12 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <PhoneCta />
-          <WhatsappCta />
+          <PhoneCta liquid />
+          <WhatsappCta liquid />
           <Button
             href="/contact/"
             size="sm"
+            liquid
             onClick={() => trackEvent("cta_click", { location: "header" })}
           >
             {ctaLabels.primary}
@@ -91,8 +93,8 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <PhoneCta className="size-10" />
-          <WhatsappCta className="size-10" />
+          <PhoneCta liquid className="size-10" />
+          <WhatsappCta liquid className="size-10" />
           <button
             ref={menuButtonRef}
             type="button"
@@ -100,9 +102,13 @@ export function Header() {
             aria-controls="mobile-nav"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             onClick={() => setIsMenuOpen((open) => !open)}
-            className="inline-flex size-10 items-center justify-center rounded-full text-charcoal hover:bg-charcoal/5"
+            onPointerEnter={setLiquidOrigin}
+            className="liquid-fill inline-flex size-10 items-center justify-center rounded-full text-charcoal"
           >
-            {isMenuOpen ? <X aria-hidden="true" className="size-6" /> : <Menu aria-hidden="true" className="size-6" />}
+            <span aria-hidden="true" className="liquid-fill__layer bg-brand-gold-light/70" />
+            <span className="liquid-fill__content">
+              {isMenuOpen ? <X aria-hidden="true" className="size-6" /> : <Menu aria-hidden="true" className="size-6" />}
+            </span>
           </button>
         </div>
       </div>
@@ -131,7 +137,7 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <Button href="/contact/" className="mt-6 w-full">
+            <Button href="/contact/" liquid className="mt-6 w-full">
               {ctaLabels.primary}
             </Button>
           </nav>
