@@ -47,8 +47,6 @@ src/
     blog/                    /blog/ index + /blog/[slug]/ posts
     sitemap.ts, robots.ts      auto-generated sitemap.xml / robots.txt
     layout.tsx, globals.css    root layout, fonts, brand color tokens
-  proxy.ts                 Security headers + CSP (Next.js 16's renamed
-                            middleware convention)
   config/                  Central, editable configuration (see below)
   content/                 Long-form copy: blog posts, per-city SEO content
   components/
@@ -214,9 +212,21 @@ locations/homepage listings, since both read from `config/locations.ts`.
 
 ## Security
 
-- `src/proxy.ts` (Next.js 16's renamed `middleware.ts`) sets a nonce-based
-  Content-Security-Policy plus `X-Frame-Options`, `X-Content-Type-Options`,
-  `Referrer-Policy` and `Permissions-Policy` on every response.
+- `next.config.ts` (`headers()`) sets a Content-Security-Policy plus
+  `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` and
+  `Permissions-Policy` on every response. This is a **static** CSP, set
+  once at config level rather than generated per-request in middleware —
+  deliberately: this site is almost entirely statically generated (SSG)
+  for SEO/performance, and Next's nonce-based CSP pattern only works for
+  pages that opt into per-request dynamic rendering (confirmed the hard
+  way: it silently broke every page's JavaScript in a static build). See
+  the comment above `cspHeader` in `next.config.ts`, and
+  `node_modules/next/dist/docs/01-app/02-guides/content-security-policy.md`
+  ("Static vs Dynamic Rendering with CSP") for Next's own explanation.
+  `script-src` therefore uses `'unsafe-inline'` rather than a nonce; if
+  stricter script-src is needed later, Next's experimental
+  Subresource-Integrity (SRI) CSP mode keeps static generation without it
+  — see the same docs file.
 - `src/config/goldRate.ts` is marked `import "server-only"` so the API URL
   and key can never end up in client-side JavaScript, even by accident.
   Purity math that the calculator UI needs lives in the separate,

@@ -46,11 +46,18 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur transition-shadow duration-200",
+        "sticky top-0 z-50 w-full border-b transition-shadow duration-200",
         isScrolled ? "border-charcoal/10 shadow-sm" : "border-transparent",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
+      {/*
+        bg/backdrop-blur live on this inner bar, not <header>, because
+        `backdrop-filter` establishes a CSS containing block for
+        `position: fixed` descendants — putting it on <header> made the
+        fixed mobile-nav panel below size itself against the header's own
+        64px box (height: 0) instead of the viewport.
+      */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between bg-white/95 px-4 backdrop-blur sm:h-20 sm:px-6 lg:px-8">
         <Logo />
 
         <nav aria-label="Primary" className="hidden lg:block">
