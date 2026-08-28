@@ -43,6 +43,21 @@ const liquidFillColor: Record<Variant, string> = {
   ghost: "bg-brand-red/5",
 };
 
+/**
+ * Shine-sweep class for every non-header button (see `.btn-shine` in
+ * globals.css) — `--subtle` swaps the sweep tint to a faint red so it's
+ * still visible on the light `outline` background. `ghost` is a plain
+ * text-style link with no fill to sweep across, so it keeps its simple
+ * color-only hover instead.
+ */
+const shineStyles: Record<Variant, string> = {
+  primary: "btn-shine",
+  secondary: "btn-shine",
+  outline: "btn-shine btn-shine--subtle",
+  outlineOnDark: "btn-shine",
+  ghost: "",
+};
+
 const sizeStyles: Record<Size, string> = {
   sm: "px-4 py-2 text-sm",
   md: "px-5 py-3 text-sm sm:text-base",
@@ -81,7 +96,7 @@ export function Button(props: ButtonProps) {
     baseStyles,
     liquid ? variantStylesLiquid[variant] : variantStyles[variant],
     sizeStyles[size],
-    liquid && "liquid-fill",
+    liquid ? "liquid-fill" : shineStyles[variant],
     className,
   );
 

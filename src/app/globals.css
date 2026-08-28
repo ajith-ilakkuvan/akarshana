@@ -90,6 +90,36 @@
   position: relative;
 }
 
+/**
+ * Shine-sweep hover: a soft diagonal light band slides across the button
+ * and it lifts slightly, like light catching a polished surface — used
+ * for buttons everywhere EXCEPT the header (which has its own
+ * cursor-tracked liquid-fill above), so the two hover systems read as
+ * deliberately distinct rather than the same trick repeated everywhere.
+ * A background-image layered under the button's own background-color
+ * needs no extra markup or JS — it just slides via background-position.
+ */
+.btn-shine {
+  background-image: linear-gradient(115deg, transparent 28%, rgba(255, 255, 255, 0.75) 50%, transparent 72%);
+  background-repeat: no-repeat;
+  background-size: 220% 100%;
+  background-position: -220% 0;
+  transition:
+    background-position 650ms ease,
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+.btn-shine:hover,
+.btn-shine:focus-visible {
+  background-position: 220% 0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -8px rgba(32, 27, 23, 0.35);
+}
+/** For buttons on a light background, where a white sweep would vanish. */
+.btn-shine--subtle {
+  background-image: linear-gradient(115deg, transparent 28%, rgba(122, 20, 32, 0.18) 50%, transparent 72%);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
