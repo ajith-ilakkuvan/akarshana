@@ -34,13 +34,8 @@ export function Hero() {
       <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[0.85fr_1.4fr_1.15fr] lg:items-center lg:gap-8 lg:py-28">
         <Reveal variant="scale-in" className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand-gold/40 shadow-xl shadow-black/25">
-            {/*
-              Placeholder — add the real photo as public/hero-model.jpg and
-              change `src` below to "/hero-model.jpg" (then delete
-              public/hero-model.svg, it's only this stand-in).
-            */}
             <Image
-              src="/hero-model.svg"
+              src="/hero-model.jpg"
               alt="Customer wearing gold jewellery valued by Akarshana Gold"
               fill
               priority
