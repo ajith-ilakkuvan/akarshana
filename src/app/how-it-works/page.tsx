@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { RevealGroup } from "@/components/ui/Reveal";
-import { TrackedButtonLink } from "@/components/cta/TrackedButtonLink";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
+import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { howItWorksSteps } from "@/config/howItWorks";
-import { ctaLabels } from "@/config/navigation";
 
 const crumbs = [{ label: "How It Works", href: "/how-it-works/" }];
 
@@ -38,14 +37,10 @@ export default function HowItWorksPage() {
               </div>
             ))}
           </RevealGroup>
-
-          <div className="mt-12 text-center">
-            <TrackedButtonLink href="/contact/" size="lg" event="cta_click" eventPayload={{ location: "how_it_works_page" }}>
-              {ctaLabels.primary}
-            </TrackedButtonLink>
-          </div>
         </Container>
       </section>
+
+      <FinalCtaSection />
     </>
   );
 }

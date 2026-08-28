@@ -6,6 +6,7 @@ import { Accordion } from "@/components/ui/Accordion";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
 import { faqJsonLd } from "@/lib/structuredData";
+import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { generalFaqs } from "@/config/faq";
 
 const crumbs = [{ label: "FAQs", href: "/faq/" }];
@@ -31,6 +32,8 @@ export default function FaqPage() {
           </Reveal>
         </Container>
       </section>
+
+      <FinalCtaSection />
     </>
   );
 }

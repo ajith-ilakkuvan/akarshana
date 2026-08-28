@@ -9,7 +9,7 @@ import { DoorstepSection } from "@/components/home/DoorstepSection";
 import { LocationsSection } from "@/components/home/LocationsSection";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FaqSection } from "@/components/home/FaqSection";
-import { FinalCta } from "@/components/home/FinalCta";
+import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function HomePage() {
       <LocationsSection />
       <Testimonials />
       <FaqSection />
-      <FinalCta />
+      <FinalCtaSection />
     </>
   );
 }

@@ -5,11 +5,10 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
-import { TrackedButtonLink } from "@/components/cta/TrackedButtonLink";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
+import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { getAllPosts, getPostBySlug, formatPostDate } from "@/lib/blog";
-import { ctaLabels } from "@/config/navigation";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -84,13 +83,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Reveal>
           )}
 
-          <div className="mt-10">
-            <TrackedButtonLink href="/contact/" event="cta_click" eventPayload={{ location: `blog_${post.slug}` }}>
-              {ctaLabels.primary}
-            </TrackedButtonLink>
-          </div>
         </Container>
       </article>
+
+      <FinalCtaSection />
     </>
   );
 }

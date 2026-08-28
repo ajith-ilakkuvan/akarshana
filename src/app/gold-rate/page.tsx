@@ -6,6 +6,7 @@ import { GoldRateCard } from "@/components/gold/GoldRateCard";
 import { GoldCalculator } from "@/components/gold/GoldCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
+import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 
 const crumbs = [{ label: "Gold Rate", href: "/gold-rate/" }];
 
@@ -50,6 +51,8 @@ export default function GoldRatePage() {
           </Reveal>
         </Container>
       </section>
+
+      <FinalCtaSection />
     </>
   );
 }

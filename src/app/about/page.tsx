@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { RevealGroup, Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
+import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { locations } from "@/config/locations";
 import { siteConfig } from "@/config/site";
 
@@ -88,6 +89,8 @@ export default function AboutPage() {
           </Reveal>
         </Container>
       </section>
+
+      <FinalCtaSection />
     </>
   );
 }
