@@ -6,7 +6,6 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { RevealGroup } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
-import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { getAllPosts, formatPostDate } from "@/lib/blog";
 
 const crumbs = [{ label: "Blog", href: "/blog/" }];
@@ -55,8 +54,6 @@ export default function BlogIndexPage() {
           </RevealGroup>
         </Container>
       </section>
-
-      <FinalCtaSection />
     </>
   );
 }

@@ -7,7 +7,6 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
-import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { getAllPosts, getPostBySlug, formatPostDate } from "@/lib/blog";
 
 export function generateStaticParams() {
@@ -85,8 +84,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         </Container>
       </article>
-
-      <FinalCtaSection />
     </>
   );
 }

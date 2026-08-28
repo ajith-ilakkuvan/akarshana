@@ -6,7 +6,6 @@ import { RevealGroup } from "@/components/ui/Reveal";
 import { TrackedNavLink } from "@/components/cta/TrackedNavLink";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
-import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { locations } from "@/config/locations";
 
 const crumbs = [{ label: "Locations", href: "/locations/" }];
@@ -59,8 +58,6 @@ export default function LocationsPage() {
           </RevealGroup>
         </Container>
       </section>
-
-      <FinalCtaSection />
     </>
   );
 }

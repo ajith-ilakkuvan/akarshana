@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
+import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { contactConfig, telHref, whatsappHref } from "@/config/contact";
 import { leadServiceOptions, type LeadServiceValue } from "@/config/services";
 import { locations } from "@/config/locations";
@@ -79,6 +80,8 @@ export default async function ContactPage({
           </Reveal>
         </Container>
       </section>
+
+      <FinalCtaSection />
     </>
   );
 }

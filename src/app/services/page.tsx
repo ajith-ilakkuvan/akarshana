@@ -6,7 +6,6 @@ import { RevealGroup } from "@/components/ui/Reveal";
 import { TrackedButtonLink } from "@/components/cta/TrackedButtonLink";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
-import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { services, type ServiceItem } from "@/config/services";
 
 const crumbs = [{ label: "Services", href: "/services/" }];
@@ -69,8 +68,6 @@ export default function ServicesPage() {
           </RevealGroup>
         </Container>
       </section>
-
-      <FinalCtaSection />
     </>
   );
 }

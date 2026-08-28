@@ -4,7 +4,6 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { RevealGroup } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
-import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { howItWorksSteps } from "@/config/howItWorks";
 
 const crumbs = [{ label: "How It Works", href: "/how-it-works/" }];
@@ -39,8 +38,6 @@ export default function HowItWorksPage() {
           </RevealGroup>
         </Container>
       </section>
-
-      <FinalCtaSection />
     </>
   );
 }

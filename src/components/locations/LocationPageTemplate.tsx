@@ -8,7 +8,6 @@ import { LeadForm } from "@/components/forms/LeadForm";
 import { Accordion } from "@/components/ui/Accordion";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
-import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import type { LocationSummary } from "@/config/locations";
 import type { LocationContent } from "@/content/locations/types";
 import { localBusinessJsonLd, faqJsonLd } from "@/lib/structuredData";
@@ -116,8 +115,6 @@ export function LocationPageTemplate({
           </Reveal>
         </Container>
       </section>
-
-      <FinalCtaSection />
     </>
   );
 }
