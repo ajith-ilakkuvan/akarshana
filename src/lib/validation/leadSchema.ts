@@ -32,8 +32,14 @@ export const leadSchema = z.object({
   preferredContact: z.enum(contactValues, { message: "Select a preferred contact method." }),
   preferredTime: z.string().trim().max(120, "Preferred time is too long.").optional(),
   message: z.string().trim().max(500, "Message is too long.").optional(),
-  /** Honeypot — real visitors never fill this field in. */
-  company: z.string().max(0, "Spam detected.").optional().or(z.literal("")),
+  /**
+   * Honeypot — real visitors never fill this field in. Deliberately just
+   * validated as an ordinary optional string here: the route handler is
+   * the only place that decides what a non-empty value means, so a filled
+   * honeypot gets a normal-looking `{ ok: true }` response instead of a
+   * validation error that would tip off the bot.
+   */
+  company: z.string().max(200).optional().or(z.literal("")),
   /** Client timestamp (ms) of when the form was rendered, for bot timing checks. */
   renderedAt: z.coerce.number().optional(),
 });

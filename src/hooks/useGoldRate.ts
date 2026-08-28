@@ -24,7 +24,7 @@ export function useGoldRate(): UseGoldRateResult {
 
   const fetchRates = useCallback(async () => {
     try {
-      const response = await fetch("/api/gold-rate", { cache: "no-store" });
+      const response = await fetch("/api/gold-rate/", { cache: "no-store" });
       const payload: GoldRateResult = await response.json();
       setStatus(payload.status);
       setData(payload.data);
