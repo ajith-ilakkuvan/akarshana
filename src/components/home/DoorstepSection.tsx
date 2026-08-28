@@ -5,23 +5,21 @@ import { locations } from "@/config/locations";
 
 export function DoorstepSection() {
   return (
-    <section id="doorstep" className="bg-brand-red-dark py-16 text-cream sm:py-24">
+    <section id="doorstep" className="bg-cream py-16 sm:py-24">
       <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <Reveal variant="fade-up">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-dark">
             Doorstep Gold Service
           </span>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-semibold text-charcoal sm:text-4xl">
             Your Gold. Your Convenience.
           </h2>
-          <p className="mt-4 max-w-md text-cream/70">
+          <p className="mt-4 max-w-md text-charcoal/70">
             Request convenient gold service at your doorstep — no need to make an unnecessary trip.
           </p>
 
-          <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-brand-gold-light">
-            Available in
-          </p>
-          <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-cream/80">
+          <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-brand-red">Available in</p>
+          <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-charcoal/80">
             {locations.map((location) => (
               <li key={location.slug}>{location.name}</li>
             ))}

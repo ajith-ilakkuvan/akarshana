@@ -16,16 +16,14 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-charcoal/10 bg-brand-red-dark text-cream/80">
+    <footer className="border-t border-charcoal/10 bg-cream text-charcoal/70">
       <Container className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div className="sm:col-span-2 lg:col-span-2">
-          <div className="inline-flex rounded-lg bg-cream/95 p-2">
-            <Logo />
-          </div>
-          <p className="mt-4 text-sm font-medium uppercase tracking-[0.2em] text-brand-gold">
+          <Logo />
+          <p className="mt-4 text-sm font-medium uppercase tracking-[0.2em] text-brand-gold-dark">
             {siteConfig.tagline}
           </p>
-          <p className="mt-4 max-w-sm text-sm text-cream/70">{siteConfig.description}</p>
+          <p className="mt-4 max-w-sm text-sm text-charcoal/70">{siteConfig.description}</p>
           {socialLinks.length > 0 && (
             <div className="mt-5 flex gap-3">
               {socialLinks.map(({ key, href, label }) => (
@@ -35,7 +33,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex size-9 items-center justify-center rounded-full bg-white/10 hover:bg-brand-red"
+                  className="flex size-9 items-center justify-center rounded-full bg-charcoal/10 hover:bg-brand-red hover:text-white"
                 >
                   <SocialIcon platform={key} className="size-4" />
                 </a>
@@ -48,11 +46,11 @@ export function Footer() {
         <FooterColumn title="Resources" links={footerLinks.resources} />
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Locations</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-charcoal">Locations</h3>
           <ul className="mt-4 space-y-2.5 text-sm">
             {locations.map((location) => (
               <li key={location.slug}>
-                <Link href={location.path} className="hover:text-brand-gold">
+                <Link href={location.path} className="hover:text-brand-red">
                   {location.name}
                 </Link>
               </li>
@@ -61,9 +59,9 @@ export function Footer() {
         </div>
       </Container>
 
-      <Container className="border-t border-white/10 py-8">
+      <Container className="border-t border-charcoal/10 py-8">
         <div className="grid grid-cols-1 gap-6 text-sm sm:grid-cols-3">
-          <a href={telHref()} className="flex items-start gap-3 hover:text-brand-gold">
+          <a href={telHref()} className="flex items-start gap-3 hover:text-brand-red">
             <Phone aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
             {contactConfig.phoneDisplay}
           </a>
@@ -71,7 +69,7 @@ export function Footer() {
             href={whatsappHref()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-start gap-3 hover:text-brand-gold"
+            className="flex items-start gap-3 hover:text-brand-red"
           >
             <MessageCircle aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
             WhatsApp Us
@@ -97,13 +95,13 @@ export function Footer() {
         </div>
       </Container>
 
-      <Container className="flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
+      <Container className="flex flex-col gap-3 border-t border-charcoal/10 py-6 text-xs text-charcoal/50 sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.
         </p>
         <div className="flex gap-5">
           {footerLinks.legal.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-brand-gold">
+            <Link key={link.href} href={link.href} className="hover:text-brand-red">
               {link.label}
             </Link>
           ))}
@@ -116,11 +114,11 @@ export function Footer() {
 function FooterColumn({ title, links }: { title: string; links: readonly { label: string; href: string }[] }) {
   return (
     <div>
-      <h3 className="text-sm font-semibold uppercase tracking-wide text-white">{title}</h3>
+      <h3 className="text-sm font-semibold uppercase tracking-wide text-charcoal">{title}</h3>
       <ul className="mt-4 space-y-2.5 text-sm">
         {links.map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="hover:text-brand-gold">
+            <Link href={link.href} className="hover:text-brand-red">
               {link.label}
             </Link>
           </li>

@@ -7,9 +7,10 @@ import { locations } from "@/config/locations";
 
 export function LocationsSection() {
   return (
-    <section id="locations" className="bg-cream py-16 sm:py-24">
+    <section id="locations" className="bg-brand-red py-16 sm:py-24">
       <Container>
         <SectionHeading
+          tone="dark"
           eyebrow="Where We Serve"
           title="Our Service Locations"
           description="Currently serving these four locations, with more planned as we grow."

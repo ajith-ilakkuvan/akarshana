@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost";
+type Variant = "primary" | "secondary" | "outline" | "outlineOnDark" | "ghost";
 type Size = "md" | "lg" | "sm";
 
 const variantStyles: Record<Variant, string> = {
@@ -12,6 +12,9 @@ const variantStyles: Record<Variant, string> = {
     "bg-brand-gold text-charcoal hover:bg-brand-gold-dark hover:text-white",
   outline:
     "border border-charcoal/20 text-charcoal hover:border-brand-red hover:text-brand-red bg-white",
+  /** Outline button meant to sit on a red/dark background — no opaque fill. */
+  outlineOnDark:
+    "border border-white/40 text-white hover:border-brand-gold hover:text-brand-gold-light",
   ghost: "text-charcoal hover:text-brand-red",
 };
 

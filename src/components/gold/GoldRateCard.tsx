@@ -64,11 +64,16 @@ export function GoldRateCard({
   }
 
   return (
-    <div className={cn("rounded-2xl border border-brand-gold/30 bg-brand-red-dark p-6 text-cream sm:p-8", className)}>
+    <div
+      className={cn(
+        "rounded-2xl border-2 border-brand-gold/50 bg-cream p-6 shadow-lg shadow-brand-red/10 sm:p-8",
+        className,
+      )}
+    >
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="font-display text-xl font-semibold text-white sm:text-2xl">Today&apos;s Gold Rate</h3>
+        <h3 className="font-display text-xl font-semibold text-charcoal sm:text-2xl">Today&apos;s Gold Rate</h3>
         {status === "stale" && (
-          <span className="rounded-full bg-brand-gold/20 px-3 py-1 text-xs font-medium text-brand-gold-light">
+          <span className="rounded-full bg-brand-gold-light px-3 py-1 text-xs font-medium text-brand-gold-dark">
             Showing last known rate
           </span>
         )}
@@ -76,19 +81,19 @@ export function GoldRateCard({
 
       <div className={cn("mt-6 grid gap-4", variant === "full" ? "sm:grid-cols-3" : "grid-cols-3")}>
         {purityOrder.map((purity) => (
-          <div key={purity} className="rounded-xl bg-white/5 p-4 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-gold-light">{purity} Gold</p>
-            <p className="text-gold-shine mt-2 font-display text-lg font-bold sm:text-2xl">
+          <div key={purity} className="rounded-xl border border-brand-gold/20 bg-white p-4 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-gold-dark">{purity} Gold</p>
+            <p className="mt-2 font-display text-lg font-bold text-charcoal sm:text-2xl">
               {formatInr(data.rates[purity])}
             </p>
-            <p className="text-xs text-cream/60">per gram</p>
+            <p className="text-xs text-charcoal/50">per gram</p>
           </div>
         ))}
       </div>
 
-      <p className="mt-5 text-xs text-cream/50">Last updated: {formatUpdatedAt(data.updatedAt)}</p>
+      <p className="mt-5 text-xs text-charcoal/50">Last updated: {formatUpdatedAt(data.updatedAt)}</p>
 
-      <Button href="/gold-rate/#calculator" variant="secondary" size="sm" className="mt-5 w-full sm:w-auto">
+      <Button href="/gold-rate/#calculator" size="sm" className="mt-5 w-full sm:w-auto">
         {ctaLabels.calculateValue}
       </Button>
     </div>
@@ -100,15 +105,15 @@ function RateCardSkeleton({ className }: { className?: string }) {
     <div
       role="status"
       aria-label="Loading today's gold rate"
-      className={cn("animate-pulse rounded-2xl border border-charcoal/10 bg-brand-red-dark p-6 sm:p-8", className)}
+      className={cn("animate-pulse rounded-2xl border-2 border-brand-gold/30 bg-cream p-6 sm:p-8", className)}
     >
-      <div className="h-6 w-40 rounded bg-white/10" />
+      <div className="h-6 w-40 rounded bg-charcoal/10" />
       <div className="mt-6 grid grid-cols-3 gap-4">
         {purityOrder.map((purity) => (
-          <div key={purity} className="h-24 rounded-xl bg-white/5" />
+          <div key={purity} className="h-24 rounded-xl bg-charcoal/5" />
         ))}
       </div>
-      <div className="mt-5 h-3 w-32 rounded bg-white/10" />
+      <div className="mt-5 h-3 w-32 rounded bg-charcoal/10" />
     </div>
   );
 }

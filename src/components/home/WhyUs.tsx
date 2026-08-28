@@ -28,9 +28,10 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section className="bg-cream py-16 sm:py-24">
+    <section className="bg-brand-red py-16 sm:py-24">
       <Container>
         <SectionHeading
+          tone="dark"
           eyebrow="Why Akarshana Gold"
           title="Built Around Trust and Transparency"
         />
@@ -38,7 +39,7 @@ export function WhyUs() {
         <RevealGroup variant="fade-up" staggerMs={90} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {reasons.map(({ icon: Icon, title, description }) => (
             <div key={title} className="rounded-2xl bg-white p-6 shadow-sm">
-              <span className="flex size-11 items-center justify-center rounded-full bg-brand-red text-white">
+              <span className="flex size-11 items-center justify-center rounded-full bg-brand-gold text-charcoal">
                 <Icon aria-hidden="true" className="size-5" />
               </span>
               <h3 className="mt-4 font-display text-lg font-semibold text-charcoal">{title}</h3>
