@@ -1,0 +1,27 @@
+/**
+ * Central brand / site configuration.
+ *
+ * Change the business name, tagline, description or canonical URL here —
+ * every page (metadata, structured data, footer) reads from this file.
+ */
+
+export const siteConfig = {
+  name: "Akarshana Gold",
+  legalName: "Akarshana Gold Company",
+  tagline: "Pure • Precious • Forever",
+  description:
+    "Akarshana Gold Company offers transparent gold valuation and gold buying services in Pollachi, Udumalpet, Coimbatore and Tiruppur, with convenient doorstep service.",
+  shortDescription:
+    "Transparent gold valuation and gold buying, at your convenience.",
+  /** Update once the production domain is known. */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.akarshanagold.com",
+  locale: "en_IN",
+  themeColor: "#7a1220",
+  logo: {
+    src: "/logo.svg",
+    alt: "Akarshana Gold Company logo",
+    width: 160,
+    height: 48,
+  },
+  ogImage: "/og-image.jpg",
+} as const;

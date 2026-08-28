@@ -1,0 +1,10 @@
+<svg width="220" height="64" viewBox="0 0 220 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="akLogoTitle">
+  <title id="akLogoTitle">Akarshana Gold Company</title>
+  <g>
+    <circle cx="28" cy="32" r="22" fill="#7a1420" />
+    <path d="M28 14 L38 32 L28 50 L18 32 Z" fill="#b8934a" />
+    <circle cx="28" cy="32" r="6" fill="#fbf7f0" />
+  </g>
+  <text x="60" y="29" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700" fill="#201b17" letter-spacing="0.5">AKARSHANA</text>
+  <text x="60" y="49" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700" fill="#7a1420" letter-spacing="2">GOLD</text>
+</svg>
