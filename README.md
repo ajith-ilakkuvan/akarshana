@@ -15,6 +15,12 @@ addressing these:
 - **Logo**: `public/logo.svg` and `src/app/icon.svg` are a simple text/mark
   placeholder, not the client's actual supplied logo — no logo file was
   attached. Replace both with the real brand assets.
+- **Hero photo**: `src/components/home/Hero.tsx` references
+  `/hero-model.jpg`, which doesn't exist yet — `public/hero-model.svg` is a
+  stand-in graphic filling that spot for now. Add the real photo as
+  `public/hero-model.jpg` (portrait orientation, roughly 4:5), change the
+  `<Image src>` in `Hero.tsx` from `/hero-model.svg` to `/hero-model.jpg`,
+  and delete `public/hero-model.svg`.
 - **Contact details**: phone, WhatsApp, email and address in
   `src/config/contact.ts` are placeholders. Update before launch.
 - **Legal pages**: `/privacy-policy/` and `/terms/` contain template text

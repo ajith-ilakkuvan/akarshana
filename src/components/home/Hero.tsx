@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ShieldCheck, Scale, Home as HomeIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -30,8 +31,26 @@ export function Hero() {
         className="pointer-events-none absolute -bottom-32 -left-16 size-80 rounded-full border border-brand-gold/15"
       />
 
-      <Container className="relative grid gap-12 py-14 sm:py-20 lg:grid-cols-2 lg:items-center lg:py-28">
-        <Reveal variant="fade-up">
+      <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[0.85fr_1.4fr_1.15fr] lg:items-center lg:gap-8 lg:py-28">
+        <Reveal variant="scale-in" className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand-gold/40 shadow-xl shadow-black/25">
+            {/*
+              Placeholder — add the real photo as public/hero-model.jpg and
+              change `src` below to "/hero-model.jpg" (then delete
+              public/hero-model.svg, it's only this stand-in).
+            */}
+            <Image
+              src="/hero-model.svg"
+              alt="Customer wearing gold jewellery valued by Akarshana Gold"
+              fill
+              priority
+              sizes="(min-width: 1024px) 320px, 90vw"
+              className="object-cover object-top"
+            />
+          </div>
+        </Reveal>
+
+        <Reveal variant="fade-up" delayMs={80}>
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-light">
             Akarshana Gold Company
           </span>
@@ -63,7 +82,7 @@ export function Hero() {
           </ul>
         </Reveal>
 
-        <Reveal variant="scale-in" delayMs={120}>
+        <Reveal variant="scale-in" delayMs={160}>
           <GoldRateCard variant="full" />
         </Reveal>
       </Container>
