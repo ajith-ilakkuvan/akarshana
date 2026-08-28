@@ -5,7 +5,7 @@ import { locations } from "@/config/locations";
 
 export function DoorstepSection() {
   return (
-    <section id="doorstep" className="bg-charcoal py-16 text-cream sm:py-24">
+    <section id="doorstep" className="bg-brand-red-dark py-16 text-cream sm:py-24">
       <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <Reveal variant="fade-up">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold">

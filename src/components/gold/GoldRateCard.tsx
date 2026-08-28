@@ -64,7 +64,7 @@ export function GoldRateCard({
   }
 
   return (
-    <div className={cn("rounded-2xl border border-brand-gold/30 bg-charcoal p-6 text-cream sm:p-8", className)}>
+    <div className={cn("rounded-2xl border border-brand-gold/30 bg-brand-red-dark p-6 text-cream sm:p-8", className)}>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="font-display text-xl font-semibold text-white sm:text-2xl">Today&apos;s Gold Rate</h3>
         {status === "stale" && (
@@ -78,7 +78,7 @@ export function GoldRateCard({
         {purityOrder.map((purity) => (
           <div key={purity} className="rounded-xl bg-white/5 p-4 text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-brand-gold-light">{purity} Gold</p>
-            <p className="mt-2 font-display text-lg font-bold text-white sm:text-2xl">
+            <p className="text-gold-shine mt-2 font-display text-lg font-bold sm:text-2xl">
               {formatInr(data.rates[purity])}
             </p>
             <p className="text-xs text-cream/60">per gram</p>
@@ -100,7 +100,7 @@ function RateCardSkeleton({ className }: { className?: string }) {
     <div
       role="status"
       aria-label="Loading today's gold rate"
-      className={cn("animate-pulse rounded-2xl border border-charcoal/10 bg-charcoal p-6 sm:p-8", className)}
+      className={cn("animate-pulse rounded-2xl border border-charcoal/10 bg-brand-red-dark p-6 sm:p-8", className)}
     >
       <div className="h-6 w-40 rounded bg-white/10" />
       <div className="mt-6 grid grid-cols-3 gap-4">
