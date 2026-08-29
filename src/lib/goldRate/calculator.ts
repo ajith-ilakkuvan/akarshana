@@ -8,8 +8,11 @@ import { GRAMS_PER_TROY_OUNCE, purityFactors, type GoldPurity } from "@/config/g
 export function calculatePurityRatesInrPerGram(
   spotPriceUsdPerOunce: number,
   usdToInrRate: number,
+  /** See `domesticPremiumPercent` in `config/goldRate.ts`. 0 = raw international rate. */
+  domesticPremiumPercent = 0,
 ): Record<GoldPurity, number> {
-  const pricePerGram24k = (spotPriceUsdPerOunce * usdToInrRate) / GRAMS_PER_TROY_OUNCE;
+  const rawPricePerGram24k = (spotPriceUsdPerOunce * usdToInrRate) / GRAMS_PER_TROY_OUNCE;
+  const pricePerGram24k = rawPricePerGram24k * (1 + domesticPremiumPercent / 100);
 
   const entries = (Object.keys(purityFactors) as GoldPurity[]).map((purity) => [
     purity,

@@ -93,6 +93,7 @@ review each before launch:
 | `CURRENCY_API_URL` | USD→INR conversion source (the gold API returns USD per troy ounce). Defaults to [Frankfurter](https://frankfurter.dev/), free and keyless. |
 | `GOLD_RATE_FALLBACK_USD_INR` | Last-resort USD→INR rate, used only if the live currency lookup fails **and** there's no cached conversion. This is a forex fallback, not a fabricated gold price — the gold price itself always comes from the live provider or a timestamped cache. |
 | `GOLD_RATE_CACHE_SECONDS` | How long a fetched rate is cached (clamped to 60–300s). |
+| `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` | Optional % added on top of the raw international spot-converted rate, to approximate a domestic Indian bullion quote (import duty + local premium). Defaults to `0` (raw international rate). See "Why the rate differs from a local quoted rate" below before setting it. |
 | `LEAD_WEBHOOK_URL` | Optional POST target (Slack, CRM inbox, Zapier, etc.) for validated leads. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional analytics ID — see `src/lib/analytics.ts`. |
 
@@ -135,6 +136,24 @@ Nothing else in the app changes.
 `calculatePurityRatesInrPerGram` (`src/lib/goldRate/calculator.ts`) to use
 them instead of deriving from 24K — that's the one place purity math lives,
 so nothing else needs updating.
+
+### Why the rate differs from a local quoted rate (e.g. Chennai)
+
+The free Gold API feed is the raw **international spot price** (XAU/USD),
+converted to INR. A rate quoted by an Indian jewellers' association or a
+site like GoodReturns is the **domestic bullion rate**, which is
+systematically higher because it includes India's import duty, GST and
+local market premium — none of which exist in a raw spot conversion. This
+isn't a bug; it's a different (and free) data source.
+
+To close that gap without paying for a domestic bullion API, set
+`GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` (0–30, default `0`) — it's added on
+top of the raw converted rate before the 22K/18K split
+(`src/lib/goldRate/calculator.ts`). There's no universally "correct"
+value: compare today's site rate against a real Chennai quote, set the
+percentage that closes that gap, and re-check it periodically, since the
+gap moves with duty/GST changes and market conditions. Leave it at `0` to
+show the raw international rate as-is.
 
 ### Caching
 
