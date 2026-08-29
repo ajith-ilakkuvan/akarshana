@@ -36,7 +36,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Today's Gold Rate", href: "/gold-rate/" },
-      { label: "How It Works", href: "/how-it-works/" },
+      { label: "How It Works", href: "/#how-it-works" },
     ],
   },
   {
@@ -150,7 +150,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Today's Gold Rate", href: "/gold-rate/" },
-      { label: "How It Works", href: "/how-it-works/" },
+      { label: "How It Works", href: "/#how-it-works" },
     ],
   },
   {

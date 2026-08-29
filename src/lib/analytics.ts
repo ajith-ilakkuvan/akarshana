@@ -15,7 +15,8 @@ export type AnalyticsEvent =
   | "doorstep_booking"
   | "location_page_view"
   | "service_click"
-  | "cta_click";
+  | "cta_click"
+  | "career_apply_click";
 
 type EventPayload = Record<string, string | number | boolean | undefined>;
 
