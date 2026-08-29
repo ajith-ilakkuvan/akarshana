@@ -22,10 +22,10 @@ export const siteConfig = {
   locale: "en_IN",
   themeColor: "#7a1220",
   logo: {
-    src: "/logo.jpg",
+    src: "/logo.webp",
     alt: "Aksharana Gold Company logo",
-    width: 377,
-    height: 480,
+    width: 400,
+    height: 529,
   },
   ogImage: "/og-image.jpg",
 } as const;
