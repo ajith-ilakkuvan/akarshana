@@ -120,6 +120,38 @@
   background-image: linear-gradient(115deg, transparent 28%, rgba(122, 20, 32, 0.18) 50%, transparent 72%);
 }
 
+/**
+ * Nav-pop hover: plain text nav links (Home, Services, Locations, FAQs...)
+ * aren't buttons, so they get their own — a third, deliberately distinct
+ * hover system from the liquid-fill (header CTA buttons) and shine-sweep
+ * (page buttons) above. A pill-shaped background pops/fades in from the
+ * link's own center behind the text on hover, so each nav item surfaces
+ * as its own separate little button rather than just changing color —
+ * and only the one under the cursor ever shows it.
+ */
+.nav-pop {
+  position: relative;
+  isolation: isolate;
+}
+.nav-pop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background: rgba(122, 20, 32, 0.1);
+  transform: scale(0.85);
+  opacity: 0;
+  transition:
+    transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 200ms ease;
+}
+.nav-pop:hover::before,
+.nav-pop:focus-visible::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

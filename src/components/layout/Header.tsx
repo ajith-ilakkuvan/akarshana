@@ -62,13 +62,13 @@ export function Header() {
         <Logo />
 
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   className={cn(
-                    "text-sm font-medium text-charcoal/80 transition-colors hover:text-brand-red",
+                    "nav-pop block rounded-full px-3 py-2 text-sm font-medium text-charcoal/80 transition-colors hover:text-brand-red",
                     pathname === item.href && "text-brand-red",
                   )}
                 >
