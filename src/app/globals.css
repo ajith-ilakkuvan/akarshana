@@ -124,10 +124,11 @@
  * Nav-pop hover: plain text nav links (Home, Services, Locations, FAQs...)
  * aren't buttons, so they get their own — a third, deliberately distinct
  * hover system from the liquid-fill (header CTA buttons) and shine-sweep
- * (page buttons) above. A pill-shaped background pops/fades in from the
- * link's own center behind the text on hover, so each nav item surfaces
- * as its own separate little button rather than just changing color —
- * and only the one under the cursor ever shows it.
+ * (page buttons) above. A gold pill pops/fades in from the link's own
+ * center behind the text on hover (its text turns red — set in the
+ * component — so it reads clearly on the gold), with a light band
+ * sweeping across it like a shine catching metal. Only the item under
+ * the cursor ever shows it.
  */
 .nav-pop {
   position: relative;
@@ -139,17 +140,39 @@
   inset: 0;
   z-index: -1;
   border-radius: 9999px;
-  background: rgba(122, 20, 32, 0.1);
+  background: linear-gradient(135deg, var(--color-brand-gold-light), var(--color-brand-gold) 65%, var(--color-brand-gold-dark));
   transform: scale(0.85);
   opacity: 0;
   transition:
     transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
     opacity 200ms ease;
 }
+.nav-pop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.9) 50%, transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 220% 100%;
+  background-position: -220% 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease;
+}
 .nav-pop:hover::before,
 .nav-pop:focus-visible::before {
   transform: scale(1);
   opacity: 1;
+}
+.nav-pop:hover::after,
+.nav-pop:focus-visible::after {
+  opacity: 1;
+  background-position: 220% 0;
+  transition:
+    background-position 650ms ease 100ms,
+    opacity 100ms ease;
 }
 
 body {
