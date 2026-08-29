@@ -19,12 +19,8 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-brand-red-dark text-cream/80">
       <Container className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div className="sm:col-span-2 lg:col-span-2">
-          <div className="inline-block rounded-lg bg-cream/95 p-2">
-            <Logo />
-          </div>
-          <p className="mt-4 text-sm font-medium uppercase tracking-[0.2em] text-brand-gold-light">
-            {siteConfig.tagline}
-          </p>
+          {/* No separate tagline line here — the logo art already includes "Pure • Precious • Forever". */}
+          <Logo size="lg" />
           <p className="mt-4 max-w-sm text-sm text-cream/70">{siteConfig.description}</p>
           {socialLinks.length > 0 && (
             <div className="mt-5 flex gap-3">
