@@ -9,7 +9,7 @@ const crumbs = [{ label: "Terms & Conditions", href: "/terms/" }];
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: `Terms of use for the ${siteConfig.name} website.`,
+  description: `Terms of use and sale for the ${siteConfig.name} website.`,
   alternates: { canonical: "/terms/" },
   robots: { index: false, follow: true },
 };
@@ -26,21 +26,28 @@ export default function TermsPage() {
           </Reveal>
 
           <Reveal variant="fade-up">
-            <h2 className="font-display text-lg font-semibold text-charcoal">Market Rate Disclaimer</h2>
+            <h2 className="font-display text-lg font-semibold text-charcoal">Orders &amp; Pricing</h2>
             <p className="mt-2">
-              Gold rates displayed on this website are indicative market reference rates and may change. Final
-              valuation is subject to purity, weight and applicable valuation factors assessed at the time of
-              service. Figures shown by the Gold Value Calculator are estimates only and do not constitute a
-              purchase offer.
+              Prices shown on this website include applicable making charges and are subject to change without
+              notice, in line with movements in gold and gemstone rates. The price shown at checkout is the price
+              charged for that order.
             </p>
           </Reveal>
 
           <Reveal variant="fade-up">
-            <h2 className="font-display text-lg font-semibold text-charcoal">Use of This Website</h2>
+            <h2 className="font-display text-lg font-semibold text-charcoal">Payments</h2>
             <p className="mt-2">
-              This website is provided to help you learn about {siteConfig.legalName}&apos;s services and submit
-              enquiries. Content is provided in good faith but should not be treated as a final quote, financial
-              advice, or a legal or regulatory guarantee.
+              Online payments are processed securely through Razorpay. We do not store your card, UPI or banking
+              details.
+            </p>
+          </Reveal>
+
+          <Reveal variant="fade-up">
+            <h2 className="font-display text-lg font-semibold text-charcoal">Exchange &amp; Returns</h2>
+            <p className="mt-2">
+              Exchange is available on eligible items within a specified period from purchase, subject to the item
+              being unused, in its original condition, and accompanied by the original invoice. Contact us to begin
+              an exchange.
             </p>
           </Reveal>
 

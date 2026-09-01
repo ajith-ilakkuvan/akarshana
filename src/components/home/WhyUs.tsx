@@ -1,40 +1,36 @@
-import { Scale, TrendingUp, UserCheck, Home as HomeIcon } from "lucide-react";
+import { ShieldCheck, Gem, Ruler, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RevealGroup } from "@/components/ui/Reveal";
 
 const reasons = [
   {
-    icon: Scale,
-    title: "Transparent Valuation",
-    description: "Every gold item is evaluated openly, so you understand exactly how your value is arrived at.",
+    icon: ShieldCheck,
+    title: "BIS Hallmarked",
+    description: "Every gold piece we sell is BIS hallmarked, and gemstone pieces come with relevant certification.",
   },
   {
-    icon: TrendingUp,
-    title: "Current Market Rate",
-    description: "Valuations are based on the applicable current gold market rate, not an arbitrary offer.",
+    icon: Gem,
+    title: "Handcrafted In-House",
+    description: "Our pieces are handcrafted with close attention to detail, from temple-style sets to everyday chains.",
   },
   {
-    icon: UserCheck,
-    title: "Professional Service",
-    description: "Our team follows a consistent, professional process for purity and weight assessment.",
+    icon: Ruler,
+    title: "Complimentary Resizing",
+    description: "Rings and bangles come with complimentary resizing, so fit is never a compromise.",
   },
   {
-    icon: HomeIcon,
-    title: "Doorstep Convenience",
-    description: "Prefer not to travel? Request gold service at your doorstep across our service locations.",
+    icon: Sparkles,
+    title: "Palace-Inspired Boutique",
+    description: "Visit our Coimbatore store — compact in footprint, but designed to feel like stepping into a palace.",
   },
 ];
 
 export function WhyUs() {
   return (
-    <section className="bg-brand-red py-16 sm:py-24">
+    <section className="bg-brand-black py-16 sm:py-24">
       <Container>
-        <SectionHeading
-          tone="dark"
-          eyebrow="Why Akarshana Gold"
-          title="Built Around Trust and Transparency"
-        />
+        <SectionHeading tone="dark" eyebrow="Why Prashwa Jewels" title="Handcrafted, Certified, Trusted" />
 
         <RevealGroup variant="fade-up" staggerMs={90} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {reasons.map(({ icon: Icon, title, description }) => (

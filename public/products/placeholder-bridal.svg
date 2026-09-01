@@ -1,0 +1,12 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="600" fill="#f8f4ea"/>
+  <path d="M170 140 Q300 220 430 140" fill="none" stroke="#b8892f" stroke-width="4"/>
+  <path d="M170 140 Q160 250 240 320" fill="none" stroke="#b8892f" stroke-width="4"/>
+  <path d="M430 140 Q440 250 360 320" fill="none" stroke="#b8892f" stroke-width="4"/>
+  <path d="M200 320 Q300 380 400 320 Q380 420 300 440 Q220 420 200 320 Z" fill="#e8d9ad" stroke="#8a6a1f" stroke-width="3"/>
+  <circle cx="300" cy="370" r="16" fill="#b8892f"/>
+  <circle cx="260" cy="350" r="8" fill="#8a6a1f"/>
+  <circle cx="340" cy="350" r="8" fill="#8a6a1f"/>
+  <text x="300" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#8a6a1f" letter-spacing="2">BRIDAL COLLECTION</text>
+  <text x="300" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#9b9284">Product photo coming soon</text>
+</svg>

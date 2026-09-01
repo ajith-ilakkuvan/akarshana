@@ -28,19 +28,17 @@ export default function PrivacyPolicyPage() {
           <Reveal variant="fade-up">
             <h2 className="font-display text-lg font-semibold text-charcoal">Information We Collect</h2>
             <p className="mt-2">
-              When you submit a gold valuation, doorstep service, or contact request through this website, we
-              collect the information you provide — such as your name, phone number, approximate gold weight,
-              location and preferred service. We do not request or store sensitive financial or identification
-              information through this website.
+              When you place an order or submit a contact enquiry, we collect the information you provide — such as
+              your name, email, phone number and shipping address. Payments are processed by our payment gateway
+              (Razorpay); we do not store your card, UPI or banking details ourselves.
             </p>
           </Reveal>
 
           <Reveal variant="fade-up">
             <h2 className="font-display text-lg font-semibold text-charcoal">How We Use It</h2>
             <p className="mt-2">
-              Information submitted is used only to respond to your enquiry — for example, to contact you about a
-              gold valuation, confirm a doorstep visit, or answer a question. We do not sell your information to
-              third parties.
+              Information submitted is used to process and deliver your order, respond to enquiries, and provide
+              customer support. We do not sell your information to third parties.
             </p>
           </Reveal>
 
@@ -48,7 +46,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="font-display text-lg font-semibold text-charcoal">Contact</h2>
             <p className="mt-2">
               For questions about this policy, contact us at{" "}
-              <a href={`mailto:${contactConfig.email}`} className="text-brand-red underline">
+              <a href={`mailto:${contactConfig.email}`} className="text-brand-black underline">
                 {contactConfig.email}
               </a>{" "}
               or {contactConfig.phoneDisplay}.

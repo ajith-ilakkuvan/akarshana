@@ -1,0 +1,122 @@
+// Prashwa Jewels — data model.
+//
+// Dev/demo uses SQLite (zero setup, file-based — see DATABASE_URL in
+// .env.example). For production, point DATABASE_URL at a hosted Postgres
+// instance (Vercel Postgres, Neon, Supabase, ...) and change `provider`
+// below to "postgresql" — every model here is Postgres-compatible as-is.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  image       String?
+  sortOrder   Int       @default(0)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id             String         @id @default(cuid())
+  name           String
+  slug           String         @unique
+  description    String
+  /** Selling price, in whole rupees (not paise) — see src/lib/money.ts. */
+  price          Int
+  /** Optional "was" price, shown struck through, to imply a discount. */
+  compareAtPrice Int?
+  metal          String
+  purity         String?
+  weightGrams    Float?
+  gemstone       String?
+  sku            String         @unique
+  stock          Int            @default(0)
+  featured       Boolean        @default(false)
+  isActive       Boolean        @default(true)
+  categoryId     String
+  category       Category       @relation(fields: [categoryId], references: [id])
+  images         ProductImage[]
+  orderItems     OrderItem[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@index([categoryId])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  url       String
+  alt       String  @default("")
+  sortOrder Int     @default(0)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model Order {
+  id                String      @id @default(cuid())
+  orderNumber       String      @unique
+  customerName      String
+  email             String
+  phone             String
+  addressLine1      String
+  addressLine2      String?
+  city              String
+  state             String
+  pincode           String
+  subtotal          Int
+  shipping          Int         @default(0)
+  total             Int
+  status            OrderStatus @default(PENDING)
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  razorpaySignature String?
+  items             OrderItem[]
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId    String
+  product      Product @relation(fields: [productId], references: [id])
+  productName  String
+  productImage String?
+  price        Int
+  quantity     Int
+
+  @@index([orderId])
+}
+
+/** Free-form, admin-editable site copy (hero text, about story, contact
+    details, socials) — a key/JSON-value store rather than one column per
+    field, so new editable fields don't need a migration. See
+    src/lib/settings.ts for the typed shape read from `value`. */
+model SiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}

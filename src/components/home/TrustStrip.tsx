@@ -1,12 +1,12 @@
-import { Scale, TrendingUp, Users, Home as HomeIcon } from "lucide-react";
+import { ShieldCheck, Gem, Lock, Undo2 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { RevealGroup } from "@/components/ui/Reveal";
 
 const points = [
-  { icon: Scale, label: "Transparent Valuation" },
-  { icon: TrendingUp, label: "Current Market Rate" },
-  { icon: Users, label: "Professional Service" },
-  { icon: HomeIcon, label: "Doorstep Convenience" },
+  { icon: ShieldCheck, label: "BIS Hallmarked Gold" },
+  { icon: Gem, label: "Handcrafted Pieces" },
+  { icon: Lock, label: "Secure Checkout" },
+  { icon: Undo2, label: "Easy Exchange" },
 ];
 
 export function TrustStrip() {

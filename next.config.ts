@@ -4,39 +4,31 @@ import type { NextConfig } from "next";
  * Static CSP + security headers, applied via next.config's `headers()`
  * rather than nonce-based middleware.
  *
- * This site is almost entirely statically generated (SSG) for SEO and
- * performance. Next.js's nonce-based CSP pattern requires every page to
- * opt into per-request dynamic rendering — the nonce is threaded through
- * server-side rendering at request time, but a static page's HTML is
- * fixed at build time with no request to read a nonce from. Using it here
- * silently broke every page's JavaScript in production (confirmed with a
- * real browser: every Next.js script chunk was rejected by its own CSP).
- * See node_modules/next/dist/docs/01-app/02-guides/content-security-policy.md
- * ("Static vs Dynamic Rendering with CSP") for Next's own explanation.
+ * Product/category pages read live data from the database per-request
+ * (dynamic rendering), but the CSP itself is still set once at config
+ * level rather than generated per-request in middleware — this project
+ * doesn't use Next's nonce-based CSP pattern (see
+ * node_modules/next/dist/docs/01-app/02-guides/content-security-policy.md),
+ * so there's no per-request nonce to thread through anyway.
  *
- * `script-src` therefore allows `'unsafe-inline'` rather than a nonce —
- * still same-origin only (no external script host is trusted), object
- * embeds are blocked, framing this site in someone else's page is blocked
- * (`frame-ancestors 'none'`), and nothing on this site renders untrusted
- * HTML (the one `dangerouslySetInnerHTML` use is JSON-LD built from our
- * own typed data, not user input). `frame-src` is scoped to exactly
- * `https://www.google.com`, needed only for the embedded branch-location
- * map on the location pages (`LocationMap.tsx`) — no other page embeds an
- * iframe. Next.js also has an
- * experimental Subresource-Integrity (SRI) mode that avoids
- * 'unsafe-inline' while keeping static generation — worth adopting once
- * it's stable; see the same docs file, "Subresource Integrity (Experimental)".
+ * `script-src` allows `'unsafe-inline'` rather than a nonce, plus
+ * Razorpay's checkout script host — the payment gateway's own JS opens a
+ * hosted iframe for card/UPI entry (allowed via `frame-src`) rather than
+ * ever touching card details directly on this site. Object embeds are
+ * blocked, framing of this site by others is blocked, and nothing else on
+ * this site renders untrusted HTML (the one `dangerouslySetInnerHTML` use
+ * is JSON-LD built from our own typed data, not user input).
  */
 const isDev = process.env.NODE_ENV === "development";
 
 const cspHeader = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://checkout.razorpay.com${isDev ? " 'unsafe-eval'" : ""}`,
   `style-src 'self' 'unsafe-inline'`,
-  `img-src 'self' data: blob:`,
+  `img-src 'self' data: blob: https://*.razorpay.com`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://api.gold-api.com https://api.frankfurter.dev`,
-  `frame-src https://www.google.com`,
+  `connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com`,
+  `frame-src https://api.razorpay.com https://checkout.razorpay.com`,
   `frame-ancestors 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,

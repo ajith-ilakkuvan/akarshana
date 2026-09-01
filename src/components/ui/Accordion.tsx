@@ -29,12 +29,12 @@ export function Accordion({ items, className }: { items: AccordionItemData[]; cl
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-medium text-charcoal hover:text-brand-red sm:px-6 sm:py-5"
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-medium text-charcoal hover:text-brand-black sm:px-6 sm:py-5"
               >
                 <span>{item.question}</span>
                 <ChevronDown
                   aria-hidden="true"
-                  className={cn("size-5 shrink-0 text-brand-red transition-transform duration-300", isOpen && "rotate-180")}
+                  className={cn("size-5 shrink-0 text-brand-gold-dark transition-transform duration-300", isOpen && "rotate-180")}
                 />
               </button>
             </h3>

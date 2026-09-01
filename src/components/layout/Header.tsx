@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/Button";
-import { PhoneCta, WhatsappCta } from "@/components/cta/PhoneWhatsappCta";
+import { WhatsappCta } from "@/components/cta/PhoneWhatsappCta";
+import { CartIcon } from "@/components/cart/CartIcon";
 import { mainNav, ctaLabels } from "@/config/navigation";
 import { trackEvent } from "@/lib/analytics";
 import { useScrolled } from "@/hooks/useScrolled";
@@ -68,8 +69,8 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "nav-pop block rounded-full px-3 py-2 text-sm font-medium text-charcoal/80 transition-colors hover:text-brand-red",
-                    pathname === item.href && "text-brand-red",
+                    "nav-pop block rounded-full px-3 py-2 text-sm font-medium text-charcoal/80 transition-colors hover:text-brand-black",
+                    pathname === item.href && "text-brand-black",
                   )}
                 >
                   {item.label}
@@ -80,10 +81,10 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <PhoneCta liquid />
           <WhatsappCta liquid />
+          <CartIcon />
           <Button
-            href="/contact/"
+            href="/shop/"
             size="sm"
             liquid
             onClick={() => trackEvent("cta_click", { location: "header" })}
@@ -93,8 +94,8 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <PhoneCta liquid className="size-10" />
           <WhatsappCta liquid className="size-10" />
+          <CartIcon className="size-10" />
           <button
             ref={menuButtonRef}
             type="button"
@@ -129,7 +130,7 @@ export function Header() {
                     href={item.href}
                     className={cn(
                       "block rounded-lg px-3 py-3 text-base font-medium text-charcoal hover:bg-cream",
-                      pathname === item.href && "text-brand-red",
+                      pathname === item.href && "text-brand-black",
                     )}
                   >
                     {item.label}
@@ -137,7 +138,7 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <Button href="/contact/" liquid className="mt-6 w-full">
+            <Button href="/shop/" liquid className="mt-6 w-full">
               {ctaLabels.primary}
             </Button>
           </nav>

@@ -1,11 +1,11 @@
 import { siteConfig } from "@/config/site";
 import { contactConfig } from "@/config/contact";
-import { branchDirectionsHref, type LocationSummary } from "@/config/locations";
+import type { ProductWithRelations } from "@/lib/products";
 
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "JewelryStore",
     name: siteConfig.legalName,
     alternateName: siteConfig.name,
     url: siteConfig.url,
@@ -13,31 +13,14 @@ export function organizationJsonLd() {
     description: siteConfig.description,
     telephone: contactConfig.phoneE164,
     email: contactConfig.email,
-    areaServed: ["Pollachi", "Udumalpet", "Coimbatore", "Tiruppur"],
-  };
-}
-
-export function localBusinessJsonLd(location: LocationSummary) {
-  const branch = location.branch;
-  return {
-    "@context": "https://schema.org",
-    "@type": "FinancialService",
-    name: `${siteConfig.name} — ${location.name}`,
-    parentOrganization: { "@type": "Organization", name: siteConfig.legalName },
-    description: `Gold buying and gold valuation services from ${siteConfig.name} serving ${location.name} and nearby areas.`,
-    url: `${siteConfig.url}${location.path}`,
-    telephone: contactConfig.phoneE164,
     address: {
       "@type": "PostalAddress",
-      ...(branch ? { streetAddress: `${branch.addressLine1}, ${branch.addressLine2}` } : {}),
-      addressLocality: location.name,
-      addressRegion: location.region,
-      ...(branch ? { postalCode: branch.postalCode } : {}),
+      streetAddress: contactConfig.addressLine2,
+      addressLocality: "Coimbatore",
+      addressRegion: "Tamil Nadu",
       addressCountry: "IN",
     },
-    ...(branch ? { hasMap: branchDirectionsHref(branch) } : {}),
-    areaServed: location.name,
-    priceRange: "$$",
+    priceRange: "$$$",
   };
 }
 
@@ -50,5 +33,24 @@ export function faqJsonLd(items: { question: string; answer: string }[]) {
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
+  };
+}
+
+export function productJsonLd(product: ProductWithRelations) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    sku: product.sku,
+    image: product.images.map((image) => `${siteConfig.url}${image.url}`),
+    category: product.category.name,
+    offers: {
+      "@type": "Offer",
+      url: `${siteConfig.url}/product/${product.slug}/`,
+      priceCurrency: "INR",
+      price: product.price,
+      availability: product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    },
   };
 }

@@ -13,7 +13,7 @@ const crumbs = [{ label: "FAQs", href: "/faq/" }];
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Answers to common questions about gold valuation, gold purity, today's gold rate, doorstep service and pledged gold release at Akarshana Gold.",
+    "Answers to common questions about hallmarking, sizing, payments, shipping and returns at Prashwa Jewels.",
   alternates: { canonical: "/faq/" },
 };
 

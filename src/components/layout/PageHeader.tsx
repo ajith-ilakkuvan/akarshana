@@ -12,7 +12,7 @@ export function PageHeader({
   description?: string;
 }) {
   return (
-    <section className="border-b border-white/10 bg-brand-red py-10 sm:py-14">
+    <section className="border-b border-white/10 bg-brand-black py-10 sm:py-14">
       <Container>
         <Breadcrumbs items={crumbs} tone="dark" />
         <h1 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">{title}</h1>

@@ -5,49 +5,51 @@ export interface FaqEntry {
 
 export const generalFaqs: FaqEntry[] = [
   {
-    question: "How is gold valued?",
+    question: "Is Prashwa Jewels' gold hallmarked?",
     answer:
-      "Gold is valued based on its purity, weight and the applicable current gold market rate at the time of evaluation.",
+      "Yes. Every gold piece we sell is BIS hallmarked, and diamond/gemstone pieces come with the relevant certification, so purity and quality are verifiable.",
   },
   {
-    question: "What factors affect my gold's value?",
+    question: "Can I see a product in person before buying?",
     answer:
-      "Purity (karat), weight, and the prevailing market rate are the main factors. The condition of stones or other attachments may also be considered separately.",
+      "Yes — you're welcome to visit our Coimbatore boutique to view any piece in person. You can also book a store visit from the Contact page, or shop directly online.",
   },
   {
-    question: "Can I sell old gold jewellery?",
-    answer: "Yes. Akarshana Gold buys old gold jewellery through a transparent valuation process.",
-  },
-  {
-    question: "How is purity checked?",
-    answer: "Purity is checked as part of our professional gold evaluation process before a valuation is shared.",
-  },
-  {
-    question: "What is today's gold rate?",
+    question: "Do prices shown online match the in-store price?",
     answer:
-      "Today's gold rate is shown live on our homepage and Gold Rate page for 24K, 22K and 18K gold, updated regularly from a live market source.",
+      "Prices shown online reflect the current pricing for that item, including making charges. Since gold rates move daily, prices are updated regularly — the price at checkout is the price you pay.",
   },
   {
-    question: "Can I calculate my gold value online?",
+    question: "What payment methods do you accept online?",
+    answer: "We accept UPI, credit/debit cards, and net banking through a secure, encrypted checkout.",
+  },
+  {
+    question: "Do you offer resizing for rings and bangles?",
     answer:
-      "Yes, use our Gold Value Calculator to get an estimated value based on today's displayed market rate, purity and weight.",
+      "Yes, complimentary resizing is available on most rings and bangles purchased from us — reach out after your order and our team will guide you through the process.",
   },
   {
-    question: "Do you provide doorstep service?",
-    answer: "Yes, we offer doorstep gold service so you can request valuation without visiting a branch.",
-  },
-  {
-    question: "Which locations do you serve?",
-    answer: "We currently serve Pollachi, Udumalpet, Coimbatore and Tiruppur.",
-  },
-  {
-    question: "What documents are required?",
+    question: "What is your exchange/return policy?",
     answer:
-      "Please carry a valid government-issued ID for verification. Our team will guide you through any additional requirements at the time of service.",
+      "We offer exchange on eligible items within a specified period from purchase, subject to the item being unused and in its original condition with invoice. Contact us to begin an exchange.",
   },
   {
-    question: "Can pledged gold be released?",
+    question: "How is my jewellery packaged and shipped?",
     answer:
-      "We assist customers with pledged gold release-related services. Reach out to our team to discuss your specific situation.",
+      "Every order is securely packed in tamper-evident, insured packaging and shipped with tracking. High-value orders may require a signature on delivery.",
+  },
+  {
+    question: "Can I get a custom or bridal jewellery piece made?",
+    answer:
+      "Yes, we take custom and bridal orders. Share your requirements via WhatsApp or the Contact page, and our design team will get in touch.",
+  },
+  {
+    question: "How do I take care of my jewellery?",
+    answer:
+      "Store pieces separately in a soft pouch, avoid contact with perfume/water where possible, and bring gold or diamond jewellery in for a professional clean periodically — ask our team for piece-specific care tips.",
+  },
+  {
+    question: "Where is your store located?",
+    answer: "Our boutique is located in Coimbatore, Tamil Nadu — see the Contact page for the full address and map.",
   },
 ];

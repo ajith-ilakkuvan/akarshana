@@ -8,15 +8,15 @@ type Size = "md" | "lg" | "sm";
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-brand-red text-white hover:bg-brand-red-dark shadow-sm shadow-brand-red/20",
+    "bg-brand-black text-white hover:bg-brand-black-deep shadow-sm shadow-brand-black/20",
   secondary:
     "bg-brand-gold text-charcoal hover:bg-brand-gold-dark hover:text-white",
   outline:
-    "border border-charcoal/20 text-charcoal hover:border-brand-red hover:text-brand-red bg-white",
-  /** Outline button meant to sit on a red/dark background — no opaque fill. */
+    "border border-charcoal/20 text-charcoal hover:border-brand-black hover:text-brand-black bg-white",
+  /** Outline button meant to sit on a dark background — no opaque fill. */
   outlineOnDark:
     "border border-white/40 text-white hover:border-brand-gold hover:text-brand-gold-light",
-  ghost: "text-charcoal hover:text-brand-red",
+  ghost: "text-charcoal hover:text-brand-black",
 };
 
 /**
@@ -27,20 +27,20 @@ const variantStyles: Record<Variant, string> = {
  * on top of the liquid wave.
  */
 const variantStylesLiquid: Record<Variant, string> = {
-  primary: "bg-brand-red text-white hover:text-charcoal shadow-sm shadow-brand-red/20",
+  primary: "bg-brand-black text-white hover:text-charcoal shadow-sm shadow-brand-black/20",
   secondary: "bg-brand-gold text-charcoal hover:text-white",
-  outline: "border border-charcoal/20 text-charcoal hover:border-brand-red hover:text-brand-red bg-white",
+  outline: "border border-charcoal/20 text-charcoal hover:border-brand-black hover:text-brand-black bg-white",
   outlineOnDark: "border border-white/40 text-white hover:border-brand-gold hover:text-brand-gold-light",
-  ghost: "text-charcoal hover:text-brand-red",
+  ghost: "text-charcoal hover:text-brand-black",
 };
 
 /** Fill color the liquid wave expands in, chosen per variant for contrast. */
 const liquidFillColor: Record<Variant, string> = {
   primary: "bg-brand-gold",
-  secondary: "bg-brand-red-dark",
-  outline: "bg-brand-red/10",
+  secondary: "bg-brand-black-deep",
+  outline: "bg-brand-black/10",
   outlineOnDark: "bg-white/15",
-  ghost: "bg-brand-red/5",
+  ghost: "bg-brand-black/5",
 };
 
 /**
@@ -65,7 +65,7 @@ const sizeStyles: Record<Size, string> = {
 };
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-red disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold-dark disabled:opacity-50 disabled:pointer-events-none";
 
 interface CommonProps {
   variant?: Variant;

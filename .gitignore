@@ -40,3 +40,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# database (SQLite dev database — production uses a hosted Postgres URL
+# via DATABASE_URL instead, see .env.example)
+/prisma/dev.db
+/prisma/dev.db-journal
+
+# admin-uploaded product photos (local-disk storage, dev only — see
+# src/lib/imageStorage.ts for swapping to Vercel Blob/S3 in production)
+/public/uploads/
