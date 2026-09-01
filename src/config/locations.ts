@@ -66,6 +66,7 @@ export const locations: LocationSummary[] = [
       addressLine1: "U.K.P Complex, Bus Stand, Anusham Nagar",
       addressLine2: "Opp. Udumalaipettai Municipality, Tamil Nadu 642126",
       postalCode: "642126",
+      mapLink: "https://maps.app.goo.gl/TAtmESXY9A3ZBFXW7",
     },
   },
   { slug: "coimbatore", name: "Coimbatore", region: "Tamil Nadu", path: "/gold-buyers-coimbatore/" },
