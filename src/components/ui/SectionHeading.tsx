@@ -28,7 +28,7 @@ export function SectionHeading({
         <span
           className={cn(
             "inline-block text-xs font-semibold uppercase tracking-[0.2em]",
-            tone === "dark" ? "text-brand-gold-light" : "text-brand-red",
+            tone === "dark" ? "text-brand-gold-light" : "text-brand-black",
           )}
         >
           {eyebrow}

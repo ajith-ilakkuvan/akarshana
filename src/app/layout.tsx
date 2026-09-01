@@ -3,9 +3,11 @@ import { Playfair_Display, Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd } from "@/lib/structuredData";
 import { siteConfig } from "@/config/site";
+import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
 
 const heading = Playfair_Display({
@@ -61,12 +63,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
-        <Header />
-        <main id="main-content" className="pb-16 lg:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <MobileStickyCta />
+        <CartProvider>
+          <SiteChrome header={<Header />} footer={<Footer />} mobileCta={<MobileStickyCta />}>
+            {children}
+          </SiteChrome>
+        </CartProvider>
       </body>
     </html>
   );

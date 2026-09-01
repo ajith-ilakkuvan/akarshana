@@ -22,12 +22,12 @@ export function PhoneCta({ className, label, liquid = false }: IconCtaProps) {
       className={cn(
         baseIconButton,
         "bg-charcoal text-white",
-        liquid ? "liquid-fill" : "transition-colors duration-200 hover:bg-brand-red",
+        liquid ? "liquid-fill" : "transition-colors duration-200 hover:bg-brand-black",
         className,
       )}
-      aria-label={label ?? "Call Akarshana Gold"}
+      aria-label={label ?? "Call Prashwa Jewels"}
     >
-      {liquid && <span aria-hidden="true" className="liquid-fill__layer bg-brand-red" />}
+      {liquid && <span aria-hidden="true" className="liquid-fill__layer bg-brand-black" />}
       <Phone aria-hidden="true" className={cn("size-5", liquid && "liquid-fill__content")} />
     </TrackedLink>
   );
@@ -47,7 +47,7 @@ export function WhatsappCta({ className, label, liquid = false }: IconCtaProps) 
         liquid ? "liquid-fill" : "transition-colors duration-200 hover:bg-[#1DA851]",
         className,
       )}
-      aria-label={label ?? "WhatsApp Akarshana Gold"}
+      aria-label={label ?? "WhatsApp Prashwa Jewels"}
     >
       {liquid && <span aria-hidden="true" className="liquid-fill__layer bg-[#1DA851]" />}
       <MessageCircle aria-hidden="true" className={cn("size-5", liquid && "liquid-fill__content")} />

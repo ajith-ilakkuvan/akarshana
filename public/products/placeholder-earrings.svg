@@ -1,0 +1,15 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="600" fill="#f8f4ea"/>
+  <g>
+    <ellipse cx="230" cy="220" rx="26" ry="20" fill="#e8d9ad" stroke="#8a6a1f" stroke-width="3"/>
+    <path d="M230 240 L230 320" stroke="#b8892f" stroke-width="4"/>
+    <path d="M215 320 Q230 360 245 320 Z" fill="#e8d9ad" stroke="#8a6a1f" stroke-width="3"/>
+  </g>
+  <g>
+    <ellipse cx="370" cy="220" rx="26" ry="20" fill="#e8d9ad" stroke="#8a6a1f" stroke-width="3"/>
+    <path d="M370 240 L370 320" stroke="#b8892f" stroke-width="4"/>
+    <path d="M355 320 Q370 360 385 320 Z" fill="#e8d9ad" stroke="#8a6a1f" stroke-width="3"/>
+  </g>
+  <text x="300" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#8a6a1f" letter-spacing="2">EARRINGS</text>
+  <text x="300" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#9b9284">Product photo coming soon</text>
+</svg>

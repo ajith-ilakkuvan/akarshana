@@ -33,7 +33,7 @@ export function Breadcrumbs({ items, tone = "light" }: { items: Crumb[]; tone?: 
                   {crumb.label}
                 </span>
               ) : (
-                <Link href={crumb.href} className={tone === "dark" ? "hover:text-brand-gold-light" : "hover:text-brand-red"}>
+                <Link href={crumb.href} className={tone === "dark" ? "hover:text-brand-gold-light" : "hover:text-brand-black"}>
                   {crumb.label}
                 </Link>
               )}

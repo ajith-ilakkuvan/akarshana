@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 /**
- * Brand palette: a rich jewel-tone red (used both as an accent and, in
- * --color-brand-red-dark, as a full-bleed background for premium dark
- * sections) with a warmer, more saturated metallic gold as the shining
- * accent — cream/white stays the dominant page background for
- * readability. Change these values to re-theme the entire site — every
- * component reads from these tokens rather than hardcoding colors.
+ * Brand palette, matched to Prashwa Jewels' actual storefront: an ivory/
+ * stone facade, near-black signage board lettered in gold, and a cream +
+ * black-panel interior with gold trim. --color-brand-black plays the role
+ * a "brand color" usually plays (header CTA, dark section backgrounds,
+ * --color-brand-black-deep as a full-bleed footer/hero background), paired
+ * with a warm metallic gold as the shining accent — ivory stays the
+ * dominant page background for readability. Change these values to
+ * re-theme the entire site — every component reads from these tokens
+ * rather than hardcoding colors.
  */
 :root {
-  --color-brand-red: #7a1420;
-  --color-brand-red-dark: #4a0d16;
-  --color-brand-red-light: #a3283a;
-  --color-brand-gold: #c9972e;
-  --color-brand-gold-light: #f3d98a;
-  --color-brand-gold-dark: #8a6015;
-  --color-brand-gold-shine: #fff3cf;
-  --color-charcoal: #201b17;
-  --color-ink: #2b2420;
-  --color-cream: #fbf7f0;
-  --color-cream-dark: #f2ead9;
+  --color-brand-black: #1a160f;
+  --color-brand-black-deep: #0d0b07;
+  --color-brand-black-light: #332c1f;
+  --color-brand-gold: #b8892f;
+  --color-brand-gold-light: #e8d9ad;
+  --color-brand-gold-dark: #8a6a1f;
+  --color-brand-gold-shine: #f7ecc9;
+  --color-charcoal: #211d17;
+  --color-ink: #2a2318;
+  --color-cream: #f8f4ea;
+  --color-cream-dark: #efe6d2;
 
   --background: #ffffff;
   --foreground: var(--color-ink);
@@ -28,9 +31,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-brand-red: var(--color-brand-red);
-  --color-brand-red-dark: var(--color-brand-red-dark);
-  --color-brand-red-light: var(--color-brand-red-light);
+  --color-brand-black: var(--color-brand-black);
+  --color-brand-black-deep: var(--color-brand-black-deep);
+  --color-brand-black-light: var(--color-brand-black-light);
   --color-brand-gold: var(--color-brand-gold);
   --color-brand-gold-light: var(--color-brand-gold-light);
   --color-brand-gold-dark: var(--color-brand-gold-dark);
@@ -117,7 +120,7 @@
 }
 /** For buttons on a light background, where a white sweep would vanish. */
 .btn-shine--subtle {
-  background-image: linear-gradient(115deg, transparent 28%, rgba(122, 20, 32, 0.18) 50%, transparent 72%);
+  background-image: linear-gradient(115deg, transparent 28%, rgba(26, 22, 15, 0.14) 50%, transparent 72%);
 }
 
 /**
@@ -182,7 +185,7 @@ body {
 
 /* Visible, accessible focus state for keyboard navigation. */
 :focus-visible {
-  outline: 2px solid var(--color-brand-red);
+  outline: 2px solid var(--color-brand-gold-dark);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -198,6 +201,13 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Shared form-field style — used across checkout, contact and admin forms
+   so every input/select/textarea looks consistent without repeating the
+   same long Tailwind class string everywhere. */
+.input {
+  @apply w-full rounded-lg border border-charcoal/20 bg-white px-3 py-2 text-sm text-charcoal outline-none transition-colors focus:border-brand-black;
 }
 
 .no-scrollbar::-webkit-scrollbar {

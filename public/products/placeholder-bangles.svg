@@ -1,0 +1,7 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="600" fill="#f8f4ea"/>
+  <circle cx="300" cy="280" r="110" fill="none" stroke="#b8892f" stroke-width="18"/>
+  <circle cx="300" cy="280" r="110" fill="none" stroke="#e8d9ad" stroke-width="6"/>
+  <text x="300" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#8a6a1f" letter-spacing="2">BANGLES &amp; BRACELETS</text>
+  <text x="300" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#9b9284">Product photo coming soon</text>
+</svg>

@@ -11,27 +11,24 @@ export interface NavItem {
 
 export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Gold Rate", href: "/gold-rate/" },
-  { label: "Services", href: "/services/" },
-  { label: "Locations", href: "/locations/" },
+  { label: "Shop", href: "/shop/" },
+  { label: "Collections", href: "/collections/" },
   { label: "About", href: "/about/" },
-  { label: "Careers", href: "/careers/" },
   { label: "FAQs", href: "/faq/" },
   { label: "Contact", href: "/contact/" },
 ];
 
 export const footerLinks = {
   company: [
-    { label: "About", href: "/about/" },
-    { label: "Services", href: "/services/" },
-    { label: "Careers", href: "/careers/" },
-    { label: "Blog", href: "/blog/" },
+    { label: "About Us", href: "/about/" },
+    { label: "Our Collections", href: "/collections/" },
+    { label: "Shop All", href: "/shop/" },
+    { label: "Contact", href: "/contact/" },
   ],
   resources: [
-    { label: "Today's Gold Rate", href: "/gold-rate/" },
-    { label: "Locations", href: "/locations/" },
     { label: "FAQs", href: "/faq/" },
-    { label: "Contact", href: "/contact/" },
+    { label: "Privacy Policy", href: "/privacy-policy/" },
+    { label: "Terms & Conditions", href: "/terms/" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy/" },
@@ -40,13 +37,14 @@ export const footerLinks = {
 } as const;
 
 export const ctaLabels = {
-  primary: "Get a Gold Valuation",
-  calculateValue: "Calculate Your Gold Value",
-  bookDoorstep: "Book Doorstep Service",
+  primary: "Shop Now",
+  shopCollection: "Shop This Collection",
+  addToCart: "Add to Cart",
+  buyNow: "Buy Now",
+  viewProduct: "View Details",
+  bookAppointment: "Book a Store Visit",
   callNow: "Call Now",
   whatsappUs: "WhatsApp Us",
-  sellGold: "Sell Your Gold",
   enquireNow: "Enquire Now",
-  accurateValuation: "Get an Accurate Valuation",
-  requestValuation: "Request Gold Valuation",
+  checkout: "Proceed to Checkout",
 } as const;

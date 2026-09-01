@@ -7,16 +7,15 @@
  */
 
 export type AnalyticsEvent =
-  | "gold_rate_view"
-  | "gold_calculator_used"
-  | "gold_valuation_submit"
   | "whatsapp_click"
   | "phone_click"
-  | "doorstep_booking"
-  | "location_page_view"
-  | "service_click"
   | "cta_click"
-  | "career_apply_click";
+  | "product_view"
+  | "add_to_cart"
+  | "remove_from_cart"
+  | "begin_checkout"
+  | "purchase"
+  | "category_click";
 
 type EventPayload = Record<string, string | number | boolean | undefined>;
 

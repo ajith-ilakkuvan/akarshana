@@ -1,26 +1,27 @@
 import Image from "next/image";
-import { ShieldCheck, Scale, Home as HomeIcon } from "lucide-react";
+import { ShieldCheck, Sparkles, Gem } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { GoldOrnament } from "@/components/ui/GoldOrnament";
-import { GoldRateCard } from "@/components/gold/GoldRateCard";
 import { ctaLabels } from "@/config/navigation";
+import { getHeroContent } from "@/lib/settings";
 
 const trustPoints = [
-  { icon: Scale, label: "Transparent valuation" },
-  { icon: ShieldCheck, label: "Current market rate" },
-  { icon: HomeIcon, label: "Doorstep convenience" },
+  { icon: ShieldCheck, label: "BIS hallmarked" },
+  { icon: Gem, label: "Handcrafted in-house" },
+  { icon: Sparkles, label: "Secure checkout" },
 ];
 
-export function Hero() {
+export async function Hero() {
+  const hero = await getHeroContent();
+
   return (
-    <section className="relative overflow-hidden bg-brand-red">
-      {/* Warm gold glow + faint corner arcs — an original, abstract nod to the
-          gold ornamentation on the client's poster, not a copy of it. */}
+    <section className="relative overflow-hidden bg-brand-black">
+      {/* Warm gold glow — an abstract nod to the storefront's chandelier and gold trim. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,243,207,0.22),_transparent_55%),radial-gradient(circle_at_bottom_left,_rgba(201,151,46,0.25),_transparent_50%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(247,236,201,0.16),_transparent_55%),radial-gradient(circle_at_bottom_left,_rgba(184,137,47,0.2),_transparent_50%)]"
       />
       <div
         aria-hidden="true"
@@ -31,39 +32,23 @@ export function Hero() {
         className="pointer-events-none absolute -bottom-32 -left-16 size-80 rounded-full border border-brand-gold/15"
       />
 
-      <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[0.85fr_1.4fr_1.15fr] lg:items-center lg:gap-8 lg:py-28">
-        <Reveal variant="scale-in" className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand-gold/40 shadow-xl shadow-black/25">
-            <Image
-              src="/hero-model.jpg"
-              alt="Customer wearing gold jewellery valued by Akarshana Gold"
-              fill
-              priority
-              sizes="(min-width: 1024px) 320px, 90vw"
-              className="object-cover object-top"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal variant="fade-up" delayMs={80}>
+      <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-14 lg:py-28">
+        <Reveal variant="fade-up">
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-light">
-            Akarshana Gold Company
+            {hero.eyebrow}
           </span>
           <GoldOrnament className="mt-4 justify-start" />
           <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-[3.25rem]">
-            Your Gold Deserves Its True Value.
+            {hero.headline}
           </h1>
-          <p className="mt-5 max-w-lg text-base text-white/80 sm:text-lg">
-            Get your gold valued transparently at the current market rate with convenient service from Akarshana
-            Gold.
-          </p>
+          <p className="mt-5 max-w-lg text-base text-white/80 sm:text-lg">{hero.subheading}</p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <Button href="/contact/" variant="secondary" size="lg">
+            <Button href="/shop/" variant="secondary" size="lg">
               {ctaLabels.primary}
             </Button>
-            <Button href="/contact/?service=doorstep-service" variant="outlineOnDark" size="lg">
-              {ctaLabels.bookDoorstep}
+            <Button href="/about/" variant="outlineOnDark" size="lg">
+              Our Story
             </Button>
           </div>
 
@@ -77,8 +62,24 @@ export function Hero() {
           </ul>
         </Reveal>
 
-        <Reveal variant="scale-in" delayMs={160}>
-          <GoldRateCard variant="full" />
+        <Reveal variant="scale-in" delayMs={120} className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand-gold/40 shadow-xl shadow-black/40">
+            {hero.image ? (
+              <Image
+                src={hero.image}
+                alt="Prashwa Jewels boutique"
+                fill
+                priority
+                sizes="(min-width: 1024px) 420px, 90vw"
+                className="object-cover"
+              />
+            ) : (
+              <div className="flex size-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-brand-black-light to-brand-black-deep text-center">
+                <Gem aria-hidden="true" className="size-10 text-brand-gold" />
+                <p className="px-6 text-sm text-white/60">Storefront &amp; collection photos coming soon</p>
+              </div>
+            )}
+          </div>
         </Reveal>
       </Container>
     </section>

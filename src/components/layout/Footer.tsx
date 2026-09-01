@@ -5,7 +5,6 @@ import { SocialIcon } from "@/components/ui/SocialIcon";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/config/site";
 import { footerLinks } from "@/config/navigation";
-import { locations } from "@/config/locations";
 import { contactConfig, telHref, whatsappHref } from "@/config/contact";
 
 const socialLinks = [
@@ -16,12 +15,12 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-brand-red-dark text-cream/80">
-      <Container className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
+    <footer className="border-t border-white/10 bg-brand-black-deep text-cream/80">
+      <Container className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-2">
-          {/* No separate tagline line here — the logo art already includes "Pure • Precious • Forever". */}
           <Logo size="lg" />
           <p className="mt-4 max-w-sm text-sm text-cream/70">{siteConfig.description}</p>
+          <p className="mt-2 text-xs uppercase tracking-wide text-brand-gold-light/80">{siteConfig.sisterConcernOf}</p>
           {socialLinks.length > 0 && (
             <div className="mt-5 flex gap-3">
               {socialLinks.map(({ key, href, label }) => (
@@ -31,7 +30,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex size-9 items-center justify-center rounded-full bg-white/10 hover:bg-brand-gold hover:text-brand-red-dark"
+                  className="flex size-9 items-center justify-center rounded-full bg-white/10 hover:bg-brand-gold hover:text-brand-black-deep"
                 >
                   <SocialIcon platform={key} className="size-4" />
                 </a>
@@ -40,21 +39,8 @@ export function Footer() {
           )}
         </div>
 
-        <FooterColumn title="Company" links={footerLinks.company} />
+        <FooterColumn title="Explore" links={footerLinks.company} />
         <FooterColumn title="Resources" links={footerLinks.resources} />
-
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Locations</h3>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {locations.map((location) => (
-              <li key={location.slug}>
-                <Link href={location.path} className="hover:text-brand-gold-light">
-                  {location.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
       </Container>
 
       <Container className="border-t border-white/10 py-8">

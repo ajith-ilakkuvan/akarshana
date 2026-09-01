@@ -1,71 +1,92 @@
-# Akarshana Gold Company — Website
+# Prashwa Jewels — Website
 
-Production website for Akarshana Gold Company: a gold buying / gold valuation
-business (**not** a jewellery retailer) currently serving Pollachi,
-Udumalpet, Coimbatore and Tiruppur, Tamil Nadu.
+Production website for Prashwa Jewels: a premium jewellery boutique in
+Coimbatore, Tamil Nadu (a sister concern of RV Thangamalikai), selling
+handcrafted gold, diamond and bridal jewellery both online and in-store.
 
-Built with Next.js (App Router) + TypeScript + Tailwind CSS.
+Built with Next.js (App Router) + TypeScript + Tailwind CSS + Prisma.
 
 ## ⚠️ Before launch — read this
 
 A few things in this build are deliberate placeholders because the real
-values weren't available while building it. Do not launch without
+values/assets weren't available while building it. Do not launch without
 addressing these:
 
-- **Logo**: `public/logo.svg` and `src/app/icon.svg` are a simple text/mark
-  placeholder, not the client's actual supplied logo — no logo file was
-  attached. Replace both with the real brand assets.
+- **Logo**: `public/logo.svg` and `src/app/icon.svg` are a hand-drawn
+  approximation of the real Prashwa Jewels wordmark/monogram (built from
+  reference photos of the storefront signage), not the client's actual
+  vector logo file. Replace both with the real brand assets.
+- **Product photography**: every seeded product uses a flat SVG
+  placeholder (`public/products/placeholder-*.svg`), clearly labelled
+  "Product photo coming soon". Replace via `/admin/products/` once real
+  photography is available — no fabricated product photos are used
+  anywhere.
+- **Hero photo**: the homepage hero shows a placeholder gradient until a
+  real storefront/collection photo is uploaded via `/admin/content/`.
 - **Contact details**: phone, WhatsApp, email and address in
   `src/config/contact.ts` are placeholders. Update before launch.
-- **Legal pages**: `/privacy-policy/` and `/terms/` contain template text
-  flagged for legal review — see the notice banner on each page.
 - **Testimonials**: `src/components/home/Testimonials.tsx` shows clearly
   labelled placeholder slots. No reviews were fabricated — add real,
   client-supplied testimonials before launch.
-- **Lead delivery**: without `LEAD_WEBHOOK_URL` set, submitted leads are
-  validated and accepted but not sent anywhere. Wire this up (see
-  "Environment variables" below) before launch.
+- **Admin credentials**: `.env.example`'s `ADMIN_EMAIL`/`ADMIN_PASSWORD`
+  are dev-only placeholders. Set a real `ADMIN_PASSWORD_HASH` (see
+  `src/lib/adminAuth.ts`) before launch — never ship with a plaintext
+  password in production.
+- **Payments**: without `RAZORPAY_KEY_ID`/`RAZORPAY_KEY_SECRET` set,
+  checkout still captures orders but skips online payment — the team
+  follows up manually (see "Payments" below). Wire up a live Razorpay
+  merchant account before launch.
+- **Database**: ships against a local SQLite file for zero-setup local
+  dev. Point `DATABASE_URL` at a hosted Postgres instance for production
+  (see "Database" below).
+- **Image storage**: admin-uploaded photos are written to
+  `public/uploads/` on local disk (see `src/lib/imageStorage.ts`) — this
+  does not persist on serverless hosts like Vercel. Swap in Vercel
+  Blob/S3/Cloudinary before launching there.
+- **Legal pages**: `/privacy-policy/` and `/terms/` contain template text
+  flagged for legal review — see the notice banner on each page.
 
 ## Project structure
 
 ```
 src/
-  app/                    Routes (Next.js App Router — one folder per URL)
-    api/gold-rate/        GET endpoint serving the live gold rate
-    api/lead/              POST endpoint for the lead form
-    gold-rate/             /gold-rate/ page
-    services/               /services/ page
-    how-it-works/            /how-it-works/ page
-    about/                    /about/ page
-    locations/                 /locations/ page
-    contact/                    /contact/ page
-    faq/                          /faq/ page
-    gold-buyers-pollachi/          one thin route file per served city
-    gold-buyers-udumalpet/           (see "Adding a location" below)
-    gold-buyers-coimbatore/
-    gold-buyers-tiruppur/
-    blog/                    /blog/ index + /blog/[slug]/ posts
-    sitemap.ts, robots.ts      auto-generated sitemap.xml / robots.txt
-    layout.tsx, globals.css    root layout, fonts, brand color tokens
-  config/                  Central, editable configuration (see below)
-  content/                 Long-form copy: blog posts, per-city SEO content
+  app/                      Routes (Next.js App Router — one folder per URL)
+    shop/                   /shop/ — full catalog with category/metal/sort filters
+    collections/            /collections/ index + /collections/[slug]/ category pages
+    product/[slug]/         Product detail page
+    cart/                   Client-side cart page
+    checkout/               Checkout (address + Razorpay) + /checkout/success/
+    admin/                  Admin dashboard (see "Admin panel" below)
+    about/, contact/, faq/  Content pages
+    privacy-policy/, terms/ Legal pages
+    sitemap.ts, robots.ts   Auto-generated sitemap.xml / robots.txt (includes products/categories)
+    layout.tsx, globals.css Root layout, fonts, brand color tokens
+  config/                   Central, editable configuration (contact, nav, FAQs, site identity)
   components/
-    ui/                    Generic building blocks (Button, Reveal, ...)
-    layout/                Header, Footer, mobile sticky CTA bar
-    home/                  Homepage sections
-    gold/                  GoldRateCard, GoldCalculator (client components)
-    forms/                 LeadForm
-    cta/                   Small tracked-link/button wrappers
-    locations/             Shared template for the four city pages
-    seo/                   JSON-LD renderer
+    ui/                     Generic building blocks (Button, Reveal, ...)
+    layout/                 Header, Footer, mobile sticky CTA bar, SiteChrome
+    home/                   Homepage sections (Hero, CategoryShowcase, FeaturedProducts, ...)
+    shop/                   ProductCard, ProductGrid, filters, AddToCartButton
+    admin/                  Admin dashboard shell + forms
+    forms/                  ContactForm
+    cta/                    Small tracked-link/button wrappers
+    seo/                    JSON-LD renderer
+  context/
+    CartContext.tsx         Client-side cart (localStorage-backed external store)
   lib/
-    goldRate/               Gold-rate service, providers, cache, calculator
-    validation/               Zod schema for the lead form
-    rateLimit.ts, sanitize.ts  Lead API safety
-    structuredData.ts           Organization / LocalBusiness / FAQ JSON-LD
-    analytics.ts                 Event-tracking stub
-    blog.ts                        Blog post lookup helpers
-  hooks/                   useGoldRate, useReducedMotion, useScrolled
+    db.ts                   Prisma client singleton
+    products.ts             Server-only product/category queries
+    cart.ts                 Cart totals math shared by client + server
+    adminAuth.ts             Admin session (JWT cookie) + credential check
+    settings.ts               Admin-editable homepage/about content (DB-backed)
+    imageStorage.ts             Admin photo upload (local disk — swap for prod)
+    razorpay.ts                   Razorpay order creation + signature verification
+    actions/                        Server Actions: checkout, contact, admin CRUD
+    validation/                       Zod schemas (checkout, contact, product/category)
+  hooks/                    useIsHydrated, useReducedMotion, useScrolled
+prisma/
+  schema.prisma             Database schema (Category, Product, Order, SiteContent, ...)
+  seed.ts                   Realistic placeholder catalog (see "Before launch" above)
 ```
 
 ## Getting started
@@ -73,205 +94,157 @@ src/
 ```bash
 npm install
 cp .env.example .env.local   # fill in real values — see below
+echo 'DATABASE_URL="file:./dev.db"' > .env   # Prisma CLI only reads .env, not .env.local
+npx prisma db push           # create the local SQLite database from the schema
+npm run db:seed              # seed placeholder categories/products
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3000. Admin panel: http://localhost:3000/admin/login/
+(credentials from `.env.local`'s `ADMIN_EMAIL`/`ADMIN_PASSWORD`).
 
-Other scripts: `npm run build`, `npm run start`, `npm run lint`.
+Other scripts: `npm run build`, `npm run start`, `npm run lint`,
+`npm run db:push` (sync schema changes), `npm run db:seed`.
 
 ## Environment variables
 
-See `.env.example` for the full list with descriptions. None of them are
-required to run the site locally — every value has a safe default — but
-review each before launch:
+See `.env.example` for the full list with descriptions.
 
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Production domain, used for canonical URLs, sitemap and structured data. |
-| `GOLD_PRICE_API_URL` / `GOLD_PRICE_API_KEY` | Gold spot-price provider. Defaults to the free [Gold API](https://gold-api.com/), which needs no key. |
-| `CURRENCY_API_URL` | USD→INR conversion source (the gold API returns USD per troy ounce). Defaults to [Frankfurter](https://frankfurter.dev/), free and keyless. |
-| `GOLD_RATE_FALLBACK_USD_INR` | Last-resort USD→INR rate, used only if the live currency lookup fails **and** there's no cached conversion. This is a forex fallback, not a fabricated gold price — the gold price itself always comes from the live provider or a timestamped cache. |
-| `GOLD_RATE_CACHE_SECONDS` | How long a fetched rate is cached (clamped to 60–300s). |
-| `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` | % added on top of the raw international spot-converted 24K/22K rate, to approximate a domestic Indian bullion quote (import duty + local premium). Defaults to `17.43`, calibrated 2026-09-01 against NDTV's Chennai rate. See "Why the rate differs from a local quoted rate" below before changing it. |
-| `GOLD_RATE_18K_EXTRA_PREMIUM_PERCENT` | Extra % applied to the 18K tier only, on top of the above (18K runs above pure fineness math in real domestic quotes). Defaults to `3.26`, same calibration date/source. |
-| `LEAD_WEBHOOK_URL` | Optional POST target (Slack, CRM inbox, Zapier, etc.) for validated leads. |
+| `DATABASE_URL` | SQLite file path locally; a Postgres connection string in production. |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD_HASH` / `ADMIN_PASSWORD` | Admin panel login. Use the hash in production, never the plaintext fallback. |
+| `ADMIN_SESSION_SECRET` | Signs the admin session JWT. Generate with `openssl rand -hex 32`. |
+| `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` | Payment gateway. Test-mode keys work for development; blank runs checkout in "payment not live yet" mode. |
+| `CONTACT_WEBHOOK_URL` | Optional POST target for validated contact-form enquiries. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional analytics ID — see `src/lib/analytics.ts`. |
 
-Secrets (`GOLD_PRICE_API_KEY`, `LEAD_WEBHOOK_URL`) are only ever read in
-`src/config/goldRate.ts` (marked `import "server-only"`, so a Client
-Component that tries to import it fails the build) and
-`src/app/api/lead/route.ts`. Never move these reads into a Client
-Component.
+Secrets (`ADMIN_SESSION_SECRET`, `RAZORPAY_KEY_SECRET`, `DATABASE_URL`) are
+only ever read in server-only modules (`src/lib/db.ts`, `adminAuth.ts`,
+`razorpay.ts`, all marked `import "server-only"` or Server Actions) — never
+in a Client Component.
 
-## The gold-rate architecture
+## Database
 
-This is the core functional feature — a real, live gold rate, not a
-hardcoded number. The layers:
+Prisma models (`prisma/schema.prisma`): `Category`, `Product` +
+`ProductImage`, `Order` + `OrderItem`, and `SiteContent` (admin-editable
+homepage/about copy — see "Admin panel" below).
 
-```
-UI (GoldRateCard, GoldCalculator)
-  → useGoldRate() hook
-    → GET /api/gold-rate
-      → GoldRateService (src/lib/goldRate/goldRateService.ts)
-        → GoldPriceProvider   (GoldApiProvider — gold-api.com)
-        → CurrencyRateProvider (FrankfurterCurrencyProvider — USD→INR)
-        → calculatePurityRatesInrPerGram() — 24K/22K/18K math
-        → TtlCache — in-process cache (see "Caching" below)
-```
+Ships against **SQLite** for local dev — zero setup, just `npx prisma db
+push`. For production, point `DATABASE_URL` at a hosted **Postgres**
+instance (Vercel Postgres, Neon, Supabase, ...) and change
+`provider = "sqlite"` to `"postgresql"` in `prisma/schema.prisma`; every
+model here is already Postgres-compatible as written. After changing the
+provider, run `npx prisma db push` (or set up proper migrations with
+`npx prisma migrate dev`) against the new database.
 
-The UI never talks to `gold-api.com` directly, and never sees
-provider-specific field names — everything is normalized to:
+## Admin panel
 
-```ts
-{ currency: "INR", unit: "gram", rates: { "24K": n, "22K": n, "18K": n }, updatedAt, source }
-```
+`/admin/login/` — a single-admin dashboard (no multi-user roles), built so
+the client can run the catalog without touching code:
 
-**To swap providers** (paid API, or Akarshana's own approved daily rate):
-implement `GoldPriceProvider` (see `src/lib/goldRate/providers/goldApiProvider.ts`
-for the shape — one method, `getSpotPriceUsdPerOunce()`) and pass the new
-instance into `GoldRateService` in `src/lib/goldRate/goldRateService.ts`.
-Nothing else in the app changes.
+- **Products** (`/admin/products/`) — create, edit, delete; upload/remove
+  photos; set price, stock, metal/purity/gemstone, featured flag.
+- **Categories** (`/admin/categories/`) — create, edit, delete (blocked
+  while products remain in a category, to avoid orphaning them).
+- **Orders** (`/admin/orders/`) — view every order and its items, update
+  status (Pending → Paid → Shipped → Delivered, or Failed/Cancelled).
+- **Site Content** (`/admin/content/`) — edit the homepage hero
+  (eyebrow/headline/subheading/photo) and the About page story, without a
+  deploy. Contact details and navigation links are still edited by a
+  developer in `src/config/contact.ts` / `src/config/navigation.ts` — see
+  the note on that page.
 
-**If the provider already returns 22K/18K rates directly**, extend
-`calculatePurityRatesInrPerGram` (`src/lib/goldRate/calculator.ts`) to use
-them instead of deriving from 24K — that's the one place purity math lives,
-so nothing else needs updating.
+Auth is a signed session cookie (see `src/lib/adminAuth.ts`), not a
+database-backed user table — credentials come from `ADMIN_EMAIL` /
+`ADMIN_PASSWORD_HASH` env vars. `src/app/admin/(protected)/layout.tsx`
+guards every admin route except `/admin/login/`; every Server Action under
+`src/lib/actions/admin*.ts` re-checks the session independently as
+defense in depth (an action can be invoked directly, not just through the
+page that renders its form).
 
-### Why the rate differs from a local quoted rate (e.g. Chennai)
+## Storefront & cart
 
-The free Gold API feed is the raw **international spot price** (XAU/USD),
-converted to INR. A rate quoted by NDTV, an Indian jewellers' association,
-or a site like GoodReturns is the **domestic bullion rate**, which is
-systematically higher because it includes India's import duty, GST and
-local market premium — none of which exist in a raw spot conversion. This
-isn't a bug; it's a different (and free) data source.
+- **Catalog**: `/shop/` (filter by category/metal, sort), `/collections/`
+  (browse by category), `/product/[slug]/` (detail + related products).
+  All read live from the database (`src/lib/products.ts`), so an admin
+  edit shows up immediately — no rebuild/redeploy needed.
+- **Cart**: client-side only, backed by `localStorage`
+  (`src/context/CartContext.tsx`), implemented as a `useSyncExternalStore`
+  external store rather than `useState` + a hydration `useEffect` — see
+  the comment in that file for why.
+- **Checkout**: `/checkout/` collects a shipping address, then calls the
+  `createCheckoutOrder` Server Action (`src/lib/actions/checkout.ts`),
+  which **re-validates prices/stock against the database** — the client's
+  cart prices are never trusted — before creating a `PENDING` `Order` row
+  and (if Razorpay is configured) a matching Razorpay order.
 
-To close that gap without paying for a domestic bullion API, two env vars
-apply on top of the raw converted rate before/during the 22K/18K split
-(`src/lib/goldRate/calculator.ts`):
+## Payments (Razorpay)
 
-- `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` (0–30, default `17.43`) — applied
-  to the 24K rate, and therefore to 22K too (22K = 24K × 22/24 in both the
-  raw feed and real domestic quotes, so one percentage covers both).
-- `GOLD_RATE_18K_EXTRA_PREMIUM_PERCENT` (0–15, default `3.26`) — an
-  additional bump for 18K only, since real domestic 18K quotes run a
-  bit above pure 18/24 fineness math (verified against NDTV's own
-  Chennai figures, where 22K matched fineness math exactly but 18K
-  didn't).
+`src/lib/razorpay.ts` talks to Razorpay's REST API directly (Basic Auth
+with `key_id:key_secret`) rather than pulling in the `razorpay` SDK for
+one HTTP call and one HMAC check.
 
-The current defaults were calibrated 2026-09-01 against NDTV's Chennai
-gold rate (ndtv.com/gold-rate/gold-price-chennai) — raw 24K ₹13,339 vs
-NDTV ₹15,664, raw 22K ₹12,227 vs NDTV ₹14,359 (same ~17.43% gap
-confirming it), raw 18K ₹10,004 vs NDTV ₹12,131 (needing the extra
-+3.26% on top of the base premium to match). These percentages are a
-markup on duty/GST/local market premium, which drifts slowly
-(weeks/months) rather than daily — so they don't need updating every
-day — but re-check them against a real quote periodically and adjust
-the env vars (or these defaults) if the gap has moved. Set either to `0`
-to fall back toward the raw international rate.
+- **Configured** (`RAZORPAY_KEY_ID`/`RAZORPAY_KEY_SECRET` set): checkout
+  opens Razorpay's hosted widget; on success, `verifyCheckoutPayment`
+  checks the payment signature (HMAC-SHA256) server-side before marking
+  the order `PAID` and decrementing stock. Never trust a client-reported
+  "payment succeeded" without this check.
+- **Not configured**: the order is still created (`PENDING`) so the team
+  can follow up manually — the UI shows "payment isn't live yet" rather
+  than a broken checkout. This is the default until a merchant account is
+  set up.
 
-### Caching
+Test-mode keys (from the Razorpay dashboard) work end-to-end for
+development — no live merchant account needed to test the full flow.
 
-`GoldRateService` holds an in-process `TtlCache` (see
-`src/lib/goldRate/cache.ts`). A request within `GOLD_RATE_CACHE_SECONDS`
-of the last successful fetch gets the cached value; after that, the next
-request triggers a fresh fetch. This is intentionally simple — it lives
-for the life of the warm server process, which is enough to avoid hitting
-the external API on every visitor. If the app later runs across many
-concurrent serverless instances and this needs to be authoritative across
-all of them, swap `TtlCache` for a shared store (e.g. Upstash Redis) behind
-the same `get`/`set` interface.
+## Editing content, contact info, nav, colors
 
-### Failure handling
-
-If the gold API (or the currency conversion) fails and there's no valid
-cache, `/api/gold-rate` returns `{ status: "unavailable", data: null }`
-and the UI shows "Gold rates are temporarily unavailable" with Call /
-WhatsApp / Get a Valuation fallbacks — never a fake price. If a valid
-cached value exists, it's served with `status: "stale"` and the UI labels
-it "Showing last known rate" rather than presenting it as live.
-
-## Adding a location
-
-1. Add an entry to `src/config/locations.ts`.
-2. Create `src/content/locations/<slug>.ts` with **genuinely unique**
-   copy — intro paragraphs, sell-gold/pledged-gold/doorstep blurbs,
-   "why choose us" bullets, and city-specific FAQs (see any existing file
-   in that folder for the shape). Register it in
-   `src/content/locations/index.ts`.
-3. Add one thin route file, e.g. `src/app/gold-buyers-<slug>/page.tsx`:
-   ```tsx
-   import { buildLocationMetadata, LocationPageBySlug } from "@/components/locations/LocationPageBySlug";
-   export const metadata = buildLocationMetadata("<slug>");
-   export default function Page() {
-     return <LocationPageBySlug slug="<slug>" />;
-   }
-   ```
-   (Next.js doesn't support mixing static text with a dynamic segment in
-   one folder name — e.g. `gold-buyers-[city]` — so each served city gets
-   its own literal folder; the actual page layout is one shared component,
-   `LocationPageTemplate`.)
-
-The new location automatically appears in the sitemap and the
-locations/homepage listings, since both read from `config/locations.ts`.
-
-## Editing services, CTAs, contact info, colors
-
-- **Services** (the 5 poster-derived offerings): `src/config/services.ts`.
-- **CTA button labels**: `src/config/navigation.ts` (`ctaLabels`) — used
-  consistently across the whole site, so change it once.
+- **Products/categories/orders/hero/about**: via `/admin/` — see "Admin
+  panel" above. No code change or deploy needed.
 - **Contact details / business hours / social links**: `src/config/contact.ts`.
-- **Nav links**: `src/config/navigation.ts` (`mainNav`, `footerLinks`).
-- **Brand colors**: CSS custom properties in `src/app/globals.css`
-  (`--color-brand-red`, `--color-brand-gold`, `--color-charcoal`, ...).
-- **Logo**: `public/logo.svg` (and `src/app/icon.svg` for the favicon).
+- **Nav links, CTA button labels**: `src/config/navigation.ts`.
 - **FAQs**: `src/config/faq.ts`.
-- **"How it works" steps**: `src/config/howItWorks.ts`.
-- **Blog posts**: `src/content/blog/posts.ts`.
+- **Brand identity** (name, tagline, description): `src/config/site.ts`.
+- **Brand colors**: CSS custom properties in `src/app/globals.css`
+  (`--color-brand-black`, `--color-brand-gold`, `--color-charcoal`, ...) —
+  matched to the real storefront's ivory/stone + near-black signage + gold
+  trim palette.
+- **Logo**: `public/logo.svg` (and `src/app/icon.svg` for the favicon).
 
 ## SEO
 
-- Per-page `generateMetadata`/`metadata` (title, description, canonical) —
-  see any file under `src/app/*/page.tsx`.
+- Per-page `generateMetadata`/`metadata` (title, description, canonical).
 - `src/app/sitemap.ts` and `src/app/robots.ts` generate `/sitemap.xml` and
-  `/robots.txt` from `config/locations.ts` and `lib/blog.ts` — new
-  locations/posts appear automatically.
-- Structured data: `Organization` sitewide (`src/app/layout.tsx`),
-  `BreadcrumbList` on every inner page, `LocalBusiness`-type +
-  `FAQPage` on each city page, `FAQPage` on `/faq/`. See
-  `src/lib/structuredData.ts`.
-- The four `/gold-buyers-<city>/` pages intentionally use unique,
-  hand-written copy per city (not a find-and-replace template) — see
-  "Adding a location" above.
+  `/robots.txt`, including every active product and category from the
+  database — new products/categories appear automatically, no manual
+  sitemap edits.
+- Structured data (`src/lib/structuredData.ts`): `JewelryStore` sitewide
+  (`src/app/layout.tsx`), `BreadcrumbList` on every inner page, `Product`
+  on each product page, `FAQPage` on `/faq/`.
 
 ## Security
 
 - `next.config.ts` (`headers()`) sets a Content-Security-Policy plus
   `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` and
-  `Permissions-Policy` on every response. This is a **static** CSP, set
-  once at config level rather than generated per-request in middleware —
-  deliberately: this site is almost entirely statically generated (SSG)
-  for SEO/performance, and Next's nonce-based CSP pattern only works for
-  pages that opt into per-request dynamic rendering (confirmed the hard
-  way: it silently broke every page's JavaScript in a static build). See
-  the comment above `cspHeader` in `next.config.ts`, and
-  `node_modules/next/dist/docs/01-app/02-guides/content-security-policy.md`
-  ("Static vs Dynamic Rendering with CSP") for Next's own explanation.
-  `script-src` therefore uses `'unsafe-inline'` rather than a nonce; if
-  stricter script-src is needed later, Next's experimental
-  Subresource-Integrity (SRI) CSP mode keeps static generation without it
-  — see the same docs file.
-- `src/config/goldRate.ts` is marked `import "server-only"` so the API URL
-  and key can never end up in client-side JavaScript, even by accident.
-  Purity math that the calculator UI needs lives in the separate,
-  client-safe `src/config/goldPurity.ts`.
-- `/api/lead` (`src/app/api/lead/route.ts`): server-side Zod validation
-  (`src/lib/validation/leadSchema.ts`) is authoritative — the client form
-  re-uses the same schema only for instant feedback. Includes a honeypot
-  field and a submit-timing check for basic bot filtering, in-process rate
-  limiting (`src/lib/rateLimit.ts`, 5 requests/min per IP), and text
-  sanitization (`src/lib/sanitize.ts`) before any forwarding.
+  `Permissions-Policy` on every response — a **static** CSP, set once at
+  config level. `script-src`/`frame-src`/`connect-src` explicitly allow
+  Razorpay's checkout domains; see the comment above `cspHeader` in
+  `next.config.ts`.
+- Admin routes are guarded both at the layout level (redirect to login)
+  and inside every admin Server Action (`requireAdmin()`/session check),
+  so an action can't be invoked directly by someone without a valid
+  session.
+- `/checkout/`: server-side Zod validation is authoritative for both the
+  shipping address and the cart contents — prices and stock are
+  re-checked against the database, never trusted from the client. Razorpay
+  payment signatures are verified server-side (HMAC-SHA256) before an
+  order is marked paid.
+- Contact form (`src/lib/actions/contact.ts`): server-side Zod validation,
+  a honeypot field, in-process rate limiting (`src/lib/rateLimit.ts`, 5
+  requests/min per IP), and text sanitization (`src/lib/sanitize.ts`)
+  before any forwarding.
 - No secrets are ever in `.env.example` — it's placeholders only.
 
 ## Animations
@@ -289,9 +262,19 @@ re-implementing `IntersectionObserver` logic. It:
 ## Deployment
 
 The app is a standard Next.js site — deploy to Vercel (recommended, given
-the App Router + Route Handler usage) or any Node.js host that supports
-Next.js. Set the environment variables above in your hosting provider's
-dashboard; nothing needs to change in code between environments.
+the App Router + Route Handler + Server Actions usage) or any Node.js host
+that supports Next.js. Before deploying:
+
+1. Provision a Postgres database and update `DATABASE_URL` +
+   `prisma/schema.prisma`'s `provider` (see "Database" above).
+2. Set every environment variable from `.env.example` in the hosting
+   provider's dashboard, including a real `ADMIN_PASSWORD_HASH` and a
+   fresh `ADMIN_SESSION_SECRET`.
+3. Swap `src/lib/imageStorage.ts`'s local-disk upload for a persistent
+   store (Vercel Blob, S3, Cloudinary) — serverless hosts don't keep
+   filesystem writes between deploys/instances.
+4. Set live `RAZORPAY_KEY_ID`/`RAZORPAY_KEY_SECRET` once the merchant
+   account is approved.
 
 ```bash
 npm run build
