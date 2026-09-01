@@ -23,9 +23,9 @@ export const siteConfig = {
   themeColor: "#7a1220",
   logo: {
     src: "/logo.webp",
-    alt: "Aksharana Gold Company logo",
-    width: 400,
-    height: 529,
+    alt: "Akarshana Gold Company logo",
+    width: 432,
+    height: 560,
   },
   ogImage: "/og-image.jpg",
 } as const;
