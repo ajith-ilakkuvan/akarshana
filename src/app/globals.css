@@ -207,3 +207,27 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/**
+ * Slow horizontal auto-scroll ("marquee") for the gold-items showcase
+ * (GoldItemsSection). The track renders its card list twice back to
+ * back and animates exactly one copy-width leftward on a loop, so the
+ * wrap from the end of the first copy into the start of the second is
+ * seamless. Pauses on hover so a visitor can stop and read a card.
+ * Frozen to a single frame by the site-wide prefers-reduced-motion rule
+ * above (animation-duration forced to 0.01ms) — no extra JS needed.
+ */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee-scroll 32s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}

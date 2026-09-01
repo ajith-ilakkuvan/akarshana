@@ -3,6 +3,7 @@ import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { CalculatorSection } from "@/components/home/CalculatorSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
+import { GoldItemsSection } from "@/components/home/GoldItemsSection";
 import { WhyUs } from "@/components/home/WhyUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { DoorstepSection } from "@/components/home/DoorstepSection";
@@ -25,6 +26,7 @@ export default function HomePage() {
       <TrustStrip />
       <CalculatorSection />
       <ServicesSection />
+      <GoldItemsSection />
       <WhyUs />
       <HowItWorks />
       <DoorstepSection />
