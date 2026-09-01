@@ -10,7 +10,7 @@ import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
 import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { contactConfig, telHref, whatsappHref } from "@/config/contact";
 import { leadServiceOptions, type LeadServiceValue } from "@/config/services";
-import { locations } from "@/config/locations";
+import { branchDirectionsHref, locations } from "@/config/locations";
 
 const branches = locations.filter((location) => location.branch);
 const serviceOnlyLocations = locations.filter((location) => !location.branch);
@@ -69,7 +69,7 @@ export default async function ContactPage({
                         {branch.addressLine2}
                       </p>
                       <a
-                        href={branch.mapLink}
+                        href={branchDirectionsHref(branch)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-brand-red hover:underline"

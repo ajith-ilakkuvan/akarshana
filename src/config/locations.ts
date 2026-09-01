@@ -16,8 +16,19 @@ export interface Branch {
   addressLine1: string;
   addressLine2: string;
   postalCode: string;
-  /** The Google Maps share link, used for the "Get Directions" button. */
-  mapLink: string;
+  /**
+   * Optional Google Maps share link (the exact pin, more precise than a
+   * geocoded address query) — when omitted, `branchDirectionsHref` below
+   * builds a directions link from the address text instead.
+   */
+  mapLink?: string;
+}
+
+/** "Get Directions" target: the branch's own share link if we have one, otherwise a directions link geocoded from its address. */
+export function branchDirectionsHref(branch: Branch): string {
+  if (branch.mapLink) return branch.mapLink;
+  const query = encodeURIComponent(`${branch.addressLine1}, ${branch.addressLine2}`);
+  return `https://www.google.com/maps/dir/?api=1&destination=${query}`;
 }
 
 export interface LocationSummary {
@@ -43,7 +54,20 @@ export const locations: LocationSummary[] = [
       mapLink: "https://maps.app.goo.gl/tJhdasPryNKcLDjF6",
     },
   },
-  { slug: "udumalpet", name: "Udumalpet", region: "Tamil Nadu", path: "/gold-buyers-udumalpet/" },
+  {
+    slug: "udumalpet",
+    name: "Udumalpet",
+    region: "Tamil Nadu",
+    path: "/gold-buyers-udumalpet/",
+    branch: {
+      // Client-provided text expanded "Oop" -> "Opp." and "P.Coplex" -> "P Complex"
+      // (consistent with the "U.K.P Complex" reading and the "Opp. <landmark>"
+      // pattern used in the Pollachi address) — confirm this reads correctly.
+      addressLine1: "U.K.P Complex, Bus Stand, Anusham Nagar",
+      addressLine2: "Opp. Udumalaipettai Municipality, Tamil Nadu 642126",
+      postalCode: "642126",
+    },
+  },
   { slug: "coimbatore", name: "Coimbatore", region: "Tamil Nadu", path: "/gold-buyers-coimbatore/" },
   { slug: "tiruppur", name: "Tiruppur", region: "Tamil Nadu", path: "/gold-buyers-tiruppur/" },
 ];

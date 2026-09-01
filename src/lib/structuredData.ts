@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 import { contactConfig } from "@/config/contact";
-import type { LocationSummary } from "@/config/locations";
+import { branchDirectionsHref, type LocationSummary } from "@/config/locations";
 
 export function organizationJsonLd() {
   return {
@@ -35,7 +35,7 @@ export function localBusinessJsonLd(location: LocationSummary) {
       ...(branch ? { postalCode: branch.postalCode } : {}),
       addressCountry: "IN",
     },
-    ...(branch ? { hasMap: branch.mapLink } : {}),
+    ...(branch ? { hasMap: branchDirectionsHref(branch) } : {}),
     areaServed: location.name,
     priceRange: "$$",
   };

@@ -1,5 +1,5 @@
 import { MapPin, Navigation } from "lucide-react";
-import type { Branch } from "@/config/locations";
+import { branchDirectionsHref, type Branch } from "@/config/locations";
 
 /**
  * Embedded Google Map for a physical branch. Uses the keyless `/maps?q=`
@@ -29,7 +29,7 @@ export function LocationMap({ branch, locationName }: { branch: Branch; location
           </p>
         </div>
         <a
-          href={branch.mapLink}
+          href={branchDirectionsHref(branch)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex shrink-0 items-center gap-1.5 self-start rounded-full border border-charcoal/20 px-4 py-2 text-sm font-semibold text-charcoal hover:border-brand-red hover:text-brand-red sm:self-auto"
