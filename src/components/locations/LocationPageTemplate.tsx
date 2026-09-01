@@ -6,6 +6,7 @@ import { GoldCalculator } from "@/components/gold/GoldCalculator";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { Accordion } from "@/components/ui/Accordion";
+import { LocationMap } from "@/components/locations/LocationMap";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
 import type { LocationSummary } from "@/config/locations";
@@ -48,6 +49,19 @@ export function LocationPageTemplate({
           </Reveal>
         </Container>
       </section>
+
+      {location.branch && (
+        <section className="pb-14 sm:pb-20">
+          <Container className="mx-auto max-w-3xl">
+            <h2 className="font-display text-2xl font-semibold text-charcoal">
+              Visit Our {location.name} Branch
+            </h2>
+            <Reveal variant="fade-up" className="mt-6">
+              <LocationMap branch={location.branch} locationName={location.name} />
+            </Reveal>
+          </Container>
+        </section>
+      )}
 
       <section className="pb-14 sm:pb-20">
         <Container className="mx-auto max-w-3xl">

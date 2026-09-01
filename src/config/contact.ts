@@ -12,8 +12,6 @@ export const contactConfig = {
   whatsappDefaultMessage:
     "Hi Akarshana Gold, I would like to get my gold valued.",
   email: "info@akarshanagold.com",
-  addressLine1: "Akarshana Gold Company",
-  addressLine2: "[Branch address to be confirmed]",
   businessHours: [
     { days: "Monday – Saturday", hours: "10:00 AM – 8:00 PM" },
     { days: "Sunday", hours: "10:00 AM – 2:00 PM" },

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Phone, MessageCircle, MapPin, Clock, Mail } from "lucide-react";
+import Link from "next/link";
+import { Phone, MessageCircle, MapPin, Clock, Mail, Navigation } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
@@ -10,6 +11,9 @@ import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { contactConfig, telHref, whatsappHref } from "@/config/contact";
 import { leadServiceOptions, type LeadServiceValue } from "@/config/services";
 import { locations } from "@/config/locations";
+
+const branches = locations.filter((location) => location.branch);
+const serviceOnlyLocations = locations.filter((location) => !location.branch);
 
 const crumbs = [{ label: "Contact", href: "/contact/" }];
 
@@ -49,16 +53,43 @@ export default async function ContactPage({
             <ContactRow icon={Phone} label="Phone" value={contactConfig.phoneDisplay} href={telHref()} />
             <ContactRow icon={MessageCircle} label="WhatsApp" value="Chat with us" href={whatsappHref()} external />
             <ContactRow icon={Mail} label="Email" value={contactConfig.email} href={`mailto:${contactConfig.email}`} />
-            <div className="flex items-start gap-3">
-              <MapPin aria-hidden="true" className="mt-1 size-5 shrink-0 text-brand-red" />
-              <div>
-                <p className="text-sm font-semibold text-charcoal">Address</p>
-                <p className="text-sm text-charcoal/70">
-                  {contactConfig.addressLine1}
-                  <br />
-                  {contactConfig.addressLine2}
+            <div className="space-y-4">
+              <p className="text-sm font-semibold text-charcoal">Our Branches</p>
+              {branches.map((location) => {
+                const branch = location.branch;
+                if (!branch) return null;
+                return (
+                  <div key={location.slug} className="flex items-start gap-3">
+                    <MapPin aria-hidden="true" className="mt-1 size-5 shrink-0 text-brand-red" />
+                    <div>
+                      <p className="text-sm font-semibold text-charcoal">{location.name}</p>
+                      <p className="text-sm text-charcoal/70">
+                        {branch.addressLine1}
+                        <br />
+                        {branch.addressLine2}
+                      </p>
+                      <a
+                        href={branch.mapLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-brand-red hover:underline"
+                      >
+                        <Navigation aria-hidden="true" className="size-3.5" />
+                        Get Directions
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+              {serviceOnlyLocations.length > 0 && (
+                <p className="text-sm text-charcoal/60">
+                  Also serving {serviceOnlyLocations.map((location) => location.name).join(", ")} — see{" "}
+                  <Link href="/locations/" className="font-medium text-brand-red hover:underline">
+                    all locations
+                  </Link>
+                  .
                 </p>
-              </div>
+              )}
             </div>
             <div className="flex items-start gap-3">
               <Clock aria-hidden="true" className="mt-1 size-5 shrink-0 text-brand-red" />

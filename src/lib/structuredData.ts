@@ -18,6 +18,7 @@ export function organizationJsonLd() {
 }
 
 export function localBusinessJsonLd(location: LocationSummary) {
+  const branch = location.branch;
   return {
     "@context": "https://schema.org",
     "@type": "FinancialService",
@@ -28,10 +29,13 @@ export function localBusinessJsonLd(location: LocationSummary) {
     telephone: contactConfig.phoneE164,
     address: {
       "@type": "PostalAddress",
+      ...(branch ? { streetAddress: `${branch.addressLine1}, ${branch.addressLine2}` } : {}),
       addressLocality: location.name,
       addressRegion: location.region,
+      ...(branch ? { postalCode: branch.postalCode } : {}),
       addressCountry: "IN",
     },
+    ...(branch ? { hasMap: branch.mapLink } : {}),
     areaServed: location.name,
     priceRange: "$$",
   };

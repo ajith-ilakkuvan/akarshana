@@ -16,9 +16,13 @@ import type { NextConfig } from "next";
  *
  * `script-src` therefore allows `'unsafe-inline'` rather than a nonce —
  * still same-origin only (no external script host is trusted), object
- * embeds are blocked, framing is blocked, and nothing on this site renders
- * untrusted HTML (the one `dangerouslySetInnerHTML` use is JSON-LD built
- * from our own typed data, not user input). Next.js also has an
+ * embeds are blocked, framing this site in someone else's page is blocked
+ * (`frame-ancestors 'none'`), and nothing on this site renders untrusted
+ * HTML (the one `dangerouslySetInnerHTML` use is JSON-LD built from our
+ * own typed data, not user input). `frame-src` is scoped to exactly
+ * `https://www.google.com`, needed only for the embedded branch-location
+ * map on the location pages (`LocationMap.tsx`) — no other page embeds an
+ * iframe. Next.js also has an
  * experimental Subresource-Integrity (SRI) mode that avoids
  * 'unsafe-inline' while keeping static generation — worth adopting once
  * it's stable; see the same docs file, "Subresource Integrity (Experimental)".
@@ -32,6 +36,7 @@ const cspHeader = [
   `img-src 'self' data: blob:`,
   `font-src 'self' data:`,
   `connect-src 'self' https://api.gold-api.com https://api.frankfurter.dev`,
+  `frame-src https://www.google.com`,
   `frame-ancestors 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,

@@ -72,14 +72,10 @@ export function Footer() {
             <MessageCircle aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
             WhatsApp Us
           </a>
-          <div className="flex items-start gap-3">
+          <Link href="/locations/" className="flex items-start gap-3 hover:text-brand-gold-light">
             <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
-            <span>
-              {contactConfig.addressLine1}
-              <br />
-              {contactConfig.addressLine2}
-            </span>
-          </div>
+            View our branch locations
+          </Link>
         </div>
         <div className="mt-5 flex items-start gap-3 text-sm">
           <Clock aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
