@@ -10,14 +10,17 @@ export function calculatePurityRatesInrPerGram(
   usdToInrRate: number,
   /** See `domesticPremiumPercent` in `config/goldRate.ts`. 0 = raw international rate. */
   domesticPremiumPercent = 0,
+  /** See `premium18kExtraPercent` in `config/goldRate.ts`. Applied to the 18K tier only, on top of `domesticPremiumPercent`. */
+  premium18kExtraPercent = 0,
 ): Record<GoldPurity, number> {
   const rawPricePerGram24k = (spotPriceUsdPerOunce * usdToInrRate) / GRAMS_PER_TROY_OUNCE;
   const pricePerGram24k = rawPricePerGram24k * (1 + domesticPremiumPercent / 100);
 
-  const entries = (Object.keys(purityFactors) as GoldPurity[]).map((purity) => [
-    purity,
-    Math.round(pricePerGram24k * purityFactors[purity]),
-  ]);
+  const entries = (Object.keys(purityFactors) as GoldPurity[]).map((purity) => {
+    const base = pricePerGram24k * purityFactors[purity];
+    const adjusted = purity === "18K" ? base * (1 + premium18kExtraPercent / 100) : base;
+    return [purity, Math.round(adjusted)];
+  });
 
   return Object.fromEntries(entries) as Record<GoldPurity, number>;
 }

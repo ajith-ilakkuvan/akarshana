@@ -23,24 +23,48 @@ function parseCacheSeconds(): number {
 }
 
 const MAX_DOMESTIC_PREMIUM_PERCENT = 30;
+const MAX_18K_EXTRA_PREMIUM_PERCENT = 15;
 
 /**
  * The free gold-api.com feed returns the raw international spot price
  * (XAU/USD), converted to INR — it does not include India's import duty,
  * GST, or the local bullion-market premium baked into a domestically
- * quoted rate (e.g. what a Chennai jewellers' association publishes), so
- * it reads lower than that by design, not by bug. This env-configurable
- * percentage is added on top of the raw converted rate to close that gap
- * without paying for a domestic bullion API. It defaults to 0 (raw
- * international rate, unchanged) — set it only after comparing today's
- * calculated rate against a real domestic quote and picking a percentage
- * that closes the gap you actually observe; re-check it periodically,
- * since the gap moves with duty/GST changes and local market premiums.
+ * quoted rate (e.g. what NDTV's Chennai gold-rate page publishes), so it
+ * reads lower than that by design, not by bug. This percentage is added
+ * on top of the raw converted 24K rate (and therefore the 22K rate
+ * derived from it, since 22K = 24K x 22/24 in both the raw feed and real
+ * domestic quotes) to close that gap without paying for a domestic
+ * bullion API.
+ *
+ * Default calibrated 2026-09-01 against NDTV's Chennai gold rate
+ * (https://www.ndtv.com/gold-rate/gold-price-chennai): raw 24K ₹13,339
+ * vs NDTV ₹15,664 = +17.43%; raw 22K ₹12,227 vs NDTV ₹14,359 confirms
+ * the same ~17.43% gap. This is a markup on duty/GST/market premium,
+ * which drifts slowly (weeks/months), not on the spot price itself
+ * (which already updates live) — so it doesn't need daily updating, but
+ * should be re-checked against a real quote periodically and the
+ * default below (or the env var) adjusted if the gap has moved.
  */
 function parseDomesticPremiumPercent(): number {
   const raw = Number(process.env.GOLD_RATE_DOMESTIC_PREMIUM_PERCENT);
-  if (!Number.isFinite(raw) || raw <= 0) return 0;
+  if (!Number.isFinite(raw) || raw < 0) return 17.43;
   return Math.min(raw, MAX_DOMESTIC_PREMIUM_PERCENT);
+}
+
+/**
+ * 18K in Indian domestic quotes runs a bit above pure 18/24 fineness
+ * math (unlike 22K, which lines up with fineness almost exactly) — this
+ * extra percentage is applied to the 18K tier only, on top of
+ * `domesticPremiumPercent`, to match that.
+ *
+ * Default calibrated the same day/source as above: with the 17.43%
+ * base premium applied, raw 18K lands at ₹11,748 vs NDTV's ₹12,131 —
+ * an extra +3.26% closes that remaining gap.
+ */
+function parse18kExtraPremiumPercent(): number {
+  const raw = Number(process.env.GOLD_RATE_18K_EXTRA_PREMIUM_PERCENT);
+  if (!Number.isFinite(raw) || raw < 0) return 3.26;
+  return Math.min(raw, MAX_18K_EXTRA_PREMIUM_PERCENT);
 }
 
 export const goldRateConfig = {
@@ -62,6 +86,8 @@ export const goldRateConfig = {
   cacheSeconds: parseCacheSeconds(),
   /** See `parseDomesticPremiumPercent` above for what this is and how to set it. */
   domesticPremiumPercent: parseDomesticPremiumPercent(),
+  /** See `parse18kExtraPremiumPercent` above for what this is and how to set it. */
+  premium18kExtraPercent: parse18kExtraPremiumPercent(),
   /** Fetch timeout so a slow upstream never hangs a page request. */
   requestTimeoutMs: 8000,
   source: "Gold API",

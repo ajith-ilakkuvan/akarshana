@@ -93,7 +93,8 @@ review each before launch:
 | `CURRENCY_API_URL` | USD→INR conversion source (the gold API returns USD per troy ounce). Defaults to [Frankfurter](https://frankfurter.dev/), free and keyless. |
 | `GOLD_RATE_FALLBACK_USD_INR` | Last-resort USD→INR rate, used only if the live currency lookup fails **and** there's no cached conversion. This is a forex fallback, not a fabricated gold price — the gold price itself always comes from the live provider or a timestamped cache. |
 | `GOLD_RATE_CACHE_SECONDS` | How long a fetched rate is cached (clamped to 60–300s). |
-| `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` | Optional % added on top of the raw international spot-converted rate, to approximate a domestic Indian bullion quote (import duty + local premium). Defaults to `0` (raw international rate). See "Why the rate differs from a local quoted rate" below before setting it. |
+| `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` | % added on top of the raw international spot-converted 24K/22K rate, to approximate a domestic Indian bullion quote (import duty + local premium). Defaults to `17.43`, calibrated 2026-09-01 against NDTV's Chennai rate. See "Why the rate differs from a local quoted rate" below before changing it. |
+| `GOLD_RATE_18K_EXTRA_PREMIUM_PERCENT` | Extra % applied to the 18K tier only, on top of the above (18K runs above pure fineness math in real domestic quotes). Defaults to `3.26`, same calibration date/source. |
 | `LEAD_WEBHOOK_URL` | Optional POST target (Slack, CRM inbox, Zapier, etc.) for validated leads. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional analytics ID — see `src/lib/analytics.ts`. |
 
@@ -140,20 +141,35 @@ so nothing else needs updating.
 ### Why the rate differs from a local quoted rate (e.g. Chennai)
 
 The free Gold API feed is the raw **international spot price** (XAU/USD),
-converted to INR. A rate quoted by an Indian jewellers' association or a
-site like GoodReturns is the **domestic bullion rate**, which is
+converted to INR. A rate quoted by NDTV, an Indian jewellers' association,
+or a site like GoodReturns is the **domestic bullion rate**, which is
 systematically higher because it includes India's import duty, GST and
 local market premium — none of which exist in a raw spot conversion. This
 isn't a bug; it's a different (and free) data source.
 
-To close that gap without paying for a domestic bullion API, set
-`GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` (0–30, default `0`) — it's added on
-top of the raw converted rate before the 22K/18K split
-(`src/lib/goldRate/calculator.ts`). There's no universally "correct"
-value: compare today's site rate against a real Chennai quote, set the
-percentage that closes that gap, and re-check it periodically, since the
-gap moves with duty/GST changes and market conditions. Leave it at `0` to
-show the raw international rate as-is.
+To close that gap without paying for a domestic bullion API, two env vars
+apply on top of the raw converted rate before/during the 22K/18K split
+(`src/lib/goldRate/calculator.ts`):
+
+- `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` (0–30, default `17.43`) — applied
+  to the 24K rate, and therefore to 22K too (22K = 24K × 22/24 in both the
+  raw feed and real domestic quotes, so one percentage covers both).
+- `GOLD_RATE_18K_EXTRA_PREMIUM_PERCENT` (0–15, default `3.26`) — an
+  additional bump for 18K only, since real domestic 18K quotes run a
+  bit above pure 18/24 fineness math (verified against NDTV's own
+  Chennai figures, where 22K matched fineness math exactly but 18K
+  didn't).
+
+The current defaults were calibrated 2026-09-01 against NDTV's Chennai
+gold rate (ndtv.com/gold-rate/gold-price-chennai) — raw 24K ₹13,339 vs
+NDTV ₹15,664, raw 22K ₹12,227 vs NDTV ₹14,359 (same ~17.43% gap
+confirming it), raw 18K ₹10,004 vs NDTV ₹12,131 (needing the extra
++3.26% on top of the base premium to match). These percentages are a
+markup on duty/GST/local market premium, which drifts slowly
+(weeks/months) rather than daily — so they don't need updating every
+day — but re-check them against a real quote periodically and adjust
+the env vars (or these defaults) if the gap has moved. Set either to `0`
+to fall back toward the raw international rate.
 
 ### Caching
 

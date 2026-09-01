@@ -52,7 +52,12 @@ export class GoldRateService {
       this.getCurrencyRate(),
     ]);
 
-    const rates = calculatePurityRatesInrPerGram(spot.price, currency.rate, goldRateConfig.domesticPremiumPercent);
+    const rates = calculatePurityRatesInrPerGram(
+      spot.price,
+      currency.rate,
+      goldRateConfig.domesticPremiumPercent,
+      goldRateConfig.premium18kExtraPercent,
+    );
 
     return {
       currency: "INR",
