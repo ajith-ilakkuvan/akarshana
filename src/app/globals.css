@@ -231,3 +231,17 @@ body {
 .marquee-track:hover {
   animation-play-state: paused;
 }
+
+/**
+ * Warm radial-glow card background for the gold-items showcase
+ * (GoldItemsSection) — stands in for product photography (a spotlight
+ * behind a gold medallion icon) until real photos are supplied.
+ */
+.gold-item-card {
+  background: radial-gradient(
+    circle at 50% 20%,
+    var(--color-brand-red-light) 0%,
+    var(--color-brand-red-dark) 55%,
+    var(--color-charcoal) 100%
+  );
+}

@@ -2,6 +2,7 @@ import { Gem, Link as LinkIcon, Coins, Package, Crown, Recycle } from "lucide-re
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { GoldOrnament } from "@/components/ui/GoldOrnament";
 import { goldItemCategories, type GoldItemCategory } from "@/config/goldItems";
 
 const icons: Record<GoldItemCategory["icon"], typeof Gem> = {
@@ -39,12 +40,19 @@ export function GoldItemsSection() {
               <div
                 key={`${item.slug}-${index}`}
                 aria-hidden={index >= goldItemCategories.length}
-                className="flex w-52 shrink-0 flex-col items-center gap-4 rounded-2xl border border-brand-gold/20 bg-brand-red-dark px-6 py-8 text-center sm:w-60"
+                className="gold-item-card flex w-56 shrink-0 flex-col items-center gap-5 rounded-3xl border border-brand-gold/25 px-6 py-10 text-center shadow-lg shadow-black/20 sm:w-64"
               >
-                <span className="flex size-16 items-center justify-center rounded-full bg-brand-gold/15 text-brand-gold-light">
-                  <Icon aria-hidden="true" className="size-8" />
+                <span className="relative flex size-24 items-center justify-center">
+                  <span aria-hidden="true" className="absolute inset-0 rounded-full bg-brand-gold/25 blur-xl" />
+                  <span aria-hidden="true" className="absolute inset-0 rounded-full border border-brand-gold/40" />
+                  <span className="relative flex size-[4.5rem] items-center justify-center rounded-full bg-gradient-to-br from-brand-gold-light via-brand-gold to-brand-gold-dark text-brand-red-dark shadow-inner">
+                    <Icon aria-hidden="true" className="size-9" />
+                  </span>
                 </span>
-                <p className="font-display text-base font-semibold text-white">{item.label}</p>
+                <div>
+                  <GoldOrnament className="justify-center" />
+                  <p className="mt-3 font-display text-lg font-semibold tracking-wide text-white">{item.label}</p>
+                </div>
               </div>
             );
           })}
