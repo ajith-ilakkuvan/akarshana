@@ -13,8 +13,8 @@ export const contactConfig = {
     "Hi Akarshana Gold, I would like to get my gold valued.",
   email: "info@akarshanagold.com",
   businessHours: [
-    { days: "Monday – Saturday", hours: "10:00 AM – 8:00 PM" },
-    { days: "Sunday", hours: "10:00 AM – 2:00 PM" },
+    { days: "Monday – Saturday", hours: "10:00 AM – 6:00 PM" },
+    { days: "Sunday", hours: "Closed" },
   ],
   socialLinks: {
     instagram: "",
