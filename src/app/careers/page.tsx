@@ -56,7 +56,7 @@ export default function CareersPage() {
                 <article
                   key={opening.slug}
                   id={opening.slug}
-                  className="scroll-mt-24 rounded-2xl border border-charcoal/10 bg-white p-7"
+                  className="neumorphic-gold-card scroll-mt-24 rounded-2xl border border-charcoal/10 bg-white p-7"
                 >
                   <span className="flex size-12 items-center justify-center rounded-xl bg-brand-red/10 text-brand-red">
                     <Icon aria-hidden="true" className="size-6" />
