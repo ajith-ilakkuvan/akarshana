@@ -48,16 +48,22 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-shadow duration-200",
+        "sticky top-0 z-50 w-full border-b bg-white transition-shadow duration-200",
         isScrolled ? "border-charcoal/10 shadow-sm" : "border-transparent",
       )}
     >
       {/*
-        bg/backdrop-blur live on this inner bar, not <header>, because
-        `backdrop-filter` establishes a CSS containing block for
+        <header> carries a plain, opaque `bg-white` so the bar reads as
+        solid edge-to-edge on viewports wider than the max-w-7xl content
+        column (otherwise the strip flanking the centered content stayed
+        transparent while scrolling, showing whatever section — e.g. the
+        red hero — sat behind it). The inner bar keeps its own
+        bg-white/95 + backdrop-blur rather than moving those here,
+        because `backdrop-filter` establishes a CSS containing block for
         `position: fixed` descendants — putting it on <header> made the
         fixed mobile-nav panel below size itself against the header's own
-        64px box (height: 0) instead of the viewport.
+        64px box (height: 0) instead of the viewport. Plain
+        `background-color` doesn't have that effect, so it's safe here.
       */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between bg-white/95 px-4 backdrop-blur sm:h-20 sm:px-6 lg:px-8">
         <Logo variant="mark" />
