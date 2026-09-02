@@ -8,7 +8,6 @@ import { WhyUs } from "@/components/home/WhyUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { DoorstepSection } from "@/components/home/DoorstepSection";
 import { LocationsSection } from "@/components/home/LocationsSection";
-import { Testimonials } from "@/components/home/Testimonials";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { siteConfig } from "@/config/site";
@@ -31,7 +30,6 @@ export default function HomePage() {
       <HowItWorks />
       <DoorstepSection />
       <LocationsSection />
-      <Testimonials />
       <FaqSection />
       <FinalCtaSection />
     </>
