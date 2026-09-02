@@ -36,7 +36,7 @@ export default function LocationsPage() {
                 href={location.path}
                 event="location_page_view"
                 eventPayload={{ location: location.slug, source: "locations_page" }}
-                className="group flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-6 transition-shadow hover:shadow-lg"
+                className="neumorphic-gold-card group flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-6"
               >
                 <div>
                   <span className="flex size-11 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">

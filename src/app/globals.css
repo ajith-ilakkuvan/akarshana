@@ -247,9 +247,11 @@ body {
 }
 
 /**
- * Neumorphic gold-card hover — used by both the homepage's Services
- * section (ServiceCard.tsx) and the standalone Services page
- * (src/app/services/page.tsx), so the two share one hover identity. The
+ * Neumorphic gold-card hover — used across the homepage's Services
+ * section (ServiceCard.tsx), the standalone Services page
+ * (src/app/services/page.tsx), the homepage's Locations section
+ * (LocationsSection.tsx) and the standalone Locations page
+ * (src/app/locations/page.tsx), so all four share one hover identity. The
  * whole card turns into a soft, warm-gold "raised button" on hover — a
  * warm dark shadow on one side and a light highlight on the other (the
  * classic neumorphic extrusion), plus a lift — then presses back in
