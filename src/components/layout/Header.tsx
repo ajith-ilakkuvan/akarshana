@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { TopBarTicker } from "./TopBarTicker";
 import { Button } from "@/components/ui/Button";
 import { PhoneCta, WhatsappCta } from "@/components/cta/PhoneWhatsappCta";
 import { mainNav, ctaLabels } from "@/config/navigation";
@@ -112,6 +113,8 @@ export function Header() {
           </button>
         </div>
       </div>
+
+      <TopBarTicker />
 
       {isMenuOpen && (
         <div

@@ -234,6 +234,27 @@ body {
 }
 
 /**
+ * Top-bar ticker (TopBarTicker, in the header): the same seamless
+ * "duplicate the track, shift by exactly one copy-width" technique as
+ * `.marquee-track` above, just with its own faster timing since the
+ * ticker's content is much shorter.
+ */
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ticker-track {
+  animation: ticker-scroll 22s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/**
  * Warm radial-glow card background for the gold-items showcase
  * (GoldItemsSection) — stands in for product photography (a spotlight
  * behind a gold medallion icon) until real photos are supplied.
