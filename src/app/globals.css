@@ -247,49 +247,15 @@ body {
 }
 
 /**
- * Cursor-tracked gold glow hover (Services section cards) — a soft radial
- * spotlight that follows the pointer continuously as it moves across the
- * card, via `--glow-x`/`--glow-y` set from JS on every pointerenter/move
- * (see `setGlowPosition` in `src/lib/goldGlow.ts`). Deliberately a
- * different mechanism from `.liquid-fill` above: that one fires once on
- * entry and wipes a flat fill outward from that point; this one keeps
- * tracking the live cursor position the whole time the pointer is over
- * the card, since a glow reads as "light following you" rather than "a
- * wave washing over you." The card's real content needs its own
- * `position: relative` wrapper (like `.liquid-fill__content`) so it
- * paints above this absolutely-positioned layer.
- */
-.gold-glow-hover {
-  position: relative;
-  overflow: hidden;
-}
-.gold-glow-hover__layer {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    320px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(201, 151, 46, 0.35),
-    rgba(201, 151, 46, 0.08) 45%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 300ms ease;
-  pointer-events: none;
-}
-.gold-glow-hover:hover .gold-glow-hover__layer,
-.gold-glow-hover:focus-within .gold-glow-hover__layer {
-  opacity: 1;
-}
-
-/**
- * Neumorphic gold-card hover (standalone Services page — src/app/services/
- * page.tsx). Deliberately different from the homepage's cursor-tracked
- * gold-glow spotlight (ServiceCard.tsx): here the whole card turns into a
- * soft, warm-gold "raised button" on hover — a warm dark shadow on one
- * side and a light highlight on the other (the classic neumorphic
- * extrusion), plus a lift — then presses back in (shadows flip to inset)
- * on :active, like a real button being pressed. Rest state is untouched
- * (plain card); the transformation only happens on hover/focus/press.
+ * Neumorphic gold-card hover — used by both the homepage's Services
+ * section (ServiceCard.tsx) and the standalone Services page
+ * (src/app/services/page.tsx), so the two share one hover identity. The
+ * whole card turns into a soft, warm-gold "raised button" on hover — a
+ * warm dark shadow on one side and a light highlight on the other (the
+ * classic neumorphic extrusion), plus a lift — then presses back in
+ * (shadows flip to inset) on :active, like a real button being pressed.
+ * Rest state is untouched; the transformation only happens on
+ * hover/focus/press.
  */
 .neumorphic-gold-card {
   transition:
