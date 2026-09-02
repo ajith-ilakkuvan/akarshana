@@ -280,3 +280,36 @@ body {
 .gold-glow-hover:focus-within .gold-glow-hover__layer {
   opacity: 1;
 }
+
+/**
+ * Neumorphic gold-card hover (standalone Services page — src/app/services/
+ * page.tsx). Deliberately different from the homepage's cursor-tracked
+ * gold-glow spotlight (ServiceCard.tsx): here the whole card turns into a
+ * soft, warm-gold "raised button" on hover — a warm dark shadow on one
+ * side and a light highlight on the other (the classic neumorphic
+ * extrusion), plus a lift — then presses back in (shadows flip to inset)
+ * on :active, like a real button being pressed. Rest state is untouched
+ * (plain card); the transformation only happens on hover/focus/press.
+ */
+.neumorphic-gold-card {
+  transition:
+    background 350ms ease,
+    border-color 350ms ease,
+    box-shadow 350ms ease,
+    transform 220ms ease;
+}
+.neumorphic-gold-card:hover,
+.neumorphic-gold-card:focus-within {
+  background: linear-gradient(145deg, var(--color-brand-gold-shine) 0%, var(--color-brand-gold-light) 100%);
+  border-color: var(--color-brand-gold);
+  transform: translateY(-6px);
+  box-shadow:
+    10px 10px 24px rgba(122, 60, 10, 0.2),
+    -8px -8px 20px rgba(255, 255, 255, 0.9);
+}
+.neumorphic-gold-card:active {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 6px 6px 14px rgba(122, 60, 10, 0.25),
+    inset -6px -6px 14px rgba(255, 255, 255, 0.65);
+}
