@@ -2,8 +2,16 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { GoldOrnament } from "@/components/ui/GoldOrnament";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 import { PhoneCta, WhatsappCta } from "@/components/cta/PhoneWhatsappCta";
 import { ctaLabels } from "@/config/navigation";
+import { contactConfig } from "@/config/contact";
+
+const socialLinks = [
+  { key: "instagram" as const, href: contactConfig.socialLinks.instagram, label: "Instagram" },
+  { key: "facebook" as const, href: contactConfig.socialLinks.facebook, label: "Facebook" },
+  { key: "youtube" as const, href: contactConfig.socialLinks.youtube, label: "YouTube" },
+].filter((item) => item.href);
 
 /**
  * The site's closing call-to-action banner — used at the bottom of every
@@ -33,6 +41,22 @@ export function FinalCtaSection() {
               <WhatsappCta />
             </div>
           </div>
+          {socialLinks.length > 0 && (
+            <div className="mt-5 flex justify-center gap-3">
+              {socialLinks.map(({ key, href, label }) => (
+                <a
+                  key={key}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex size-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-brand-gold hover:text-brand-red-dark"
+                >
+                  <SocialIcon platform={key} className="size-5" />
+                </a>
+              ))}
+            </div>
+          )}
         </Reveal>
       </Container>
     </section>
