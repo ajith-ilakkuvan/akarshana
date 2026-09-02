@@ -8,6 +8,8 @@
 export const siteConfig = {
   name: "Akarshana Gold",
   legalName: "Akarshana Gold Company",
+  /** Tamil rendering of the legal name, shown beside the logo mark in the header. */
+  legalNameTamil: "ஆகர்ஷனா கோல்டு கம்பெனி",
   tagline: "Pure • Precious • Forever",
   description:
     "Akarshana Gold Company offers transparent gold valuation and gold buying services in Pollachi, Udumalpet, Coimbatore and Tiruppur, with convenient doorstep service.",
@@ -26,6 +28,13 @@ export const siteConfig = {
     alt: "Akarshana Gold Company logo",
     width: 432,
     height: 560,
+  },
+  /** Icon-only crop of the logo (no wordmark), used where the name is set as separate text beside it — e.g. the header lockup. */
+  logoMark: {
+    src: "/logo-mark.webp",
+    alt: "Akarshana Gold Company icon",
+    width: 363,
+    height: 378,
   },
   ogImage: "/og-image.jpg",
 } as const;

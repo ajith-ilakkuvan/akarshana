@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Noto_Sans_Tamil } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
@@ -17,6 +17,13 @@ const heading = Playfair_Display({
 const body = Inter({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+});
+
+const tamil = Noto_Sans_Tamil({
+  subsets: ["tamil"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-tamil",
   display: "swap",
 });
 
@@ -53,7 +60,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN">
-      <body className={`${heading.variable} ${body.variable} font-sans antialiased`}>
+      <body className={`${heading.variable} ${body.variable} ${tamil.variable} font-sans antialiased`}>
         <JsonLd data={organizationJsonLd()} />
         <a
           href="#main-content"

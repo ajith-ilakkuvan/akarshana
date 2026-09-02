@@ -63,7 +63,11 @@ export function Hero() {
           <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-[3.25rem]">
             Your Gold Deserves Its True Value.
           </h1>
-          <p className="mt-5 max-w-lg text-base text-white/80 sm:text-lg">
+          <p className="mt-4 max-w-lg font-tamil text-base text-brand-gold-light sm:text-lg">
+            உங்கள் தங்கத்தை தற்போதைய சந்தை விலையில் வெளிப்படையாக மதிப்பிட்டு, பொள்ளாச்சி, உடுமலைப்பேட்டை, கோயம்புத்தூர்
+            மற்றும் திருப்பூரில் வசதியான சேவையுடன் ஆகர்ஷனா கோல்டு உங்களுக்கு உதவுகிறது.
+          </p>
+          <p className="mt-3 max-w-lg text-base text-white/80 sm:text-lg">
             Get your gold valued transparently at the current market rate with convenient service from Akarshana
             Gold.
           </p>

@@ -59,7 +59,7 @@ export function Header() {
         64px box (height: 0) instead of the viewport.
       */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between bg-white/95 px-4 backdrop-blur sm:h-20 sm:px-6 lg:px-8">
-        <Logo />
+        <Logo variant="mark" />
 
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-1">
