@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { GoldOrnament } from "@/components/ui/GoldOrnament";
+import { ScrollParallax } from "@/components/ui/ScrollParallax";
 import { GoldRateCard } from "@/components/gold/GoldRateCard";
 import { ctaLabels } from "@/config/navigation";
 
@@ -22,14 +23,23 @@ export function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,243,207,0.22),_transparent_55%),radial-gradient(circle_at_bottom_left,_rgba(201,151,46,0.25),_transparent_50%)]"
       />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full border border-brand-gold/20"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -left-16 size-80 rounded-full border border-brand-gold/15"
-      />
+      <ScrollParallax
+        amplitudeY={28}
+        amplitudeX={10}
+        wavelength={800}
+        className="absolute -top-24 -right-24"
+      >
+        <div className="size-72 rounded-full border border-brand-gold/20" />
+      </ScrollParallax>
+      <ScrollParallax
+        amplitudeY={22}
+        amplitudeX={14}
+        wavelength={1050}
+        phase={1.6}
+        className="absolute -bottom-32 -left-16"
+      >
+        <div className="size-80 rounded-full border border-brand-gold/15" />
+      </ScrollParallax>
 
       <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[0.85fr_1.4fr_1.15fr] lg:items-center lg:gap-8 lg:py-28">
         <Reveal variant="scale-in" className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
