@@ -54,18 +54,24 @@ export function Header() {
     >
       {/*
         <header> carries a plain, opaque `bg-white` so the bar reads as
-        solid edge-to-edge on viewports wider than the max-w-7xl content
-        column (otherwise the strip flanking the centered content stayed
-        transparent while scrolling, showing whatever section — e.g. the
-        red hero — sat behind it). The inner bar keeps its own
-        bg-white/95 + backdrop-blur rather than moving those here,
-        because `backdrop-filter` establishes a CSS containing block for
-        `position: fixed` descendants — putting it on <header> made the
-        fixed mobile-nav panel below size itself against the header's own
-        64px box (height: 0) instead of the viewport. Plain
-        `background-color` doesn't have that effect, so it's safe here.
+        solid edge-to-edge (otherwise the strip beyond the inner bar's
+        content stayed transparent while scrolling, showing whatever
+        section — e.g. the red hero — sat behind it). The inner bar
+        itself is intentionally full-bleed (no max-w-7xl, unlike
+        Container/page sections below it) so the logo/nav/CTAs actually
+        fill the header bar edge-to-edge on wide screens instead of
+        sitting in a narrow centered column with large empty margins on
+        either side — a deliberately wider "chrome" than the content
+        column, same as most site headers. It keeps its own
+        bg-white/95 + backdrop-blur rather than moving those to
+        <header>, because `backdrop-filter` establishes a CSS containing
+        block for `position: fixed` descendants — putting it on
+        <header> made the fixed mobile-nav panel below size itself
+        against the header's own 64px box (height: 0) instead of the
+        viewport. Plain `background-color` doesn't have that effect, so
+        it's safe on <header>.
       */}
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between bg-white/95 px-4 backdrop-blur sm:h-20 sm:px-6 lg:px-8">
+      <div className="flex h-16 items-center justify-between bg-white/95 px-4 backdrop-blur sm:h-20 sm:px-6 lg:px-8 2xl:px-16">
         <Logo variant="mark" />
 
         <nav aria-label="Primary" className="hidden lg:block">
