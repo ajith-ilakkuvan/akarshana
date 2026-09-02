@@ -6,9 +6,9 @@
 
 export const contactConfig = {
   /** Digits-only, with country code, used for `tel:` and `wa.me` links. */
-  phoneDisplay: "+91 90000 00000",
-  phoneE164: "+919000000000",
-  whatsappE164: "919000000000",
+  phoneDisplay: "+91 82201 66648",
+  phoneE164: "+918220166648",
+  whatsappE164: "918220166648",
   whatsappDefaultMessage:
     "Hi Akarshana Gold, I would like to get my gold valued.",
   email: "info@akarshanagold.com",
