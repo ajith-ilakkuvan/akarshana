@@ -18,7 +18,7 @@ export function TopBarTicker() {
             <span
               className={cn(
                 "text-xs sm:text-sm",
-                item.lang === "ta" ? "font-tamil text-brand-gold-light" : "font-medium text-white/90",
+                item.lang === "ta" ? "font-tamil text-brand-gold-light" : "font-medium text-brand-gold-light",
               )}
             >
               {item.text}
