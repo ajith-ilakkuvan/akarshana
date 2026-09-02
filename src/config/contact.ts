@@ -17,9 +17,9 @@ export const contactConfig = {
     { days: "Sunday", hours: "Closed" },
   ],
   socialLinks: {
-    instagram: "",
-    facebook: "",
-    youtube: "",
+    instagram: "https://www.instagram.com/akarshanagold22/",
+    facebook: "https://www.facebook.com/akarshana.gold",
+    youtube: "https://www.youtube.com/@akarshanagold22",
   },
 } as const;
 
