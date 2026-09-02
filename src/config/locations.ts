@@ -22,6 +22,13 @@ export interface Branch {
    * builds a directions link from the address text instead.
    */
   mapLink?: string;
+  /**
+   * Branch photos, shown in a gallery on that city's page. Omitted (or
+   * empty) until real photos are supplied for that branch — the gallery
+   * section only renders when this has entries, so cities without photos
+   * yet don't show an empty section.
+   */
+  gallery?: { src: string; alt: string }[];
 }
 
 /** "Get Directions" target: the branch's own share link if we have one, otherwise a directions link geocoded from its address. */
