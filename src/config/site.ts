@@ -20,7 +20,7 @@ export const siteConfig = {
    * blank-but-defined env var on the hosting platform still falls back
    * safely instead of producing `new URL("")` and crashing the build.
    */
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.akarshanagold.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.akarshanagoldcompany.com",
   locale: "en_IN",
   themeColor: "#7a1220",
   logo: {
