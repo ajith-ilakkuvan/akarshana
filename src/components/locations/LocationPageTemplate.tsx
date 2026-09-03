@@ -1,8 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
-import { GoldRateCard } from "@/components/gold/GoldRateCard";
-import { GoldCalculator } from "@/components/gold/GoldCalculator";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { Accordion } from "@/components/ui/Accordion";
@@ -76,25 +74,6 @@ export function LocationPageTemplate({
           </Container>
         </section>
       )}
-
-      <section className="pb-14 sm:pb-20">
-        <Container className="mx-auto max-w-3xl">
-          <Reveal variant="fade-up">
-            <GoldRateCard variant="full" />
-          </Reveal>
-        </Container>
-      </section>
-
-      <section className="bg-cream py-14 sm:py-20">
-        <Container className="mx-auto max-w-3xl">
-          <h2 className="font-display text-2xl font-semibold text-charcoal">
-            Gold Value Calculator for {location.name}
-          </h2>
-          <Reveal variant="fade-up" className="mt-6">
-            <GoldCalculator />
-          </Reveal>
-        </Container>
-      </section>
 
       <section className="py-14 sm:py-20">
         <Container className="mx-auto max-w-3xl space-y-10">

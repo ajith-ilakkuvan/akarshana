@@ -23,14 +23,14 @@ export const generalFaqs: FaqEntry[] = [
     answer: "Purity is checked as part of our professional gold evaluation process before a valuation is shared.",
   },
   {
-    question: "What is today's gold rate?",
+    question: "How do I know I'm getting a fair rate?",
     answer:
-      "Today's gold rate is shown live on our homepage and Gold Rate page for 24K, 22K and 18K gold, updated regularly from a live market source.",
+      "Our team shares the applicable current market rate for your gold's purity as part of your valuation, so you can see exactly how the final figure was reached.",
   },
   {
-    question: "Can I calculate my gold value online?",
+    question: "How do I get my gold valued?",
     answer:
-      "Yes, use our Gold Value Calculator to get an estimated value based on today's displayed market rate, purity and weight.",
+      "Share your gold's approximate weight and location with us through the enquiry form, a call or WhatsApp, and our team will confirm an estimated value and arrange a valuation.",
   },
   {
     question: "Do you provide doorstep service?",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
-import { CalculatorSection } from "@/components/home/CalculatorSection";
+import { RequestValuationSection } from "@/components/home/RequestValuationSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { GoldItemsSection } from "@/components/home/GoldItemsSection";
 import { WhyUs } from "@/components/home/WhyUs";
@@ -23,7 +23,7 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustStrip />
-      <CalculatorSection />
+      <RequestValuationSection />
       <ServicesSection />
       <GoldItemsSection />
       <WhyUs />

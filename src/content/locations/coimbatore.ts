@@ -34,7 +34,7 @@ export const coimbatore: LocationContent = {
     {
       question: "Where can I check today's gold rate in Coimbatore?",
       answer:
-        "Our Gold Rate page shows the applicable current market reference rate for 24K, 22K and 18K gold, updated regularly.",
+        "Our team confirms the applicable current market rate for 24K, 22K and 18K gold as part of your valuation — reach out and we'll share it directly.",
     },
   ],
 };

@@ -11,7 +11,6 @@ export interface NavItem {
 
 export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Gold Rate", href: "/gold-rate/" },
   { label: "Services", href: "/services/" },
   { label: "Locations", href: "/locations/" },
   { label: "About", href: "/about/" },
@@ -28,7 +27,6 @@ export const footerLinks = {
     { label: "Blog", href: "/blog/" },
   ],
   resources: [
-    { label: "Today's Gold Rate", href: "/gold-rate/" },
     { label: "Locations", href: "/locations/" },
     { label: "FAQs", href: "/faq/" },
     { label: "Contact", href: "/contact/" },
@@ -41,12 +39,10 @@ export const footerLinks = {
 
 export const ctaLabels = {
   primary: "Get a Gold Valuation",
-  calculateValue: "Calculate Your Gold Value",
   bookDoorstep: "Book Doorstep Service",
   callNow: "Call Now",
   whatsappUs: "WhatsApp Us",
   sellGold: "Sell Your Gold",
   enquireNow: "Enquire Now",
-  accurateValuation: "Get an Accurate Valuation",
   requestValuation: "Request Gold Valuation",
 } as const;

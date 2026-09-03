@@ -32,9 +32,9 @@ export const pollachi: LocationContent = {
       answer: "Yes, doorstep gold service is available in Pollachi — you can request a visit at your convenience.",
     },
     {
-      question: "What is today's gold rate in Pollachi?",
+      question: "How do I find out today's gold rate in Pollachi?",
       answer:
-        "Gold rates are based on the applicable current market rate and shown live on our Gold Rate page — the same reference rate applies across the areas we serve.",
+        "Our team confirms the applicable current market rate for your gold's purity as part of your valuation — reach out and we'll share it directly.",
     },
   ],
 };

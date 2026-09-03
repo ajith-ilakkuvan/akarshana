@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import { CheckCircle2, MessageCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { leadSchema } from "@/lib/validation/leadSchema";
@@ -29,6 +29,21 @@ export function LeadForm({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [renderedAt] = useState(() => Date.now());
+  // Field `id`s are instance-scoped so multiple LeadForms can safely coexist
+  // on one page (e.g. the homepage's request-valuation and doorstep
+  // sections) — the `name` attributes below stay as plain field names since
+  // those are what handleSubmit reads from FormData, unrelated to `id`.
+  const uid = useId();
+  const fieldId = {
+    company: `${uid}-company`,
+    name: `${uid}-name`,
+    phone: `${uid}-phone`,
+    weight: `${uid}-weight`,
+    location: `${uid}-location`,
+    service: `${uid}-service`,
+    time: `${uid}-time`,
+    message: `${uid}-message`,
+  };
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -116,13 +131,13 @@ export function LeadForm({
       <form onSubmit={handleSubmit} noValidate className="mt-6 grid gap-5">
         {/* Honeypot field — visually hidden via CSS (not `type=hidden`), so basic bots that only skip hidden inputs still fill it in. */}
         <div className="sr-only" aria-hidden="true">
-          <label htmlFor="company">Company</label>
-          <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+          <label htmlFor={fieldId.company}>Company</label>
+          <input id={fieldId.company} name="company" type="text" tabIndex={-1} autoComplete="off" />
         </div>
 
-        <Field label="Name" htmlFor="name" error={fieldErrors.name}>
+        <Field label="Name" htmlFor={fieldId.name} error={fieldErrors.name}>
           <input
-            id="name"
+            id={fieldId.name}
             name="name"
             type="text"
             required
@@ -131,9 +146,9 @@ export function LeadForm({
           />
         </Field>
 
-        <Field label="Phone Number" htmlFor="phone" error={fieldErrors.phone}>
+        <Field label="Phone Number" htmlFor={fieldId.phone} error={fieldErrors.phone}>
           <input
-            id="phone"
+            id={fieldId.phone}
             name="phone"
             type="tel"
             inputMode="numeric"
@@ -144,9 +159,14 @@ export function LeadForm({
           />
         </Field>
 
-        <Field label="Approximate Gold Weight (grams)" htmlFor="approximateWeightGrams" error={fieldErrors.approximateWeightGrams} optional>
+        <Field
+          label="Approximate Gold Weight (grams)"
+          htmlFor={fieldId.weight}
+          error={fieldErrors.approximateWeightGrams}
+          optional
+        >
           <input
-            id="approximateWeightGrams"
+            id={fieldId.weight}
             name="approximateWeightGrams"
             type="number"
             inputMode="decimal"
@@ -156,8 +176,14 @@ export function LeadForm({
           />
         </Field>
 
-        <Field label="Location" htmlFor="location" error={fieldErrors.location}>
-          <select id="location" name="location" required defaultValue={defaultLocation ?? ""} className={inputClasses}>
+        <Field label="Location" htmlFor={fieldId.location} error={fieldErrors.location}>
+          <select
+            id={fieldId.location}
+            name="location"
+            required
+            defaultValue={defaultLocation ?? ""}
+            className={inputClasses}
+          >
             <option value="" disabled>
               Select your location
             </option>
@@ -169,8 +195,14 @@ export function LeadForm({
           </select>
         </Field>
 
-        <Field label="Preferred Service" htmlFor="preferredService" error={fieldErrors.preferredService}>
-          <select id="preferredService" name="preferredService" required defaultValue={defaultService} className={inputClasses}>
+        <Field label="Preferred Service" htmlFor={fieldId.service} error={fieldErrors.preferredService}>
+          <select
+            id={fieldId.service}
+            name="preferredService"
+            required
+            defaultValue={defaultService}
+            className={inputClasses}
+          >
             {leadServiceOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -198,9 +230,9 @@ export function LeadForm({
           {fieldErrors.preferredContact && <ErrorText>{fieldErrors.preferredContact}</ErrorText>}
         </fieldset>
 
-        <Field label="Preferred Time" htmlFor="preferredTime" error={fieldErrors.preferredTime} optional>
+        <Field label="Preferred Time" htmlFor={fieldId.time} error={fieldErrors.preferredTime} optional>
           <input
-            id="preferredTime"
+            id={fieldId.time}
             name="preferredTime"
             type="text"
             placeholder="e.g. Weekday evenings"
@@ -208,8 +240,8 @@ export function LeadForm({
           />
         </Field>
 
-        <Field label="Message" htmlFor="message" error={fieldErrors.message} optional>
-          <textarea id="message" name="message" rows={3} className={inputClasses} />
+        <Field label="Message" htmlFor={fieldId.message} error={fieldErrors.message} optional>
+          <textarea id={fieldId.message} name="message" rows={3} className={inputClasses} />
         </Field>
 
         {submitState === "error" && errorMessage && (

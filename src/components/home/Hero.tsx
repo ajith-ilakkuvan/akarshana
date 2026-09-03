@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { GoldOrnament } from "@/components/ui/GoldOrnament";
 import { ScrollParallax } from "@/components/ui/ScrollParallax";
-import { GoldRateCard } from "@/components/gold/GoldRateCard";
+import { ValuationPromptCard } from "@/components/cta/ValuationPromptCard";
 import { ctaLabels } from "@/config/navigation";
 
 const trustPoints = [
@@ -92,7 +92,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal variant="scale-in" delayMs={160}>
-          <GoldRateCard variant="full" />
+          <ValuationPromptCard />
         </Reveal>
       </Container>
     </section>

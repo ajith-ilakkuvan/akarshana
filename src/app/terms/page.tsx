@@ -26,12 +26,11 @@ export default function TermsPage() {
           </Reveal>
 
           <Reveal variant="fade-up">
-            <h2 className="font-display text-lg font-semibold text-charcoal">Market Rate Disclaimer</h2>
+            <h2 className="font-display text-lg font-semibold text-charcoal">Valuation Disclaimer</h2>
             <p className="mt-2">
-              Gold rates displayed on this website are indicative market reference rates and may change. Final
-              valuation is subject to purity, weight and applicable valuation factors assessed at the time of
-              service. Figures shown by the Gold Value Calculator are estimates only and do not constitute a
-              purchase offer.
+              Any gold value discussed with our team is an estimate based on the applicable market rate at the time,
+              and is subject to purity, weight and other valuation factors assessed in person. It does not
+              constitute a final purchase offer until confirmed at the time of service.
             </p>
           </Reveal>
 

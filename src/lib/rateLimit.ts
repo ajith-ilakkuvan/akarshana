@@ -1,10 +1,10 @@
 /**
  * Minimal in-process rate limiter for public POST endpoints (currently just
- * `/api/lead`). Like the gold-rate cache, this lives for the life of the
- * warm serverless instance — sufficient to blunt casual spam/bot traffic
- * for the current scale. If the app later runs across many concurrent
- * instances and this needs to be authoritative, replace the `Map` below
- * with a shared store (e.g. Upstash Redis) behind the same `check()` call.
+ * `/api/lead`). This lives for the life of the warm serverless instance —
+ * sufficient to blunt casual spam/bot traffic for the current scale. If
+ * the app later runs across many concurrent instances and this needs to
+ * be authoritative, replace the `Map` below with a shared store (e.g.
+ * Upstash Redis) behind the same `check()` call.
  */
 
 const WINDOW_MS = 60_000;

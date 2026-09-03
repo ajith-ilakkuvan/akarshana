@@ -5,7 +5,6 @@ import { getAllPosts } from "@/lib/blog";
 
 const staticPaths = [
   "/",
-  "/gold-rate/",
   "/services/",
   "/about/",
   "/careers/",
@@ -23,8 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: `${siteConfig.url}${path}`,
     lastModified: now,
-    changeFrequency: path === "/" || path === "/gold-rate/" ? "daily" : "weekly",
-    priority: path === "/" ? 1 : path === "/gold-rate/" ? 0.9 : 0.7,
+    changeFrequency: path === "/" ? "daily" : "weekly",
+    priority: path === "/" ? 1 : 0.7,
   }));
 
   const locationEntries: MetadataRoute.Sitemap = locations.map((location) => ({

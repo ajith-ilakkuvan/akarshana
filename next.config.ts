@@ -35,7 +35,7 @@ const cspHeader = [
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: blob:`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://api.gold-api.com https://api.frankfurter.dev`,
+  `connect-src 'self'`,
   `frame-src https://www.google.com`,
   `frame-ancestors 'none'`,
   `base-uri 'self'`,
@@ -47,7 +47,7 @@ const cspHeader = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Every internal link/canonical in this codebase uses a trailing slash
-  // (e.g. /gold-rate/) — this makes Next.js generate and expect that
+  // (e.g. /services/) — this makes Next.js generate and expect that
   // consistently instead of redirecting.
   trailingSlash: true,
   images: {

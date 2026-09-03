@@ -31,9 +31,7 @@ addressing these:
 ```
 src/
   app/                    Routes (Next.js App Router — one folder per URL)
-    api/gold-rate/        GET endpoint serving the live gold rate
     api/lead/              POST endpoint for the lead form
-    gold-rate/             /gold-rate/ page
     services/               /services/ page
     how-it-works/            /how-it-works/ page
     about/                    /about/ page
@@ -53,19 +51,17 @@ src/
     ui/                    Generic building blocks (Button, Reveal, ...)
     layout/                Header, Footer, mobile sticky CTA bar
     home/                  Homepage sections
-    gold/                  GoldRateCard, GoldCalculator (client components)
     forms/                 LeadForm
-    cta/                   Small tracked-link/button wrappers
+    cta/                   Small tracked-link/button wrappers, ValuationPromptCard
     locations/             Shared template for the four city pages
     seo/                   JSON-LD renderer
   lib/
-    goldRate/               Gold-rate service, providers, cache, calculator
     validation/               Zod schema for the lead form
     rateLimit.ts, sanitize.ts  Lead API safety
     structuredData.ts           Organization / LocalBusiness / FAQ JSON-LD
     analytics.ts                 Event-tracking stub
     blog.ts                        Blog post lookup helpers
-  hooks/                   useGoldRate, useReducedMotion, useScrolled
+  hooks/                   useReducedMotion, useScrolled
 ```
 
 ## Getting started
@@ -89,108 +85,20 @@ review each before launch:
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Production domain, used for canonical URLs, sitemap and structured data. |
-| `GOLD_PRICE_API_URL` / `GOLD_PRICE_API_KEY` | Gold spot-price provider. Defaults to the free [Gold API](https://gold-api.com/), which needs no key. |
-| `CURRENCY_API_URL` | USD→INR conversion source (the gold API returns USD per troy ounce). Defaults to [Frankfurter](https://frankfurter.dev/), free and keyless. |
-| `GOLD_RATE_FALLBACK_USD_INR` | Last-resort USD→INR rate, used only if the live currency lookup fails **and** there's no cached conversion. This is a forex fallback, not a fabricated gold price — the gold price itself always comes from the live provider or a timestamped cache. |
-| `GOLD_RATE_CACHE_SECONDS` | How long a fetched rate is cached (clamped to 60–300s). |
-| `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` | % added on top of the raw international spot-converted 24K/22K rate, to approximate a domestic Indian bullion quote (import duty + local premium). Defaults to `17.43`, calibrated 2026-09-01 against NDTV's Chennai rate. See "Why the rate differs from a local quoted rate" below before changing it. |
-| `GOLD_RATE_18K_EXTRA_PREMIUM_PERCENT` | Extra % applied to the 18K tier only, on top of the above (18K runs above pure fineness math in real domestic quotes). Defaults to `3.26`, same calibration date/source. |
 | `LEAD_WEBHOOK_URL` | Optional POST target (Slack, CRM inbox, Zapier, etc.) for validated leads. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional analytics ID — see `src/lib/analytics.ts`. |
 
-Secrets (`GOLD_PRICE_API_KEY`, `LEAD_WEBHOOK_URL`) are only ever read in
-`src/config/goldRate.ts` (marked `import "server-only"`, so a Client
-Component that tries to import it fails the build) and
-`src/app/api/lead/route.ts`. Never move these reads into a Client
-Component.
+The one secret, `LEAD_WEBHOOK_URL`, is only ever read in
+`src/app/api/lead/route.ts`. Never move that read into a Client Component.
 
-## The gold-rate architecture
-
-This is the core functional feature — a real, live gold rate, not a
-hardcoded number. The layers:
-
-```
-UI (GoldRateCard, GoldCalculator)
-  → useGoldRate() hook
-    → GET /api/gold-rate
-      → GoldRateService (src/lib/goldRate/goldRateService.ts)
-        → GoldPriceProvider   (GoldApiProvider — gold-api.com)
-        → CurrencyRateProvider (FrankfurterCurrencyProvider — USD→INR)
-        → calculatePurityRatesInrPerGram() — 24K/22K/18K math
-        → TtlCache — in-process cache (see "Caching" below)
-```
-
-The UI never talks to `gold-api.com` directly, and never sees
-provider-specific field names — everything is normalized to:
-
-```ts
-{ currency: "INR", unit: "gram", rates: { "24K": n, "22K": n, "18K": n }, updatedAt, source }
-```
-
-**To swap providers** (paid API, or Akarshana's own approved daily rate):
-implement `GoldPriceProvider` (see `src/lib/goldRate/providers/goldApiProvider.ts`
-for the shape — one method, `getSpotPriceUsdPerOunce()`) and pass the new
-instance into `GoldRateService` in `src/lib/goldRate/goldRateService.ts`.
-Nothing else in the app changes.
-
-**If the provider already returns 22K/18K rates directly**, extend
-`calculatePurityRatesInrPerGram` (`src/lib/goldRate/calculator.ts`) to use
-them instead of deriving from 24K — that's the one place purity math lives,
-so nothing else needs updating.
-
-### Why the rate differs from a local quoted rate (e.g. Chennai)
-
-The free Gold API feed is the raw **international spot price** (XAU/USD),
-converted to INR. A rate quoted by NDTV, an Indian jewellers' association,
-or a site like GoodReturns is the **domestic bullion rate**, which is
-systematically higher because it includes India's import duty, GST and
-local market premium — none of which exist in a raw spot conversion. This
-isn't a bug; it's a different (and free) data source.
-
-To close that gap without paying for a domestic bullion API, two env vars
-apply on top of the raw converted rate before/during the 22K/18K split
-(`src/lib/goldRate/calculator.ts`):
-
-- `GOLD_RATE_DOMESTIC_PREMIUM_PERCENT` (0–30, default `17.43`) — applied
-  to the 24K rate, and therefore to 22K too (22K = 24K × 22/24 in both the
-  raw feed and real domestic quotes, so one percentage covers both).
-- `GOLD_RATE_18K_EXTRA_PREMIUM_PERCENT` (0–15, default `3.26`) — an
-  additional bump for 18K only, since real domestic 18K quotes run a
-  bit above pure 18/24 fineness math (verified against NDTV's own
-  Chennai figures, where 22K matched fineness math exactly but 18K
-  didn't).
-
-The current defaults were calibrated 2026-09-01 against NDTV's Chennai
-gold rate (ndtv.com/gold-rate/gold-price-chennai) — raw 24K ₹13,339 vs
-NDTV ₹15,664, raw 22K ₹12,227 vs NDTV ₹14,359 (same ~17.43% gap
-confirming it), raw 18K ₹10,004 vs NDTV ₹12,131 (needing the extra
-+3.26% on top of the base premium to match). These percentages are a
-markup on duty/GST/local market premium, which drifts slowly
-(weeks/months) rather than daily — so they don't need updating every
-day — but re-check them against a real quote periodically and adjust
-the env vars (or these defaults) if the gap has moved. Set either to `0`
-to fall back toward the raw international rate.
-
-### Caching
-
-`GoldRateService` holds an in-process `TtlCache` (see
-`src/lib/goldRate/cache.ts`). A request within `GOLD_RATE_CACHE_SECONDS`
-of the last successful fetch gets the cached value; after that, the next
-request triggers a fresh fetch. This is intentionally simple — it lives
-for the life of the warm server process, which is enough to avoid hitting
-the external API on every visitor. If the app later runs across many
-concurrent serverless instances and this needs to be authoritative across
-all of them, swap `TtlCache` for a shared store (e.g. Upstash Redis) behind
-the same `get`/`set` interface.
-
-### Failure handling
-
-If the gold API (or the currency conversion) fails and there's no valid
-cache, `/api/gold-rate` returns `{ status: "unavailable", data: null }`
-and the UI shows "Gold rates are temporarily unavailable" with Call /
-WhatsApp / Get a Valuation fallbacks — never a fake price. If a valid
-cached value exists, it's served with `status: "stale"` and the UI labels
-it "Showing last known rate" rather than presenting it as live.
+> The site previously had a live gold-rate display and an on-page value
+> calculator (`GoldRateCard`, `GoldCalculator`, `/gold-rate/`, and the
+> `src/lib/goldRate/` service layer behind them, fetching from a free spot-
+> price API). These were removed — the business gives a real, in-person/
+> doorstep valuation rather than a self-serve estimate, so every enquiry
+> now goes through `LeadForm` instead. `ValuationPromptCard`
+> (`src/components/cta/`) is the compact "get a valuation" prompt that
+> replaced `GoldRateCard` in the hero.
 
 ## Adding a location
 
@@ -262,10 +170,6 @@ locations/homepage listings, since both read from `config/locations.ts`.
   stricter script-src is needed later, Next's experimental
   Subresource-Integrity (SRI) CSP mode keeps static generation without it
   — see the same docs file.
-- `src/config/goldRate.ts` is marked `import "server-only"` so the API URL
-  and key can never end up in client-side JavaScript, even by accident.
-  Purity math that the calculator UI needs lives in the separate,
-  client-safe `src/config/goldPurity.ts`.
 - `/api/lead` (`src/app/api/lead/route.ts`): server-side Zod validation
   (`src/lib/validation/leadSchema.ts`) is authoritative — the client form
   re-uses the same schema only for instant feedback. Includes a honeypot

@@ -30,12 +30,12 @@ export const blogPosts: BlogPost[] = [
         heading: "Then the market rate is applied",
         paragraphs: [
           "With purity and weight known, the applicable current gold market rate is applied to arrive at an indicative value. Because market rates move throughout the day, the rate used should reflect current conditions — not an outdated figure.",
-          "You can check today's reference rate for 24K, 22K and 18K gold, and get an estimated value for your own jewellery, using our Gold Value Calculator.",
+          "Our team can confirm the applicable rate for your gold's purity and give you an estimated value as part of a free valuation.",
         ],
       },
     ],
     relatedLinks: [
-      { label: "Today's Gold Rate", href: "/gold-rate/" },
+      { label: "Request a Valuation", href: "/contact/" },
       { label: "How It Works", href: "/#how-it-works" },
     ],
   },
@@ -66,12 +66,12 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Checking your own jewellery",
         paragraphs: [
-          "Many pieces are hallmarked with their purity, but a professional purity check remains the most reliable way to confirm it before a valuation. You can also use our Gold Value Calculator to see how the estimated value changes across 24K, 22K and 18K for a given weight.",
+          "Many pieces are hallmarked with their purity, but a professional purity check remains the most reliable way to confirm it before a valuation. Our team can walk you through how the estimated value changes across 24K, 22K and 18K for a given weight when you request a valuation.",
         ],
       },
     ],
     relatedLinks: [
-      { label: "Gold Value Calculator", href: "/gold-rate/#calculator" },
+      { label: "Request a Valuation", href: "/contact/" },
       { label: "Our Services", href: "/services/" },
     ],
   },
@@ -136,20 +136,20 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "Why we show a live rate, not a static one",
+        heading: "Why we confirm the rate at the time of valuation",
         paragraphs: [
-          "That's why our Gold Rate page pulls from a live market source rather than displaying a fixed number, along with a clear 'last updated' timestamp so you know how current the figure is.",
+          "Because the rate can move during the day, we confirm the applicable current rate with you directly as part of your valuation, rather than quoting a number that may already be out of date by the time you visit.",
         ],
       },
       {
         heading: "Using the rate to estimate value",
         paragraphs: [
-          "Once you know today's rate for your gold's purity, you can get an estimated value for a given weight using our Gold Value Calculator. This is an indicative figure — your final valuation depends on an in-person purity and weight check as well.",
+          "Once you know today's applicable rate for your gold's purity, our team can give you an estimated value for a given weight as part of a free valuation. This is an indicative figure — your final valuation depends on an in-person purity and weight check as well.",
         ],
       },
     ],
     relatedLinks: [
-      { label: "Today's Gold Rate", href: "/gold-rate/" },
+      { label: "Request a Valuation", href: "/contact/" },
       { label: "How It Works", href: "/#how-it-works" },
     ],
   },
@@ -228,7 +228,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Gold Buyers in Pollachi", href: "/gold-buyers-pollachi/" },
-      { label: "Today's Gold Rate", href: "/gold-rate/" },
+      { label: "Request a Valuation", href: "/contact/" },
     ],
   },
   {
@@ -264,7 +264,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Gold Buyers in Coimbatore", href: "/gold-buyers-coimbatore/" },
-      { label: "Gold Value Calculator", href: "/gold-rate/#calculator" },
+      { label: "Request a Valuation", href: "/contact/" },
     ],
   },
   {
@@ -324,7 +324,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Ask about the current rate",
         paragraphs: [
-          "It's reasonable to ask what rate is being used and to check it against a live source, like our Gold Rate page, before agreeing to a valuation.",
+          "It's reasonable to ask what rate is being used before agreeing to a valuation — a transparent gold buyer should be able to explain it clearly.",
         ],
       },
       {
@@ -336,7 +336,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { label: "Gold Buyers in Udumalpet", href: "/gold-buyers-udumalpet/" },
-      { label: "Today's Gold Rate", href: "/gold-rate/" },
+      { label: "Request a Valuation", href: "/contact/" },
     ],
   },
 ];
