@@ -11,7 +11,7 @@ export const contactConfig = {
   whatsappE164: "918220166648",
   whatsappDefaultMessage:
     "Hi Akarshana Gold, I would like to get my gold valued.",
-  email: "info@akarshanagold.com",
+  email: "akarshanagoldcompany888@gmail.com",
   businessHours: [
     { days: "Monday – Saturday", hours: "10:00 AM – 6:00 PM" },
     { days: "Sunday", hours: "Closed" },
