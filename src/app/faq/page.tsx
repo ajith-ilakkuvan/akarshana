@@ -11,9 +11,11 @@ import { generalFaqs } from "@/config/faq";
 const crumbs = [{ label: "FAQs", href: "/faq/" }];
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
+  title: {
+    absolute: "Gold Selling FAQs — Valuation, Purity, Pledged Release & More | Akarshana Gold",
+  },
   description:
-    "Answers to common questions about gold valuation, gold purity, today's gold rate, doorstep service and pledged gold release at Akarshana Gold.",
+    "Answers to common questions about selling old gold, pledged-gold release, purity checks and doorstep valuation with Akarshana Gold.",
   alternates: { canonical: "/faq/" },
 };
 

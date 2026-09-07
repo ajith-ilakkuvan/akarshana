@@ -2,7 +2,7 @@ import type { LocationContent } from "./types";
 
 export const udumalpet: LocationContent = {
   intro: [
-    "Udumalpet sits at the edge of the Palani hills, a farming and textile town where households have traditionally treated gold as both an ornament and a form of savings. Akarshana Gold works with gold buyers in Udumalpet who want a clear, professional way to understand what their gold is currently worth.",
+    "Udumalpet sits at the edge of the Palani hills, a farming and textile town where households have traditionally treated gold as both an ornament and a form of savings. Akarshana Gold works with old gold buyers in Udumalpet who want a clear, professional way to understand what their gold is currently worth, whether you're selling jewellery or looking for cash for gold in Udumalpet at a fair price.",
     "Instead of guessing at a price, our process walks you through purity, weight and the applicable current market rate, so the final valuation makes sense before you decide whether to proceed.",
   ],
   sellGold:
@@ -25,7 +25,8 @@ export const udumalpet: LocationContent = {
     },
     {
       question: "Do you buy old gold jewellery in Udumalpet?",
-      answer: "Yes, we buy old gold jewellery in Udumalpet through a transparent, professional valuation process.",
+      answer:
+        "Yes, we buy old gold jewellery in Udumalpet through a transparent, professional valuation process and pay cash for gold in Udumalpet once you're satisfied with the value.",
     },
     {
       question: "Is doorstep gold service available in Udumalpet?",

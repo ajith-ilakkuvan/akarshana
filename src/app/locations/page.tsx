@@ -11,9 +11,9 @@ import { locations } from "@/config/locations";
 const crumbs = [{ label: "Locations", href: "/locations/" }];
 
 export const metadata: Metadata = {
-  title: "Locations We Serve",
+  title: "Our Branches — Gold Buyers in Pollachi, Udumalpet, Coimbatore & Tiruppur",
   description:
-    "Akarshana Gold currently serves Pollachi, Udumalpet, Coimbatore and Tiruppur with gold valuation, gold buying and doorstep service.",
+    "Find your nearest Akarshana Gold branch for gold valuation and cash-for-gold service in Pollachi, Udumalpet, Coimbatore or Tiruppur.",
   alternates: { canonical: "/locations/" },
 };
 

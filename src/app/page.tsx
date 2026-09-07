@@ -10,11 +10,12 @@ import { DoorstepSection } from "@/components/home/DoorstepSection";
 import { LocationsSection } from "@/components/home/LocationsSection";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
-import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
-  description: siteConfig.description,
+  title:
+    "Old Gold Buyers & Gold Valuation in Pollachi, Udumalpet, Coimbatore & Tiruppur | Akarshana Gold",
+  description:
+    "Sell your old gold for cash at today's transparent market rate. Akarshana Gold buys gold jewellery, coins & bars in Pollachi, Udumalpet, Coimbatore and Tiruppur — with free doorstep valuation.",
   alternates: { canonical: "/" },
 };
 

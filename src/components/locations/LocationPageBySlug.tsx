@@ -13,8 +13,10 @@ export function buildLocationMetadata(slug: LocationSlug): Metadata {
   if (!location) return {};
 
   return {
-    title: `Gold Buyers in ${location.name}`,
-    description: `Sell gold, get a gold valuation, pledged gold release assistance and doorstep gold service in ${location.name} from Akarshana Gold.`,
+    title: {
+      absolute: `Old Gold Buyers in ${location.name} — Cash for Gold & Doorstep Valuation | Akarshana Gold`,
+    },
+    description: `Sell old gold in ${location.name} for instant cash at today's market rate. Free purity check, transparent valuation and doorstep gold service available across ${location.name}.`,
     alternates: { canonical: location.path },
   };
 }

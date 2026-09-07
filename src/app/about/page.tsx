@@ -11,9 +11,9 @@ import { siteConfig } from "@/config/site";
 const crumbs = [{ label: "About", href: "/about/" }];
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: { absolute: "About Akarshana Gold — Trusted Gold Buyers Across Tamil Nadu" },
   description:
-    "Akarshana Gold Company offers transparent, professional gold valuation and gold buying services with convenient doorstep access across Pollachi, Udumalpet, Coimbatore and Tiruppur.",
+    "Learn how Akarshana Gold built a transparent, purity-first gold valuation process trusted by customers across Pollachi, Udumalpet, Coimbatore and Tiruppur.",
   alternates: { canonical: "/about/" },
 };
 

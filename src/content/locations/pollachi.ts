@@ -2,7 +2,7 @@ import type { LocationContent } from "./types";
 
 export const pollachi: LocationContent = {
   intro: [
-    "Pollachi has long been known as an agrarian town built around coconut cultivation and edible oil mills, with gold jewellery playing a traditional role in family savings and important occasions here. Akarshana Gold offers gold buyers in Pollachi a transparent way to understand what their gold is currently worth, based on the applicable market rate.",
+    "Pollachi has long been known as an agrarian town built around coconut cultivation and edible oil mills, with gold jewellery playing a traditional role in family savings and important occasions here. Akarshana Gold offers old gold buyers in Pollachi a transparent way to understand what their gold is currently worth, based on the applicable market rate — whether you're selling family jewellery or simply looking for cash for gold in Pollachi at a fair price.",
     "Whether you're holding on to old family jewellery, coins, or gold that's no longer being worn, our evaluation process is built to be clear from the start — you'll know how purity, weight and the current rate come together before any valuation is finalised.",
   ],
   sellGold:
@@ -25,7 +25,8 @@ export const pollachi: LocationContent = {
     },
     {
       question: "Do you buy old gold jewellery in Pollachi?",
-      answer: "Yes, we buy old gold jewellery in Pollachi through a transparent valuation process.",
+      answer:
+        "Yes, we buy old gold jewellery in Pollachi through a transparent valuation process and pay cash for gold in Pollachi on the spot once you're happy with the value.",
     },
     {
       question: "Is doorstep gold service available in Pollachi?",

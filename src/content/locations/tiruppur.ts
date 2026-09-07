@@ -2,7 +2,7 @@ import type { LocationContent } from "./types";
 
 export const tiruppur: LocationContent = {
   intro: [
-    "Known as India's knitwear export hub, Tiruppur has grown rapidly around its garment industry, and gold has remained a familiar way for families here to save and mark occasions. Akarshana Gold works with gold buyers in Tiruppur looking for a transparent, professional gold valuation.",
+    "Known as India's knitwear export hub, Tiruppur has grown rapidly around its garment industry, and gold has remained a familiar way for families here to save and mark occasions. Akarshana Gold works with old gold buyers in Tiruppur looking for a transparent, professional gold valuation, whether you're selling jewellery or looking for cash for gold in Tiruppur at a fair price.",
     "Rather than an informal estimate, our process is built around clarity — purity check, weight verification, and valuation using the applicable current market rate, so you understand exactly how your gold's value is calculated.",
   ],
   sellGold:
@@ -25,7 +25,8 @@ export const tiruppur: LocationContent = {
     },
     {
       question: "Do you buy old gold jewellery in Tiruppur?",
-      answer: "Yes, we buy old gold jewellery in Tiruppur through a transparent valuation process.",
+      answer:
+        "Yes, we buy old gold jewellery in Tiruppur through a transparent valuation process and pay cash for gold in Tiruppur once you're satisfied with the value.",
     },
     {
       question: "Is doorstep gold service available in Tiruppur?",

@@ -2,7 +2,7 @@ import type { LocationContent } from "./types";
 
 export const coimbatore: LocationContent = {
   intro: [
-    "Coimbatore's long history as an industrial and textile hub has made gold jewellery a familiar part of family savings across the city, from long-established neighbourhoods to newer residential areas. Akarshana Gold serves gold buyers in Coimbatore who want a straightforward, transparent way to have their gold professionally valued.",
+    "Coimbatore's long history as an industrial and textile hub has made gold jewellery a familiar part of family savings across the city, from long-established neighbourhoods to newer residential areas. Akarshana Gold serves old gold buyers in Coimbatore who want a straightforward, transparent way to have their gold professionally valued, whether you're selling jewellery or looking for cash for gold in Coimbatore at a fair price.",
     "Given how many gold-buying options exist in a city this size, we focus on making our own process easy to understand — purity check, weight verification, and valuation at the applicable current market rate, explained clearly at each step.",
   ],
   sellGold:
@@ -25,7 +25,8 @@ export const coimbatore: LocationContent = {
     },
     {
       question: "Do you buy old gold jewellery in Coimbatore?",
-      answer: "Yes, we buy old gold jewellery in Coimbatore through a transparent, professional process.",
+      answer:
+        "Yes, we buy old gold jewellery in Coimbatore through a transparent, professional process and pay cash for gold in Coimbatore once you're happy with the valuation.",
     },
     {
       question: "Is doorstep gold service available across Coimbatore?",
