@@ -58,6 +58,13 @@ export const locations: LocationSummary[] = [
       addressLine1: "MKG Complex, Arutchelvar Dr N Mahalingam Rd",
       addressLine2: "Near Welcare Fitness Equipment, Opp. Gowri Krishna Hotel, Pollachi, Tamil Nadu 642001",
       postalCode: "642001",
+      gallery: [
+        { src: "/gallery/pollachi/1.webp", alt: "Akarshana Gold Company Pollachi branch signage and reception counter" },
+        { src: "/gallery/pollachi/2.webp", alt: "Akarshana Gold Company Pollachi branch waiting area and signboard" },
+        { src: "/gallery/pollachi/3.webp", alt: "Akarshana Gold Company Pollachi branch signboard close-up" },
+        { src: "/gallery/pollachi/4.webp", alt: "Akarshana Gold Company Pollachi branch reception desk" },
+        { src: "/gallery/pollachi/5.webp", alt: "Akarshana Gold Company Pollachi branch storefront entrance" },
+      ],
       mapLink: "https://maps.app.goo.gl/tJhdasPryNKcLDjF6",
     },
   },
