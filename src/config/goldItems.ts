@@ -30,7 +30,12 @@ export const goldItemCategories: GoldItemCategory[] = [
     icon: "link",
     photo: { src: "/gold-items/chains-bangles.webp", alt: "Gold chain-set bangles with a matching necklace and jhumka earrings" },
   },
-  { slug: "coins", label: "Gold Coins", icon: "coins" },
+  {
+    slug: "coins",
+    label: "Gold Coins",
+    icon: "coins",
+    photo: { src: "/gold-items/coins.webp", alt: "A gold coin with an embossed Lakshmi design, in a velvet gift box" },
+  },
   { slug: "bars", label: "Gold Bars", icon: "package" },
   { slug: "bridal-antique", label: "Bridal & Antique Sets", icon: "crown" },
   {
