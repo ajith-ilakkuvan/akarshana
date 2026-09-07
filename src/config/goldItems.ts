@@ -24,7 +24,12 @@ export const goldItemCategories: GoldItemCategory[] = [
     icon: "gem",
     photo: { src: "/gold-items/jewellery.webp", alt: "Gold temple jewellery set with necklace, jhumka earrings and maang tikka" },
   },
-  { slug: "chains-bangles", label: "Chains & Bangles", icon: "link" },
+  {
+    slug: "chains-bangles",
+    label: "Chains & Bangles",
+    icon: "link",
+    photo: { src: "/gold-items/chains-bangles.webp", alt: "Gold chain-set bangles with a matching necklace and jhumka earrings" },
+  },
   { slug: "coins", label: "Gold Coins", icon: "coins" },
   { slug: "bars", label: "Gold Bars", icon: "package" },
   { slug: "bridal-antique", label: "Bridal & Antique Sets", icon: "crown" },
