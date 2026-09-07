@@ -64,8 +64,9 @@ export function Hero() {
             Your Gold Deserves Its True Value.
           </h1>
           <p className="mt-4 max-w-lg font-tamil text-base text-brand-gold-light sm:text-lg">
-            உங்கள் தங்கத்தை தற்போதைய சந்தை விலையில் வெளிப்படையாக மதிப்பிட்டு, பொள்ளாச்சி, உடுமலைப்பேட்டை, கோயம்புத்தூர்
-            மற்றும் திருப்பூரில் வசதியான சேவையுடன் ஆகர்ஷனா கோல்டு உங்களுக்கு உதவுகிறது.
+            உங்கள் தங்க நகைகளை ஆன்லைன் விலையில் விற்பதற்கும், அடகு மற்றும் ஏல நகைகளை மீட்பதற்கும் அணுகவும்.
+            <br />
+            ஆகர்ஷனா கோல்டு கம்பெனி
           </p>
           <p className="mt-3 max-w-lg text-base text-white/80 sm:text-lg">
             Get your gold valued transparently at the current market rate with convenient service from Akarshana
