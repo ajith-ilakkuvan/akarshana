@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Gem, Link as LinkIcon, Coins, Package, Crown, Recycle } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -35,11 +36,39 @@ export function GoldItemsSection() {
       <Reveal variant="fade-in" className="mt-12">
         <div className="marquee-track flex w-max gap-6 px-4 sm:px-6">
           {track.map((item, index) => {
+            const hidden = index >= goldItemCategories.length;
+
+            if (item.photo) {
+              return (
+                <div
+                  key={`${item.slug}-${index}`}
+                  aria-hidden={hidden}
+                  className="flex w-56 shrink-0 flex-col overflow-hidden rounded-3xl border border-brand-gold/25 bg-white shadow-lg shadow-black/10 sm:w-64"
+                >
+                  <div className="relative aspect-[4/5] w-full">
+                    <Image
+                      src={item.photo.src}
+                      alt={item.photo.alt}
+                      fill
+                      sizes="(min-width: 640px) 256px, 224px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="px-6 py-5 text-center">
+                    <GoldOrnament className="justify-center" />
+                    <p className="mt-3 font-display text-lg font-semibold tracking-wide text-charcoal">
+                      {item.label}
+                    </p>
+                  </div>
+                </div>
+              );
+            }
+
             const Icon = icons[item.icon];
             return (
               <div
                 key={`${item.slug}-${index}`}
-                aria-hidden={index >= goldItemCategories.length}
+                aria-hidden={hidden}
                 className="gold-item-card flex w-56 shrink-0 flex-col items-center gap-5 rounded-3xl border border-brand-gold/25 px-6 py-10 text-center shadow-lg shadow-black/20 sm:w-64"
               >
                 <span className="relative flex size-24 items-center justify-center">
