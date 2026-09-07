@@ -1,5 +1,6 @@
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { telHref, whatsappHref } from "@/config/contact";
 import { ctaLabels } from "@/config/navigation";
 import { cn } from "@/lib/utils";
@@ -32,7 +33,7 @@ export function ValuationPromptCard({ className }: { className?: string }) {
           target="_blank"
           rel="noopener noreferrer"
           size="sm"
-          icon={<MessageCircle className="size-4" aria-hidden="true" />}
+          icon={<WhatsAppIcon className="size-4" />}
         >
           {ctaLabels.whatsappUs}
         </Button>

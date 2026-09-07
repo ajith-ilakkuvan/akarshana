@@ -1,8 +1,9 @@
 "use client";
 
 import { useId, useState, type FormEvent } from "react";
-import { CheckCircle2, MessageCircle, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { leadSchema } from "@/lib/validation/leadSchema";
 import { locations } from "@/config/locations";
 import { leadServiceOptions, preferredContactOptions, type LeadServiceValue } from "@/config/services";
@@ -115,7 +116,7 @@ export function LeadForm({
           variant="outline"
           size="sm"
           className="mt-5"
-          icon={<MessageCircle className="size-4" aria-hidden="true" />}
+          icon={<WhatsAppIcon className="size-4" />}
         >
           {ctaLabels.whatsappUs}
         </Button>
@@ -261,7 +262,7 @@ export function LeadForm({
             rel="noopener noreferrer"
             variant="outline"
             size="md"
-            icon={<MessageCircle className="size-4" aria-hidden="true" />}
+            icon={<WhatsAppIcon className="size-4" />}
           >
             {ctaLabels.whatsappUs}
           </Button>

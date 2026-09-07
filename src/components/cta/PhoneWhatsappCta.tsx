@@ -1,7 +1,8 @@
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone } from "lucide-react";
 import { telHref, whatsappHref } from "@/config/contact";
 import { cn } from "@/lib/utils";
 import { setLiquidOrigin } from "@/lib/liquidFill";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { TrackedLink } from "./TrackedLink";
 
 const baseIconButton = "inline-flex size-11 items-center justify-center rounded-full";
@@ -50,7 +51,7 @@ export function WhatsappCta({ className, label, liquid = false }: IconCtaProps) 
       aria-label={label ?? "WhatsApp Akarshana Gold"}
     >
       {liquid && <span aria-hidden="true" className="liquid-fill__layer bg-[#1DA851]" />}
-      <MessageCircle aria-hidden="true" className={cn("size-5", liquid && "liquid-fill__content")} />
+      <WhatsAppIcon className={cn("size-5", liquid && "liquid-fill__content")} />
     </TrackedLink>
   );
 }

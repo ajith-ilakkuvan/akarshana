@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import type { SVGProps } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, MapPin, Clock, Mail, Navigation } from "lucide-react";
+import { Phone, MapPin, Clock, Mail, Navigation } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { LeadForm } from "@/components/forms/LeadForm";
@@ -51,7 +53,7 @@ export default async function ContactPage({
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
           <Reveal variant="fade-up" className="space-y-6">
             <ContactRow icon={Phone} label="Phone" value={contactConfig.phoneDisplay} href={telHref()} />
-            <ContactRow icon={MessageCircle} label="WhatsApp" value="Chat with us" href={whatsappHref()} external />
+            <ContactRow icon={WhatsAppIcon} label="WhatsApp" value="Chat with us" href={whatsappHref()} external />
             <ContactRow icon={Mail} label="Email" value={contactConfig.email} href={`mailto:${contactConfig.email}`} />
             <div className="space-y-4">
               <p className="text-sm font-semibold text-charcoal">Our Branches</p>
@@ -124,7 +126,7 @@ function ContactRow({
   href,
   external,
 }: {
-  icon: typeof Phone;
+  icon: React.ComponentType<SVGProps<SVGSVGElement>>;
   label: string;
   value: string;
   href: string;

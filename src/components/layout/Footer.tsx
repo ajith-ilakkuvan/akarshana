@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Phone, MessageCircle, MapPin, Clock } from "lucide-react";
+import { Phone, MapPin, Clock } from "lucide-react";
 import { Logo } from "./Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/config/site";
 import { footerLinks } from "@/config/navigation";
@@ -69,7 +70,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="flex items-start gap-3 hover:text-brand-gold-light"
           >
-            <MessageCircle aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
+            <WhatsAppIcon className="mt-0.5 size-4 shrink-0" />
             WhatsApp Us
           </a>
           <Link href="/locations/" className="flex items-start gap-3 hover:text-brand-gold-light">

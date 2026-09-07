@@ -1,7 +1,8 @@
 "use client";
 
-import { Phone, MessageCircle, Gem } from "lucide-react";
+import { Phone, Gem } from "lucide-react";
 import Link from "next/link";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { telHref, whatsappHref } from "@/config/contact";
 import { ctaLabels } from "@/config/navigation";
 import { trackEvent } from "@/lib/analytics";
@@ -29,7 +30,7 @@ export function MobileStickyCta() {
         onClick={() => trackEvent("whatsapp_click", { location: "sticky_bar" })}
         className="flex flex-col items-center justify-center gap-0.5 border-x border-charcoal/10 py-2.5 text-xs font-medium text-charcoal active:bg-cream"
       >
-        <MessageCircle aria-hidden="true" className="size-5 text-[#25D366]" />
+        <WhatsAppIcon className="size-5 text-[#25D366]" />
         WhatsApp
       </a>
       <Link
