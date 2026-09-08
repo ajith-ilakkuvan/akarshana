@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { RevealGroup } from "@/components/ui/Reveal";
 import { GoogleIcon } from "@/components/ui/GoogleIcon";
 import { cn } from "@/lib/utils";
-import { reviews as placeholderReviews, averageRating } from "@/config/reviews";
+import { reviews as placeholderReviews, averageRating, placeholderReviewCount } from "@/config/reviews";
 import { fetchAllBranchReviews } from "@/lib/googlePlaces";
 
 const avatarStyles = [
@@ -43,6 +43,9 @@ export async function ReviewsSection() {
   const items = isLive ? liveReviews : placeholderReviews;
   const rating = averageRating(items);
   const mapsLink = sources.find((source) => source.googleMapsUri)?.googleMapsUri;
+  const reviewCount = isLive
+    ? sources.reduce((sum, source) => sum + source.userRatingCount, 0)
+    : placeholderReviewCount;
 
   return (
     <section className="bg-cream py-16 sm:py-24">
@@ -75,7 +78,7 @@ export async function ReviewsSection() {
           <div className="flex items-center gap-2 rounded-full border border-charcoal/10 bg-white px-4 py-2 shadow-sm">
             <span className="font-display text-lg font-bold text-charcoal">{rating.toFixed(1)}</span>
             <StarRow rating={rating} />
-            <span className="text-sm text-charcoal/60">Recent reviews</span>
+            <span className="text-sm text-charcoal/60">{reviewCount}+ reviews</span>
           </div>
         </div>
 

@@ -64,6 +64,14 @@ export const reviews: Review[] = [
   },
 ];
 
+/**
+ * Shown next to the rating badge until live Google reviews are wired up
+ * (see src/lib/googlePlaces.ts) — at that point the real count is summed
+ * from each branch's `userRatingCount` instead. Update this if the
+ * client's actual review count changes before then.
+ */
+export const placeholderReviewCount = 230;
+
 export function averageRating(items: Review[] = reviews): number {
   if (items.length === 0) return 0;
   return items.reduce((sum, review) => sum + review.rating, 0) / items.length;
