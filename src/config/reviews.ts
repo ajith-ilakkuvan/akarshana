@@ -3,13 +3,15 @@ export interface Review {
   location: string;
   rating: 1 | 2 | 3 | 4 | 5;
   text: string;
+  /** Relative publish time (e.g. "2 months ago") — set on reviews fetched live from Google, unset on placeholders. */
+  time?: string;
 }
 
 /**
- * Placeholder reviews styled after the client's real Google Business
- * Profile reviews — swap this array for the actual review text (and
- * ratings) once the client supplies them. Keep the same shape so
- * `ReviewsSection` needs no changes.
+ * Placeholder reviews, shown only when no live Google reviews are
+ * available (see `src/lib/googlePlaces.ts` — real reviews replace these
+ * automatically once `GOOGLE_PLACES_API_KEY` and a branch's
+ * `GOOGLE_PLACE_ID_<CITY>` are configured).
  */
 export const reviews: Review[] = [
   {

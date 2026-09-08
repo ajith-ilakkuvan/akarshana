@@ -3,7 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { RevealGroup } from "@/components/ui/Reveal";
 import { GoogleIcon } from "@/components/ui/GoogleIcon";
 import { cn } from "@/lib/utils";
-import { reviews, averageRating } from "@/config/reviews";
+import { reviews as placeholderReviews, averageRating } from "@/config/reviews";
+import { fetchAllBranchReviews } from "@/lib/googlePlaces";
 
 const avatarStyles = [
   "bg-brand-gold-light text-brand-gold-dark",
@@ -36,8 +37,12 @@ function StarRow({ rating, size = "size-4", className }: { rating: number; size?
   );
 }
 
-export function ReviewsSection() {
-  const rating = averageRating();
+export async function ReviewsSection() {
+  const { reviews: liveReviews, sources } = await fetchAllBranchReviews();
+  const isLive = liveReviews.length > 0;
+  const items = isLive ? liveReviews : placeholderReviews;
+  const rating = averageRating(items);
+  const mapsLink = sources.find((source) => source.googleMapsUri)?.googleMapsUri;
 
   return (
     <section className="bg-cream py-16 sm:py-24">
@@ -47,7 +52,24 @@ export function ReviewsSection() {
             <GoogleIcon className="size-9 shrink-0" />
             <div>
               <h2 className="font-display text-2xl font-semibold text-charcoal sm:text-3xl">Google Reviews</h2>
-              <p className="text-sm text-charcoal/60">What our customers are saying</p>
+              <p className="text-sm text-charcoal/60">
+                {isLive ? (
+                  <>
+                    What our customers are saying
+                    {mapsLink && (
+                      <>
+                        {" "}
+                        —{" "}
+                        <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="font-medium text-brand-red hover:underline">
+                          see all reviews on Google
+                        </a>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  "What our customers are saying"
+                )}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2 rounded-full border border-charcoal/10 bg-white px-4 py-2 shadow-sm">
@@ -62,7 +84,7 @@ export function ReviewsSection() {
           staggerMs={80}
           className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {reviews.map((review, index) => (
+          {items.map((review, index) => (
             <article
               key={`${review.name}-${index}`}
               className="flex flex-col rounded-2xl border border-charcoal/10 bg-white p-5 shadow-sm"
@@ -82,6 +104,7 @@ export function ReviewsSection() {
                     <p className="flex items-center gap-1 text-xs text-charcoal/50">
                       <MapPin aria-hidden="true" className="size-3" />
                       {review.location}
+                      {review.time && <span> · {review.time}</span>}
                     </p>
                   </div>
                 </div>
