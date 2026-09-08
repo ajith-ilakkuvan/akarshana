@@ -9,8 +9,9 @@ export interface TickerItem {
 }
 
 export const tickerItems: TickerItem[] = [
-  { text: "பழைய தங்கத்திற்கு அன்றைய சந்தை விலை", lang: "ta" },
-  { text: "உங்கள் பழைய தங்கத்தை விற்று உடனடி பணம் பெறுங்கள்", lang: "ta" },
+  {
+    text: "உங்கள் தங்க நகைகளை ஆன்லைன் விலையில் விற்பதற்கும், அடகு மற்றும் ஏல நகைகளை மீட்பதற்கும் அணுகவும். ஆகர்ஷனா கோல்டு கம்பெனி",
+    lang: "ta",
+  },
   { text: "Pollachi • Udumalpet • Coimbatore • Tiruppur", lang: "en" },
-  { text: "உங்கள் இல்லம் தேடி வரும் சேவை", lang: "ta" },
 ];
