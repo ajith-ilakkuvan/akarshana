@@ -16,7 +16,7 @@ export function buildLocationMetadata(slug: LocationSlug): Metadata {
     title: {
       absolute: `Old Gold Buyers in ${location.name} — Cash for Gold & Doorstep Valuation | Akarshana Gold`,
     },
-    description: `Akarshana Gold is a trusted gold dealer in ${location.name} — sell old gold for instant cash at today's market rate, with free purity checks, transparent valuation and doorstep service.`,
+    description: `Old gold buyers in ${location.name} — sell gold in ${location.name} for instant cash. Akarshana Gold is a trusted gold dealer in ${location.name} with free purity checks and doorstep valuation.`,
     alternates: { canonical: location.path },
   };
 }
