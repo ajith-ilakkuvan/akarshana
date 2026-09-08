@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ShieldCheck, Scale, Home as HomeIcon } from "lucide-react";
+import { ShieldCheck, Scale, Home as HomeIcon, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -7,6 +7,7 @@ import { GoldOrnament } from "@/components/ui/GoldOrnament";
 import { ScrollParallax } from "@/components/ui/ScrollParallax";
 import { ValuationPromptCard } from "@/components/cta/ValuationPromptCard";
 import { ctaLabels } from "@/config/navigation";
+import { contactConfig, telHref } from "@/config/contact";
 
 const trustPoints = [
   { icon: Scale, label: "Transparent valuation" },
@@ -72,6 +73,13 @@ export function Hero() {
             Get your gold valued transparently at the current market rate with convenient service from Akarshana
             Gold.
           </p>
+          <a
+            href={telHref()}
+            className="mt-3 inline-flex items-center gap-2 text-lg font-semibold text-brand-gold-light transition-colors hover:text-white sm:text-xl"
+          >
+            <Phone aria-hidden="true" className="size-5" />
+            {contactConfig.phoneDisplay}
+          </a>
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact/" variant="secondary" size="lg">
