@@ -37,5 +37,15 @@ export const coimbatore: LocationContent = {
       answer:
         "Our team confirms the applicable current market rate for 24K, 22K and 18K gold as part of your valuation — reach out and we'll share it directly.",
     },
+    {
+      question: "Is Akarshana Gold a gold dealer in Coimbatore?",
+      answer:
+        "Yes, Akarshana Gold is a gold dealer in Coimbatore, buying old gold jewellery, coins and bars directly from the public with a transparent, purity-first valuation process.",
+    },
+    {
+      question: "Do you buy second-hand gold in Coimbatore?",
+      answer:
+        "Yes — as a second-hand gold buyer in Coimbatore, we purchase used, old and pre-owned gold jewellery, coins and bars for cash at the applicable market rate.",
+    },
   ],
 };

@@ -37,5 +37,15 @@ export const tiruppur: LocationContent = {
       answer:
         "Reach out via WhatsApp or phone to check current availability and arrange a convenient time for your valuation.",
     },
+    {
+      question: "Is Akarshana Gold a gold dealer in Tiruppur?",
+      answer:
+        "Yes, Akarshana Gold is a gold dealer in Tiruppur, buying old gold jewellery, coins and bars directly from the public with a transparent, purity-first valuation process.",
+    },
+    {
+      question: "Do you buy second-hand gold in Tiruppur?",
+      answer:
+        "Yes — as a second-hand gold buyer in Tiruppur, we purchase used, old and pre-owned gold jewellery, coins and bars for cash at the applicable market rate.",
+    },
   ],
 };

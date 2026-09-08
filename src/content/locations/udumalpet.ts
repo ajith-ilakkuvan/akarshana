@@ -37,5 +37,15 @@ export const udumalpet: LocationContent = {
       answer:
         "Purity is checked as part of our standard evaluation process before any valuation figure is shared with you.",
     },
+    {
+      question: "Is Akarshana Gold a gold dealer in Udumalpet?",
+      answer:
+        "Yes, Akarshana Gold is a gold dealer in Udumalpet, buying old gold jewellery, coins and bars directly from the public with a transparent, purity-first valuation process.",
+    },
+    {
+      question: "Do you buy second-hand gold in Udumalpet?",
+      answer:
+        "Yes — as a second-hand gold buyer in Udumalpet, we purchase used, old and pre-owned gold jewellery, coins and bars for cash at the applicable market rate.",
+    },
   ],
 };

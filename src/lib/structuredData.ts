@@ -24,7 +24,7 @@ export function localBusinessJsonLd(location: LocationSummary) {
     "@type": "FinancialService",
     name: `${siteConfig.name} — ${location.name}`,
     parentOrganization: { "@type": "Organization", name: siteConfig.legalName },
-    description: `Gold buying and gold valuation services from ${siteConfig.name} serving ${location.name} and nearby areas.`,
+    description: `${siteConfig.name} is a gold dealer buying old and second-hand gold jewellery, coins and bars, offering gold valuation services in ${location.name} and nearby areas.`,
     url: `${siteConfig.url}${location.path}`,
     telephone: contactConfig.phoneE164,
     address: {

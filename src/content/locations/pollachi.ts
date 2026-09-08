@@ -37,5 +37,15 @@ export const pollachi: LocationContent = {
       answer:
         "Our team confirms the applicable current market rate for your gold's purity as part of your valuation — reach out and we'll share it directly.",
     },
+    {
+      question: "Is Akarshana Gold a gold dealer in Pollachi?",
+      answer:
+        "Yes, Akarshana Gold is a gold dealer in Pollachi, buying old gold jewellery, coins and bars directly from the public with a transparent, purity-first valuation process.",
+    },
+    {
+      question: "Do you buy second-hand gold in Pollachi?",
+      answer:
+        "Yes — as a second-hand gold buyer in Pollachi, we purchase used, old and pre-owned gold jewellery, coins and bars for cash at the applicable market rate.",
+    },
   ],
 };
