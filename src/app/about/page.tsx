@@ -11,6 +11,8 @@ import { siteConfig } from "@/config/site";
 
 const crumbs = [{ label: "About", href: "/about/" }];
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "About Us",
   description:

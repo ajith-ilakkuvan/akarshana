@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { db } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 const staticPaths = ["/", "/shop/", "/collections/", "/about/", "/contact/", "/faq/", "/privacy-policy/", "/terms/"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
