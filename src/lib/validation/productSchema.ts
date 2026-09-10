@@ -14,6 +14,7 @@ export const productSchema = z.object({
   metal: z.string().trim().min(2).max(60),
   purity: z.string().trim().max(30).optional().or(z.literal("")),
   weightGrams: z.number().min(0).nullable().optional(),
+  wastagePercentage: z.number().min(0).max(100).nullable().optional(),
   gemstone: z.string().trim().max(100).optional().or(z.literal("")),
   sku: z.string().trim().min(2).max(60),
   stock: z.number().int().min(0),

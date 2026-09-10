@@ -11,7 +11,7 @@ export type ProductWithRelations = Prisma.ProductGetPayload<typeof productWithRe
 export interface ShopFilters {
   category?: string;
   metal?: string;
-  sort?: "newest" | "price-asc" | "price-desc" | "featured";
+  sort?: "newest" | "weight-asc" | "weight-desc" | "featured";
   minPrice?: number;
   maxPrice?: number;
 }
@@ -29,10 +29,10 @@ export async function getShopProducts(filters: ShopFilters = {}): Promise<Produc
   }
 
   const orderBy: Prisma.ProductOrderByWithRelationInput =
-    filters.sort === "price-asc"
-      ? { price: "asc" }
-      : filters.sort === "price-desc"
-        ? { price: "desc" }
+    filters.sort === "weight-asc"
+      ? { weightGrams: "asc" }
+      : filters.sort === "weight-desc"
+        ? { weightGrams: "desc" }
         : filters.sort === "featured"
           ? { featured: "desc" }
           : { createdAt: "desc" };

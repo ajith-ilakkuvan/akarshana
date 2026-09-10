@@ -38,6 +38,8 @@ model Product {
   metal          String
   purity         String?
   weightGrams    Float?
+  /** Making-charge wastage, as a percentage of the metal weight — shown to customers instead of a fixed price, since gold jewellery is quoted against the day's gold rate. */
+  wastagePercentage Float?
   gemstone       String?
   sku            String         @unique
   stock          Int            @default(0)

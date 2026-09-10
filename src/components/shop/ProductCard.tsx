@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
-import { formatInr } from "@/lib/utils";
 import type { ProductWithRelations } from "@/lib/products";
 
 export function ProductCard({ product }: { product: ProductWithRelations }) {
@@ -39,10 +38,12 @@ export function ProductCard({ product }: { product: ProductWithRelations }) {
           {product.metal}
           {product.purity ? ` · ${product.purity}` : ""}
         </p>
-        <div className="mt-2 flex items-baseline gap-2">
-          <span className="font-display text-lg font-semibold text-charcoal">{formatInr(product.price)}</span>
-          {product.compareAtPrice && product.compareAtPrice > product.price && (
-            <span className="text-sm text-charcoal/40 line-through">{formatInr(product.compareAtPrice)}</span>
+        <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          {product.weightGrams != null && (
+            <span className="font-display text-lg font-semibold text-charcoal">{product.weightGrams}g</span>
+          )}
+          {product.wastagePercentage != null && (
+            <span className="text-sm text-charcoal/50">+{product.wastagePercentage}% wastage</span>
           )}
         </div>
       </div>

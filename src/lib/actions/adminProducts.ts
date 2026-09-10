@@ -19,6 +19,7 @@ export interface ProductFormState {
 function parseProductForm(formData: FormData) {
   const compareAtRaw = formData.get("compareAtPrice");
   const weightRaw = formData.get("weightGrams");
+  const wastageRaw = formData.get("wastagePercentage");
 
   return productSchema.safeParse({
     name: String(formData.get("name") ?? ""),
@@ -31,6 +32,7 @@ function parseProductForm(formData: FormData) {
     metal: String(formData.get("metal") ?? ""),
     purity: String(formData.get("purity") ?? ""),
     weightGrams: weightRaw ? Number(weightRaw) : null,
+    wastagePercentage: wastageRaw ? Number(wastageRaw) : null,
     gemstone: String(formData.get("gemstone") ?? ""),
     sku: String(formData.get("sku") ?? ""),
     stock: Number(formData.get("stock") ?? 0),
@@ -116,6 +118,7 @@ export async function updateProduct(
           purity: data.purity || null,
           gemstone: data.gemstone || null,
           weightGrams: data.weightGrams,
+          wastagePercentage: data.wastagePercentage,
           sku: data.sku,
           stock: data.stock,
           featured: data.featured,

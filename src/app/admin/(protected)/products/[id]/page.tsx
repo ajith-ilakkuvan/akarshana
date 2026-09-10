@@ -30,6 +30,7 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
             metal: product.metal,
             purity: product.purity ?? "",
             weightGrams: product.weightGrams,
+            wastagePercentage: product.wastagePercentage,
             gemstone: product.gemstone ?? "",
             sku: product.sku,
             stock: product.stock,

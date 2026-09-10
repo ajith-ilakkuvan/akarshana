@@ -24,6 +24,7 @@ interface ProductDefaults {
   metal: string;
   purity: string;
   weightGrams: number | null;
+  wastagePercentage: number | null;
   gemstone: string;
   sku: string;
   stock: number;
@@ -42,6 +43,7 @@ const emptyProduct: ProductDefaults = {
   metal: "Gold",
   purity: "",
   weightGrams: null,
+  wastagePercentage: null,
   gemstone: "",
   sku: "",
   stock: 0,
@@ -143,7 +145,7 @@ export function ProductForm({
         </label>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <label className="block">
           <span className="text-sm font-medium text-charcoal">Metal</span>
           <input name="metal" required defaultValue={product.metal} className="input mt-1" />
@@ -155,6 +157,18 @@ export function ProductForm({
         <label className="block">
           <span className="text-sm font-medium text-charcoal">Weight (grams)</span>
           <input type="number" step="0.1" name="weightGrams" defaultValue={product.weightGrams ?? ""} className="input mt-1" />
+        </label>
+        <label className="block">
+          <span className="text-sm font-medium text-charcoal">Wastage (%)</span>
+          <input
+            type="number"
+            step="0.1"
+            min={0}
+            max={100}
+            name="wastagePercentage"
+            defaultValue={product.wastagePercentage ?? ""}
+            className="input mt-1"
+          />
         </label>
       </div>
 

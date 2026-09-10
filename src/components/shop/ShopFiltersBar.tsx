@@ -11,8 +11,8 @@ interface CategoryOption {
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
+  { value: "weight-asc", label: "Weight: Low to High" },
+  { value: "weight-desc", label: "Weight: High to Low" },
 ];
 
 export function ShopFiltersBar({ categories, metals }: { categories: CategoryOption[]; metals: string[] }) {

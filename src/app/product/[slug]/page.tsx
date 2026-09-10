@@ -10,7 +10,6 @@ import { AddToCartButton } from "@/components/shop/AddToCartButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { productJsonLd } from "@/lib/structuredData";
 import { getProductBySlug, getRelatedProducts } from "@/lib/products";
-import { formatInr } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -78,18 +77,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-gold-dark">{product.category.name}</p>
               <h1 className="mt-2 font-display text-3xl font-bold text-charcoal sm:text-4xl">{product.name}</h1>
 
-              <div className="mt-4 flex items-baseline gap-3">
-                <span className="font-display text-2xl font-semibold text-charcoal">{formatInr(product.price)}</span>
-                {product.compareAtPrice && product.compareAtPrice > product.price && (
-                  <span className="text-lg text-charcoal/40 line-through">{formatInr(product.compareAtPrice)}</span>
+              <div className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                {product.weightGrams != null && (
+                  <span className="font-display text-2xl font-semibold text-charcoal">{product.weightGrams}g weight</span>
+                )}
+                {product.wastagePercentage != null && (
+                  <span className="text-base text-charcoal/60">+{product.wastagePercentage}% wastage</span>
                 )}
               </div>
+              <p className="mt-1 text-xs text-charcoal/50">
+                Priced against today&rsquo;s gold rate — the exact amount is shown in your cart.
+              </p>
 
               <div className="mt-4 flex flex-wrap gap-2">
                 <Badge>{product.metal}</Badge>
                 {product.purity && <Badge>{product.purity}</Badge>}
                 {product.gemstone && <Badge>{product.gemstone}</Badge>}
-                {product.weightGrams && <Badge>{product.weightGrams}g</Badge>}
               </div>
 
               <p className="mt-6 text-base leading-relaxed text-charcoal/75">{product.description}</p>
