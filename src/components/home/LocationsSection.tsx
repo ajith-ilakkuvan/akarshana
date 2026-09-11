@@ -29,7 +29,9 @@ export function LocationsSection() {
                 <span className="flex size-11 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
                   <MapPin aria-hidden="true" className="size-5" />
                 </span>
-                <h3 className="mt-4 font-display text-lg font-semibold text-charcoal">Gold Buyers in {location.name}</h3>
+                <h3 className="mt-4 font-display text-lg font-semibold text-charcoal">
+                  Old Gold Buyers in {location.name}
+                </h3>
                 <p className="mt-2 text-sm text-charcoal/70">
                   Gold valuation, gold buying and doorstep service in {location.name}.
                 </p>

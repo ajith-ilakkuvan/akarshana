@@ -43,7 +43,7 @@ export default function LocationsPage() {
                     <MapPin aria-hidden="true" className="size-5" />
                   </span>
                   <h2 className="mt-4 font-display text-lg font-semibold text-charcoal">
-                    Gold Buyers in {location.name}
+                    Old Gold Buyers in {location.name}
                   </h2>
                   <p className="mt-2 text-sm text-charcoal/70">
                     Gold valuation, gold buying and doorstep service in {location.name}.
