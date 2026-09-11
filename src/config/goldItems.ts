@@ -22,7 +22,7 @@ export const goldItemCategories: GoldItemCategory[] = [
     slug: "jewellery",
     label: "Gold Jewellery",
     icon: "gem",
-    photo: { src: "/gold-items/jewellery.webp", alt: "Gold temple jewellery set with necklace, jhumka earrings and maang tikka" },
+    photo: { src: "/gold-items/jewellery.webp", alt: "Ornate gold temple-style necklace with pearl and floral detailing" },
   },
   {
     slug: "chains-bangles",
