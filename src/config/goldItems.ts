@@ -40,7 +40,7 @@ export const goldItemCategories: GoldItemCategory[] = [
     slug: "bars",
     label: "Gold Bars",
     icon: "package",
-    photo: { src: "/gold-items/bars.webp", alt: "Stacked fine gold bars, 999.9 purity, on a decorative tray" },
+    photo: { src: "/gold-items/bars.webp", alt: "Two stacked fine gold bars, 999.9 purity, 1000g each" },
   },
   {
     slug: "bridal-antique",
@@ -52,6 +52,6 @@ export const goldItemCategories: GoldItemCategory[] = [
     slug: "old-broken",
     label: "Old / Broken Gold",
     icon: "recycle",
-    photo: { src: "/gold-items/old-broken.webp", alt: "Old gold jewellery, bangles and chains collected for valuation" },
+    photo: { src: "/gold-items/old-broken.webp", alt: "Broken gold bangles, tangled chains and a cracked ring collected for valuation" },
   },
 ];
