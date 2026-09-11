@@ -7,6 +7,7 @@ import { GoldItemsSection } from "@/components/home/GoldItemsSection";
 import { WhyUs } from "@/components/home/WhyUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { DoorstepSection } from "@/components/home/DoorstepSection";
+import { DocumentsSection } from "@/components/home/DocumentsSection";
 import { LocationsSection } from "@/components/home/LocationsSection";
 import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { FaqSection } from "@/components/home/FaqSection";
@@ -31,6 +32,7 @@ export default function HomePage() {
       <WhyUs />
       <HowItWorks />
       <DoorstepSection />
+      <DocumentsSection />
       <LocationsSection />
       <ReviewsSection />
       <FaqSection />
