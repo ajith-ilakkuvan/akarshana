@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Gem, Link as LinkIcon, Coins, Package, Crown, Recycle } from "lucide-react";
+import { Gem, Link as LinkIcon, Coins, Package, Crown, Recycle, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -13,6 +13,7 @@ const icons: Record<GoldItemCategory["icon"], typeof Gem> = {
   package: Package,
   crown: Crown,
   recycle: Recycle,
+  sparkles: Sparkles,
 };
 
 /**

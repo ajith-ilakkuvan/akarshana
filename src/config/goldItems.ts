@@ -8,7 +8,7 @@
 export interface GoldItemCategory {
   slug: string;
   label: string;
-  icon: "gem" | "link" | "coins" | "package" | "crown" | "recycle";
+  icon: "gem" | "link" | "coins" | "package" | "crown" | "recycle" | "sparkles";
   /**
    * Real product photo, shown instead of the icon medallion once supplied
    * for that category. Categories without one yet fall back to the icon
@@ -53,5 +53,11 @@ export const goldItemCategories: GoldItemCategory[] = [
     label: "Old / Broken Gold",
     icon: "recycle",
     photo: { src: "/gold-items/old-broken.webp", alt: "Broken gold bangles, tangled chains and a cracked ring collected for valuation" },
+  },
+  {
+    slug: "earrings",
+    label: "Earrings",
+    icon: "sparkles",
+    photo: { src: "/gold-items/earrings.webp", alt: "Pair of ornate gold jhumka earrings with ruby-red stone drops" },
   },
 ];
