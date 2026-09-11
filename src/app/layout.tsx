@@ -3,6 +3,7 @@ import { Playfair_Display, Inter, Noto_Sans_Tamil } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
+import { FloatingContactButtons } from "@/components/layout/FloatingContactButtons";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd } from "@/lib/structuredData";
 import { siteConfig } from "@/config/site";
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <Footer />
         <MobileStickyCta />
+        <FloatingContactButtons />
       </body>
     </html>
   );
