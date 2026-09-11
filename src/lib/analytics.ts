@@ -14,6 +14,7 @@ export type AnalyticsEvent =
   | "phone_click"
   | "doorstep_booking"
   | "location_page_view"
+  | "map_click"
   | "service_click"
   | "cta_click"
   | "career_apply_click";
