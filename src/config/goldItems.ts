@@ -46,7 +46,7 @@ export const goldItemCategories: GoldItemCategory[] = [
     slug: "bridal-antique",
     label: "Bridal & Antique Sets",
     icon: "crown",
-    photo: { src: "/gold-items/bridal-antique.webp", alt: "An elaborate antique-style bridal gold jewellery set on display" },
+    photo: { src: "/gold-items/bridal-antique.webp", alt: "Antique temple-style gold necklace with a goddess and peacock motif pendant" },
   },
   {
     slug: "old-broken",
