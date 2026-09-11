@@ -34,7 +34,7 @@ export const goldItemCategories: GoldItemCategory[] = [
     slug: "coins",
     label: "Gold Coins",
     icon: "coins",
-    photo: { src: "/gold-items/coins.webp", alt: "A pile of gold coins embossed with a deity design in a decorative bowl" },
+    photo: { src: "/gold-items/coins.webp", alt: "A stack of plain gold coins with a few loose coins beside it" },
   },
   {
     slug: "bars",
