@@ -26,9 +26,9 @@ export const goldItemCategories: GoldItemCategory[] = [
   },
   {
     slug: "chains-bangles",
-    label: "Chains & Bangles",
+    label: "Bangles",
     icon: "link",
-    photo: { src: "/gold-items/chains-bangles.webp", alt: "Layered gold coin-necklaces and bangles displayed on a stand" },
+    photo: { src: "/gold-items/chains-bangles.webp", alt: "A pair of ornate gold bangles with intricate filigree detailing" },
   },
   {
     slug: "coins",
