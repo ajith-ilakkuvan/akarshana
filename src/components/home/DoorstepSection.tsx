@@ -9,13 +9,13 @@ export function DoorstepSection() {
     <section id="doorstep" className="bg-cream py-16 sm:py-24">
       <Container className="grid gap-12 lg:grid-cols-2 lg:items-start">
         <Reveal variant="fade-up">
-          <div className="relative mb-8 aspect-[16/11] w-full overflow-hidden rounded-3xl border border-brand-gold/25 shadow-lg shadow-black/10">
+          <div className="relative mb-8 aspect-[4/5] w-full overflow-hidden rounded-3xl border border-brand-gold/25 shadow-lg shadow-black/10 sm:aspect-[3/4]">
             <Image
               src="/showcase/bridal-1.webp"
               alt="Bride wearing an elaborate red and gold bridal jewellery set"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
+              className="object-cover object-top"
             />
           </div>
 
