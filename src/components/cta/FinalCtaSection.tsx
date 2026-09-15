@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -22,17 +23,29 @@ const socialLinks = [
  */
 export function FinalCtaSection() {
   return (
-    <section className="bg-brand-red py-16 sm:py-20">
-      <Container className="flex flex-col items-center gap-6 text-center">
-        <Reveal variant="fade-up">
+    <section className="overflow-hidden bg-brand-red py-16 sm:py-20">
+      <Container className="grid gap-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:items-center">
+        <Reveal variant="fade-up" className="mx-auto hidden w-full max-w-xs lg:mx-0 lg:block">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-brand-gold/30 shadow-xl shadow-black/30">
+            <Image
+              src="/showcase/bridal-4.webp"
+              alt="Bride wearing a gold necklace, maang tikka and jhumka earrings, smiling softly"
+              fill
+              sizes="360px"
+              className="object-cover object-top"
+            />
+          </div>
+        </Reveal>
+
+        <Reveal variant="fade-up" delayMs={120} className="flex flex-col items-center gap-6 text-center">
           <GoldOrnament className="justify-center" />
-          <h2 className="mt-4 font-display text-3xl font-semibold text-white sm:text-4xl">
+          <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
             Ready to Get Your Gold Valued?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/80">
+          <p className="max-w-xl text-white/80">
             Reach out today for a transparent gold valuation, or book doorstep service at your convenience.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Button href="/contact/" variant="secondary" size="lg">
               {ctaLabels.primary}
             </Button>
@@ -42,7 +55,7 @@ export function FinalCtaSection() {
             </div>
           </div>
           {socialLinks.length > 0 && (
-            <div className="mt-5 flex justify-center gap-3">
+            <div className="flex justify-center gap-3">
               {socialLinks.map(({ key, href, label }) => (
                 <a
                   key={key}
