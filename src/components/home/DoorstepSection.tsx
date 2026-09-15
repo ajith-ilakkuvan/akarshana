@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { LeadForm } from "@/components/forms/LeadForm";
@@ -6,8 +7,18 @@ import { locations } from "@/config/locations";
 export function DoorstepSection() {
   return (
     <section id="doorstep" className="bg-cream py-16 sm:py-24">
-      <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <Container className="grid gap-12 lg:grid-cols-2 lg:items-start">
         <Reveal variant="fade-up">
+          <div className="relative mb-8 aspect-[16/11] w-full overflow-hidden rounded-3xl border border-brand-gold/25 shadow-lg shadow-black/10">
+            <Image
+              src="/showcase/bridal-1.webp"
+              alt="Bride wearing an elaborate red and gold bridal jewellery set"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-dark">
             Doorstep Gold Service
           </span>
