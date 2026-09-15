@@ -4,6 +4,7 @@ import { TrustStrip } from "@/components/home/TrustStrip";
 import { RequestValuationSection } from "@/components/home/RequestValuationSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { GoldItemsSection } from "@/components/home/GoldItemsSection";
+import { GoldMomentsSection } from "@/components/home/GoldMomentsSection";
 import { WhyUs } from "@/components/home/WhyUs";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { DoorstepSection } from "@/components/home/DoorstepSection";
@@ -29,6 +30,7 @@ export default function HomePage() {
       <RequestValuationSection />
       <ServicesSection />
       <GoldItemsSection />
+      <GoldMomentsSection />
       <WhyUs />
       <HowItWorks />
       <DoorstepSection />
