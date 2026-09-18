@@ -17,45 +17,45 @@ export async function Hero() {
   const hero = await getHeroContent();
 
   return (
-    <section className="relative overflow-hidden bg-brand-black">
+    <section className="relative overflow-hidden marble-surface">
       {/* Warm gold glow — an abstract nod to the storefront's chandelier and gold trim. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(247,236,201,0.16),_transparent_55%),radial-gradient(circle_at_bottom_left,_rgba(184,137,47,0.2),_transparent_50%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(184,137,47,0.14),_transparent_55%),radial-gradient(circle_at_bottom_left,_rgba(26,22,15,0.05),_transparent_50%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full border border-brand-gold/20"
+        className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full border border-brand-gold/30"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -left-16 size-80 rounded-full border border-brand-gold/15"
+        className="pointer-events-none absolute -bottom-32 -left-16 size-80 rounded-full border border-brand-gold/25"
       />
 
       <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-14 lg:py-28">
         <Reveal variant="fade-up">
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-light">
+          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-dark">
             {hero.eyebrow}
           </span>
           <GoldOrnament className="mt-4 justify-start" />
-          <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-[3.25rem]">
+          <h1 className="mt-4 font-display text-4xl font-bold leading-[1.1] text-charcoal sm:text-5xl lg:text-[3.25rem]">
             {hero.headline}
           </h1>
-          <p className="mt-5 max-w-lg text-base text-white/80 sm:text-lg">{hero.subheading}</p>
+          <p className="mt-5 max-w-lg text-base text-charcoal/75 sm:text-lg">{hero.subheading}</p>
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/shop/" variant="secondary" size="lg">
               {ctaLabels.primary}
             </Button>
-            <Button href="/about/" variant="outlineOnDark" size="lg">
+            <Button href="/about/" variant="outline" size="lg">
               Our Story
             </Button>
           </div>
 
           <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
             {trustPoints.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-2 text-sm font-medium text-white/80">
-                <Icon aria-hidden="true" className="size-4 text-brand-gold-light" />
+              <li key={label} className="flex items-center gap-2 text-sm font-medium text-charcoal/80">
+                <Icon aria-hidden="true" className="size-4 text-brand-gold-dark" />
                 {label}
               </li>
             ))}
@@ -63,7 +63,7 @@ export async function Hero() {
         </Reveal>
 
         <Reveal variant="scale-in" delayMs={120} className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand-gold/40 shadow-xl shadow-black/40">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand-gold/40 shadow-xl shadow-charcoal/20">
             {hero.image ? (
               <Image
                 src={hero.image}

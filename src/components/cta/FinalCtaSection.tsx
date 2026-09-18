@@ -13,14 +13,14 @@ import { ctaLabels } from "@/config/navigation";
  */
 export function FinalCtaSection() {
   return (
-    <section className="bg-brand-black py-16 sm:py-20">
+    <section className="marble-surface py-16 sm:py-20">
       <Container className="flex flex-col items-center gap-6 text-center">
         <Reveal variant="fade-up">
           <GoldOrnament className="justify-center" />
-          <h2 className="mt-4 font-display text-3xl font-semibold text-white sm:text-4xl">
+          <h2 className="mt-4 font-display text-3xl font-semibold text-charcoal sm:text-4xl">
             Ready to Find Your Next Piece?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/80">
+          <p className="mx-auto mt-3 max-w-xl text-charcoal/70">
             Shop our collections online, or visit our Coimbatore boutique to see them in person.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

@@ -28,13 +28,13 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section className="bg-brand-black py-16 sm:py-24">
+    <section className="marble-surface py-16 sm:py-24">
       <Container>
-        <SectionHeading tone="dark" eyebrow="Why Prashwa Jewels" title="Handcrafted, Certified, Trusted" />
+        <SectionHeading eyebrow="Why Prashwa Jewels" title="Handcrafted, Certified, Trusted" />
 
         <RevealGroup variant="fade-up" staggerMs={90} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {reasons.map(({ icon: Icon, title, description }) => (
-            <div key={title} className="rounded-2xl bg-white p-6 shadow-sm">
+            <div key={title} className="rounded-2xl border border-charcoal/10 bg-white p-6 shadow-sm">
               <span className="flex size-11 items-center justify-center rounded-full bg-brand-gold text-charcoal">
                 <Icon aria-hidden="true" className="size-5" />
               </span>

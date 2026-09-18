@@ -178,6 +178,28 @@
     opacity 100ms ease;
 }
 
+/**
+ * White-marble surface — evokes the boutique's actual palace-inspired
+ * white-marble facade and interior (ivory stone, soft veining, a
+ * polished sheen) in place of a flat fill, used on the site's full-bleed
+ * "empty space" panels (hero, page banners, feature bands). Layered
+ * diagonal streaks in stone-grey and gold simulate natural veining over
+ * an ivory ground, plus two soft radial highlights for a lightly
+ * polished, non-flat surface. Use charcoal/brand-black text on this
+ * surface, the same as on any other light background — not white.
+ */
+.marble-surface {
+  background-color: #f8f6f0;
+  background-image:
+    linear-gradient(122deg, transparent 36%, rgba(90, 80, 60, 0.09) 37.5%, rgba(90, 80, 60, 0.03) 39%, transparent 40.5%),
+    linear-gradient(58deg, transparent 18%, rgba(184, 137, 47, 0.12) 19.5%, transparent 21%),
+    linear-gradient(150deg, transparent 61%, rgba(90, 80, 60, 0.07) 62.5%, transparent 64.5%),
+    linear-gradient(204deg, transparent 74%, rgba(184, 137, 47, 0.08) 75.5%, transparent 77%),
+    linear-gradient(80deg, transparent 85%, rgba(90, 80, 60, 0.05) 86%, transparent 88%),
+    radial-gradient(120% 90% at 12% 8%, rgba(255, 255, 255, 0.85), transparent 55%),
+    radial-gradient(120% 90% at 90% 95%, rgba(40, 34, 24, 0.05), transparent 60%);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
